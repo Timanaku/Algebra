@@ -1,0 +1,113 @@
+\section{Lecture 12 - 18 Oct 2021}
+On the 3rd isomorphism theorem. Last lecture about group theory. From next lecture on
+we'll talk about group actions. 
+\subsection{Third Isomorphism Theorem}
+\begin{lemma}[Sheet 2, Q5]
+  Let $\phi:G\to G'$ be a homomorphism and $H'<G'$. We claim that the preimage
+  $\phi^{-1}(H')<G$ is a subgroup of $G$. 
+  \label{lem:preImgSubgroup}
+\end{lemma}
+\begin{proof}
+  Note that we have $1_{G'}\in H'$ since $H'$ is a subgroup of $G'$, so
+  $\phi(1_{G})=1_{G'}$ and it follows tht $1_{G}\in \phi^{-1}(H')$. Next we claim that for
+  any $x,y\in\phi^{-1}(H')$ we have $xy^{-1}\in\phi^{-1}(H')$. Note that we have, for any
+  $h,h'\in H'$, $h'h^{-1}\in H'$ since $H'$ is a subgroup. Moreover, we have that
+  $h=\phi(x),h'=\phi(y)$ for some $x,y,\in\phi^{-1}(H')$, hence it follows that
+  $\phi(x)\phi(y)^{-1} = \phi(xy^{-1})\in H'$, or equivalently $xy^{-1}\in\phi^{-1}(H')$,
+  as required.
+\end{proof}
+
+\begin{lemma}
+  Let $\phi:G\to G'$ be a surjective homomorphism and $H'<G'$. We claim 
+  \[H'\trianglelefteq G' \iff \phi^{-1}(H')\trianglelefteq G\]
+  \label{lem:preImgNormSub}
+\end{lemma}
+\begin{proof}
+  Let $g\in G$ and $h\in \phi^{-1}(H')$. Then define $g'=\phi(g), h'=\phi(h)\in H'$ and $\bar{h'} = \phi(\bar{h})$.
+  We have $g'h' = \bar{h}'g'$ for some $\bar{h}'\in H$,
+  \[g'h' = \bar{h}'g' \iff \phi(g)\phi(h)  =\phi(\bar{h})\phi(g) \iff \phi(ghg^{-1}) = g'h'(g')^{-1} \in H'.\]
+  \[\iff ghg^{-1}\in \phi^{-1}(H')\]
+  Hence $\phi^{-1}(H')\trianglelefteq G$, as required.
+\end{proof}
+
+\begin{theorem} [Third Isomorphism Theorem]
+If $N$ and $K$ are normal in $G$ with $N \subseteq K$, then we have an isomorphism of groups $G/K \cong (G/N)/(K/N)$
+%  Let $G$ be a group, and $N\trianglelefteq G$. Define the quotient map $q_N:G\to G/N$.
+%  Then
+%  \begin{enumerate}
+%    \item For every subgroup $U$ of $G/N$, the preimage $q_N^{-1}(U)$ is a subgroup of
+%      $G$.
+%    \item If $U$ is a subgroup of $G/N$, then $U$ is normal in $G/N$ if and only iff
+%      $q_N^{-1}(U)$ is normal in $G$.
+%    \item The function $U\mapsto q_N^{-1}(U)$ defines a bijection between the set of
+%      subgroups of $G/N$ and the set of subgroups of $G$ that contain $N$.
+ %   If $K\trianglelefteq G$ containing $N$, then there exists a unique isomorphism $\widetilde{f}: G/K \to (G/N)/(K/N)$ which gives 
+   % $$
+   %     G/K \cong (G/N)/(K/N)
+  %  $$
+   % By $gK\mapsto (gN)(K/N)$.
+%  \end{enumerate}
+  \label{thm:tit}
+\end{theorem}
+
+This is easier to understand with the following commutative diagram:
+
+\[\begin{tikzcd}
+	{G} &&&&& {G/K} \\
+	\\
+	& {G/N} &&& {(G/N)/(K/N)}
+	\arrow["{q_K}", two heads, from=1-1, to=1-6]
+	\arrow["{q_{K/N}}", two heads, from=3-2, to=3-5]
+	\arrow["{q_N}"{description}, two heads, from=1-1, to=3-2]
+	\arrow["{\widetilde{f}}"{description}, dashed, from=3-5, to=1-6]
+\end{tikzcd}\]
+
+\begin{remark}
+    In other words, the third isomorphism theorem says that the quotient homomorphism $q_K : G \rightarrow G/K$ can be factored through the quotient homomorphism $q_N : G \rightarrow G/N$ to give $q_K \simeq q_{K/N} \circ q_N$.
+\end{remark}
+
+
+\begin{proof}
+  % We'll prove these part by part. For the first part, we have that
+  % $N=\pi^{-1}(1N)\subset\pi^{-1}(U)$ for every subset of $U$, since $U$ is a subgroup of
+  % $G/N$ it must contain the identity element, naming $N$. Note that the pre-image of $N$
+  % is $N$ itself (recall the absorption rule from 2F). Moreover, we have that for a
+  % homomorphism $\phi:G\to G/N$, the preimage of any subgrup of $G/N$ is a subgroup of $G$
+  % by Lemma \ref{lem:preImgSubgroup}.
+
+  % For the second part, we have that the quotient map is surjective by definition. The
+  % proof then follows by Lemma \ref{lem:preImgNormSub}.
+
+  % For the third part, we find an inverse of the function $U\to \pi^{-1}(U)$ to show that
+  % it's indeed a bijection. Let $\SH$ be the set of subgroups of $G$ that contain $N$, i.e.
+  % $\SH=\{H<G | H\cap N = N\}$, and let $\SH'$ be the st of subgroups of $G/N$, i.e.
+  % $\SH'=\{gN | g\in G\}$. Then we find $\SH\to\SH'$ by $H\mapsto \pi (H)=H/N$. Hence the
+  % defined function is a bijection.
+  We claim that  $\widetilde{f}: G/K \to (G/N)/(K/N)$ is an isomorphism of groups.
+  First we check it's well defined, suppose $gK=g'K$ for some $g,g'\in G$. Then
+  $g^{-1}g'\in K$, so $g^{-1}g' N \in K/N$ hence $gN(K/N) = g'N(K/N)\in (G/N)/(K/N)$.
+  Surjectivity is given since every coset representative of $G/N$ is hit by some
+  representative of $G/K$. Injectivity proof is the same as the well-definedness proof but
+  read backwards (notice how the proof goes both ways!)
+  \todo{provide alternate proof using FIT}
+\end{proof}
+The above theorem says that if $G$ is a group, $K$ is a normal subgroup, and $\phi$ is a
+homomorphism from $G$ whose kernel ($N$ above, since every normal subgroup is a kernel of
+a homomorphism) is contained in $K$, then $G/K \cong \phi(G)/\phi(K)$. Note that
+$\phi(G)=\Img \phi:G\to G/N$ and $\phi(K)=\Img \phi_{K}:K\to K/N$. This, in order to
+understand $G/K$ we may apply any homomorphism $\phi$ whose kernel ($N$) is contained in
+$K$ and instead understand that quotient on the other side of the homomorphism, which is
+often simpler.
+
+\begin{example}
+  Let $G=\GL_{2}(\RR)$ and let $K=\GL_2^+(\RR)=\{X\in\GL_2(\RR) : \det X>0\}$. Then it's
+  easy to see that $K$ is normal in $G$. What is $G/K$? THe gorup $K$ contains the normal
+  subgroup $N=\SL_2(\RR)=\ker\det$. We have surjective group homomorphisms
+  $G\to\RR^{\times}$ and $\GL_2^+(\RR)\to\RR_{>0}$, with kernel $\SL_2(\RR)$ and by the
+  FIT we have $G/N\cong \RR^{\times}$ and $K/N\cong \RR_{>0}$. By the TIT we have
+  $G/K\cong \det\GL_2(\RR)/\det\GL_2^+(\RR)\cong \RR^{\times}/\RR_{>0}\cong \{\pm 1\}$.
+\end{example}
+
+Get used to thinking about normal subgroups as kernels of homomorphisms, and quotients
+$G/N$ as images $\phi(G)$ of homomorphisms $\phi$ whose kernels are that normal subgroup
+$N=\ker\phi$.

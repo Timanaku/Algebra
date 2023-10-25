@@ -1,0 +1,105 @@
+\section{Lecture 18 - 1 Nov 2021}
+\subsection{Intro to rings}
+\begin{definition}
+  A ring is a collection $(R,+,\cdot)$ where $R$ is a set, and $+,\cdot$ are two binary
+  operations on $R$ such that 
+  \begin{enumerate}
+    \item $(R,+)$ is an abelian group (labeled as the additive identity $0$)
+    \item The operation $\cdot$ is associative, i.e. for any $a,b,c\in R$ one has
+      $(a\cdot b)\cdot c = a\cdot (b\cdot c)$
+    \item $\cdot$ distributes over $+$, i.e. for all $a,b,c\in R$ one has 
+      \[(a+b)\cdot c = a\cdot c+b\cdot c \land c\cdot (a+b)=c\cdot a + c\cdot b\]
+  \end{enumerate}
+  A \emph{unital ring} or a \emph{ring with unity} is a ring as above such that there
+  exists $1\in R\setminus \{0\}$ satisfying $1\cdot a = a\cdot 1 = a$ for all $a\in R$.
+  A ring is called \emph{commutative} if the operation $\cdot$ is commutative. Note that
+  $+$ is always commutative.
+  \label{def:ring}
+\end{definition}
+\begin{remark}
+  Note that many authors will refer to a unital ring simply as a ring, and they would
+  state otherwise if the ring in question is not unital.
+\end{remark}
+
+\begin{example}
+  We have already seen examples of rings such as $\ZZ,\QQ,\RR,\CC$. Other more interesting
+  ones are,
+  \begin{enumerate}
+    \item For every $n\in\ZZ_{>1}$, the set of cosets $\ZZ/n\ZZ$ forms a ring under
+      addition and multiplication $\mod n$.
+    \item If $R$ is commutative ring, then one can form the ring $R[X]$ of polynomials
+      over $R$ in one variable. The underlying set is just a set of symbols, not
+      necessarily any definite operation. The polynomial hence is just a formal finite
+      linear combination of symbols of the form $X^i$ for $i\in\NN$. Multiplication would
+      be defined as $X^iX^j=X^{i+j}$. The ring consists of elements of the form
+      $\sum_{i=o}^d a_iX^i$, $d\in\ZZ_{\geq 0}$ and $a_i\in R$ for all $i$, with the usual
+      addition and multiplication rules.
+    \item if $R$ is a ring, then one can form the ring $M_n(R)$ of $n\times n$ matrices
+      over $R$ under matrix addition and multiplication.
+    \item If $R$ is a ring and $S$ is some set, the set $R^S$ of functions $f:S\to R$ is
+      aring under pointwise addition and multiplication: $(f+g)(s)=f(s)+g(s), (f\cdot
+      g)(s)=f(s)\cdot g(s)$. If $S=\NN$ then the function $f$ assigns every natural number
+      some element of $R$, i.e. some finite sequence, and we can add and multiply
+      pointwise elements of the sequence.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  Let $R$ be a ring, and $a,b\in R$, $n\in\ZZ\setminus \{0\}$.
+  \begin{enumerate}
+    \item Like in the case of additive groups, we write $-a$ for the additive inverse of
+      $a$, $na=a+a+\cdots+a$ if $n>0$ and $na=-a-a-\cdots-a$ if $n<0$.
+    \item Write $a-b=a+(-b)$.
+    \item If $R$ is unital, we set $a^0=1$ for any $a\in R\setminus\{0\}$. Note however
+      that $a^{-1}$ won't exist in general.
+    \item We usually frop $\cdot$ and instead write $ab$ rather than $a\cdot b$.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  Note that in rings, $ab$ do not need to commute, the multiplicative identity need does
+  not exist, and the cancellation rule does not need to hold. Be careful with these
+  intuitive ideas. Try to derive everything from first principles. Go to the axioms and
+  prove it.
+\end{remark}
+
+
+\begin{theorem}
+  Let $R$ be a ring, let $a,b\in R$, and let $m,n\in\ZZ$. Then we have 
+  \begin{enumerate}
+    \item $0a = a0 =0$
+    \item $a(-b)=(-a)b=-(ab)$
+    \item $(-a)(-b)=ab$
+    \item $(m+n)a = ma+na$ (not in the axioms, mind that these are integers, not ring
+      elements)
+    \item $(mn)a=m(na)$
+    \item $m(a+b)=ma+mb$
+    \item $m(ab)=(ma)b = a(mb)$
+    \item $(ma)(nb)=(mn)(ab)$
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+
+\begin{definition}
+  Let $R$ be a unital ring. An element $u$ of $R$ is called a \emph{unit} if there exists
+  $u^{-1}\in R$ such that $uu^{-1}u^{-1}u=1$. The set of units of $R$ is denoted by
+  $R^{\times}$. The set of units of $R$ forms a group under multiplication.
+  \todo{Note that we defined $R$ to be closed under multiplication but it's not obvious
+  that $R^{\times}$ is closed}
+  \label{<+label+>}
+\end{definition}
+
+\begin{definition}
+  A unital ring in which every non-zero element is a unit is called a \emph{division
+  ring}. A commutative division ring is called a \emph{field}.
+  \label{<+label+>}
+\end{definition}
+
+\begin{example}
+  The Hamilton quaternions $\HH$ are real vector space with basis $1, \vi, \vj, \vk$, with
+  multiplication defined by 
+  \[\vi^2=\vj^2=\vk^2=1 \quad \vi\vj=-\vj\vi=\vk, \vj\vk=-\vk\vj=\vi, \vk\vi=-\vi\vk=\vj\]
+  And extended to $\RR$-linear combinations by distributivity. The inverse of an element
+  $a+b\vi+c\vj+d\vk \neq 0$ has inverse $\frac{a-b\vi-c\vj-d\vk}{a^2+b^2+c^2+d^2}$.
+\end{example}
+

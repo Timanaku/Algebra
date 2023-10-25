@@ -1,0 +1,79 @@
+\section{Lecture 1 - 21 Sep 2021} 
+\begin{definition}
+  A group is a pair $(G,*)$ where $G$ is a set and $*:G\times G\to G$ is a binary
+  operation with the following axioms:
+  \begin{itemize}
+      \ii (Associativity) For any $g,h,k\in G$
+      \[(g*h)*k = g*(h*k)\]
+      \ii (Existence of identity) There exists $e\in G$ such that for any $g\in G$,
+      \[e*g=g*e = g\]
+      \ii (Existence of inverse) For any $g\in G$ there exists $h\in G$ s.t. 
+      \[g*h=h*g=e\]
+  \end{itemize}
+  \label{group}
+\end{definition}
+Note that the second axiom implies that the identity element is unique, since assuming
+that two different identity elements exist, it automatically leads to a contradiction
+saying that the two identity elements are the same. Moreover, note that closure is implied
+by the definition of binary operation.
+
+\begin{theorem}
+  Let $G$ be a group with identity $e\in G$ and an element $g\in G$ with left inverse
+  $h\in G$ and right inverse $h'\in G$ s.t. $hg = gh'=e$. Then $h=h'$.
+\end{theorem}
+\begin{proof}
+  We have $hg=gh'$ so $hhg=hgh'$, which implies by associativity $hhg=he=h=eh'=h'$.
+\end{proof}
+Note that the above also implies that the inverse is unique.
+
+
+\begin{theorem}
+  Let $G$ be a group. Then
+  \begin{itemize}
+      \ii $\forall g\in G$ one has $(g^{-1})^{-1} = g$.
+      \ii $\forall g,h,k\in G$ the following are equivalent:
+      \begin{itemize}
+        \ii $gh = gk$
+        \ii $h=k$
+        \ii $hg=kg$
+      \end{itemize}
+      \ii $\forall  g,h\in G$, we have $(gh)^{-1} = h^{-1} g^{-1}$.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Let $g,h,k \in G$
+    \begin{itemize}
+        \ii By definition of an inverse $g^{-1} (g^{-1})^{-1}=1_G=(g^{-1})^{-1}g^{-1}$ and left multiplying (or right) by $g$ gives $(g^{-1})^{-1} = g$.
+        \ii $gh=gk \iff h=k \iff hg=kg$ by left cancellation and right multiplication (backwards implication follows by right cancellation and left multiplication)
+        \ii $h^{-1} g^{-1} gh = 1_G = gh h^{-1} g^{-1}$ so by definition $h^{-1} g^{-1}$ is the inverse of $gh$ so $h^{-1} g^{-1} = (gh)^{-1}$
+    \end{itemize}
+\end{proof}
+
+\begin{definition}
+  A group $G$ is abelian if the group is commutative, i.e. $\forall g,h\in G$ we have
+  $gh=hg$.
+  \label{abelianGroup}
+\end{definition}
+
+\begin{definition}
+  We say a group is finite or countable if the underlying set is finite or countable,
+  respectively.
+\end{definition}
+Note that we usually use multiplication notation (powers, etc) to denote group operation.
+We use additive notation instead if the group is Abelian.
+
+\subsection{Symmetric groups}
+Since using examples of symmetric groups is recurrent in this course, I thought convenient
+to include the Baker course notes on this topic. 
+
+The n-th symmetric group $S_n$ consists of all bijections (or permutations) of the set
+${1,2,\cdots , n}$ under function composition. The group has $n!$ elements (permutations).
+Each of these elements can be represented by the disjoint cycle notation. Each $\sigma\in
+S_n$ can be written as a composition of permutations $\rho$, of the form
+\[r_1\to r_2=\rho(r_1) \to \cdots \to r_l=\rho(r_{l-1})\]
+Omitting the $r_k\to r_k=\rho(r_k)$. The usual name of this $l$-cycle $\rho$ is
+$(r_1, r_2, \cdots, r_l)$. It's usual to omit $1$-cycles, since they correspond to the
+identity element. Every element in $S_n$ can be written as a composition of $l$-cycles
+(disjoint) of length $1\leq l \leq n$. This factorisation of $\rho$ is unique.
+

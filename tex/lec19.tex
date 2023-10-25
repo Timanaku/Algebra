@@ -1,0 +1,91 @@
+\section{Lecture 19 - 3 Nov 2021}
+\subsection{Subrings, ideals, and quotients}
+\begin{definition}
+  Let $R$ be a ring. A subring is an additive subgroup $S\subset R$ s.t. for every
+  $a,b\in S$, $ab\in S$. We usually write $S\leq R$. If $R$ is unital, a subring $S\leq R$
+  is called a unital subring if $1\in S$. If $R$ is unital, then we assume every subring
+  to be unital, unless otherwise stated.
+  \label{<+label+>}
+\end{definition}
+There's a counter example to the claim that every subring of a unital ring is unital. 
+
+\begin{example}
+  We have $\ZZ \leq \QQ \leq \RR \leq \CC \leq \HH$.
+
+  Another interesting example is if $R$ is a commutative ring, then $R$ itself is a
+  subring of the ring of polynomials $R[X]$.
+
+  Let $S$ be a subring of the unital ring $R$. Then for every $n\in\ZZ_{>0}$ we have
+  $M_{n\times n}(S)$ is a subring of the unital ring $M_{n\times n}(R)$.
+
+  Consider the set of all functions $f:\NN\to\RR$, i.e. all sequences of real numbers.
+  Define the pointwise addition and multiplication of elements of the sequence. The subset
+  of all sequence that converge to $0$ is a subring itself. The sequence of zeroes is the
+  additive identity. This subring is not unital. Hence a counter example to the claim
+  under the defintion above, even though the ring is unital, namaing the multiplicative
+  identity to be the sequence with all ones. 
+\end{example}
+
+
+Question: What substructures do we need to consider to form quotients?
+That depends on the kind of quotient structure we aim for: additive $(a+S)$ or
+multiplicative cosets $(bS)$? We can look at existing cosets, naming $\ZZ/n\ZZ$. We will
+try to build cosets whose elements consist of additive cosets. From the special case of
+additive groups, we know that for the operation of cosets to be well defined we need the
+substructure to be abelian. Note that as a group, rings are abelian, so every subring will
+also be an abelian subgroup. Let $I\subset R$ be an additive subgroup, and let $a,b\in R$.
+We want to define $(a+I)(b+I)=(ab)+I$. Let $a'=a+x, b'=b+y$ for $x,y\in I$ so that $a'$ is
+a representative of the same coset that $a$ form, and similarly for $b'$. Then
+\[(a+x+I)(b+y+I)= (ab+ay+xb+xy) + I\]
+In the one hand, if we take $y=0$, we require $xb\in I$ to have $ab+xb+I=ab+I$. If we take
+$x=0$, we require $ab+ay+I=ab+I$, i.e. $ay\in I$. Note that if we have $xb\in I$ and
+$ay\in I$ it follows that $xy\in I$.
+
+\begin{definition}
+  Let $R$ be a ring. A \emph{left ideal} of $R$ is an additive subgroup $I$ of $R$ s.t.
+  for every $a\in I$ and $r\in R$, $ra\in I$. That is, for every $r\in R$, we have
+  $rI\subseteq I$.
+
+  A \emph{right ideal} of $R$ is an additive subgroup $I$ of $R$ s.t. for every $a\in I$
+  and $r\in R$, $ar\in I$. That is, for every $r\in R$, we have $rI\subseteq I$.
+
+  A \emph{two-sided ideal} is an additive subgroup $I$ of $R$ s.t. it's a left ideal and a
+  right ideal. We write $I\trianglelefteq R$.
+
+  An ideal of $R$ is called \emph{proper} if it's not equal to $R$.
+  \label{<+label+>}
+\end{definition}
+Spoiler alert: The two-sided ideals are exactly the conditions we need to create
+well-defined addition of cosets. 
+\todo{Is it the only condition? Do we need more conditions? Is there a way of building
+addition of cosets in a different way than two-sided ideals?}
+Note that for an ideal to be an proper, it's necessary for it to not contain the
+multiplicative identity, since if it did, then for some $r\in R$ not in the ideal will
+produce $r1=r$, which we said is not in the ideal. Hence it can't be an ideal. 
+
+\begin{definition}
+  Let $R$ be a unital ring, and $I$ be a proper two-sided ideal in $R$. The
+  \emph{quotient ring} has, as its underlying set, the set of cosets $\left\{ r+I : r\in R
+  \right\}$. We define the addition of cosets as $(r+I)+(s+I)=(r+s)+I$ and multiplication
+  as $(r+I)(s+I)=(rs)+I$.
+  \todo{Think about how two-sided proper ideals implies that the operations are
+  well-defined, i.e. do not depend on quotient representatives, where two elements
+$r+I,s+I$ are said to be the same if $s=r+x \exists x\in I$.}
+  \label{<+label+>}
+\end{definition}
+
+Note that the quotient ring, which was guided and motivated by $\ZZ/n\ZZ$ is a bit easier
+to think about than group quotients, since quotient rings will look like $\ZZ/n\ZZ$, which
+is rather easy to visualize, in contrast with quotient groups.
+\begin{example}
+  Consider the polynomial ring $R=\RR[X]$. The subset $I=X^2 R$, the set of real
+  polynomials of degree $2$ or greater, is ideal. Think that for every element $r$ of $R$, the
+  product $rh$ for some $h\in I$ will still be in $I$, since the degree of $rh$ will be at
+  least $2$ (by $h$). Two polynomials $f=a_0+a_1x+\cdots$, $g=b_0+b_1x+\cdots$ are in the
+  same quotient $R/I$ if and only if $a_0=b_0$, $a_1=b=1$ so that $f-g\in I$. I.e. for
+  some $a,b\in \RR$, the coset $a+bx+I$ is unique. For any $c\in\RR$, the coset
+  $a+bx+cx^2+I$ will be equal for every $c$. Thus $R/I$ can be seen as a $2$-dimensional
+  vector space while $R$ is an infinite dimensional vector space, over $\RR$. Here $R/I$
+  is spanned by $\hat{1}=1+I$, $\hat{X}=X+I$, with property $\hat{X}^2=0$, since
+  $X^2+I=0+I=I$.
+\end{example}

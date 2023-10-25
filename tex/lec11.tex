@@ -1,0 +1,76 @@
+\section{Lecture 11 - 13 Oct 2021}
+\subsection{Second Isomorphism Theorem}
+On Isomorphism theorems. We will continue applying the FIT. First we will apply it to the
+second isomorphism theorem.
+\begin{theorem}[Second Isomorphism Theorem]
+  Let $G$ be a group, $H<G$, let $N\trianglelefteq G$. Then,
+  \begin{enumerate}
+    \item The set $HN=\left\{ hn |h\in H,n\in N \right\} <G$ .
+    \item The intesection $H\cap N \trianglelefteq H$, not necessarily of $G$.
+    \item There is an isomorphism $H/H\cap N \cong HN/N$.
+  \end{enumerate}
+  \label{secondIso}
+\end{theorem}
+\begin{proof}
+  \todo{Part 1 and 2 are exercise sheet 2, q 2}
+  To prove the third point, we use the FIT. We claim there exists an homomorphism $\phi$
+  where $\Img\phi= HN/N$ and $\ker\phi = H\cap N$. Consider the composition $\phi:H\xhookrightarrow{}
+  G\to G/N: h\mapsto hN$. Note that the operation is a homomorphism because it's a
+  composition of two homomorphisms: the embedding of $H$ in $G$ and the quotient map.
+  Moreover note that $h\in\ker\phi \iff h\in H \text{ and } hN=N \iff h\in H \text{ and } h\in N$, i.e.
+  $h\in H\cap N$. On the other hand, note that $xN\in\Img\phi \iff \exists h\in H : hN=xN
+  \iff  h^{-1}x\in N \iff x = hn \in HN$.
+  Therefore $\Img\phi = HN/N$, and by the FIT it follows
+  that $H/H\cap N \cong HN/N$. 
+\end{proof}
+Recall from the previous lecture that the first isomorphism theorem says that taking the
+quotient of $G$ by some normal subgroup $N$ is equivalent to applying a homomorphism $\phi$
+from $G$ whose kernel is $N$.
+
+The second isomorphism theorem addresses the question: What if I apply the same $\phi$ to
+a subgroup $H$ of $G$? 
+
+\begin{example}
+  Let $GL_2(\RR)$ be a multiplicative group. Let $SL_2(\RR)\leq GL_2(\RR)$ be the subgroup
+  of matrices with determinant $1$. This is a normal subgroup. What's the structure of
+  $GL_2(\RR)/SL_2(\RR)$? By the first isom theorem we have that $SL_2(\RR)$ must be the
+  kernel of some group homomorphism, namely the determinant map. The image of the
+  determinant is all $\RR^{\times}$, so by the FIT, we deduce that
+  $GL_2(\RR)/SL_2(\RR)\cong \RR^{\times}$. Consider the subgroup
+  \[Z= \left\{ \diag (a,a) : a\in \RR^{\times} \right\} \leq GL_{2}(\RR)\]
+  Observe that $z\in Z, |z|=a^2$, so we see that $Z\cap SL_{2}(\RR) = \left\{ \pm
+  \diag(1,1) \right\}$. 
+
+  We claim that $Z\cdot SL_2(\RR)$ is the subgroup $GL_2^+(\RR)$
+  consisting of all matrices with positive determinant. The proof is left as an exercise
+  to the reader (it's not too hard). By the SIT applied with $H=Z$ and $N=SL_2(\RR)$ we
+  have
+  \[ Z/\left\{ \pm \diag(1,1) \right\} \cong GL_2^+(\RR)/ SL_2(\RR) \cong \RR_{>0}\]
+
+\end{example}
+
+\subsection{Non-examinable aside}
+Bartel makes a non-examinable aside to try to explain how SIT will be useful eventually.
+First, he introduces the idea of \emph{atoms of group theory}. If we want to understand a
+big and complicated group $G$, we can do so by finding a normal subgroup $N$ and
+understand that and its quotient $G/N$ (which is in essence a group with similar structure
+to $G$ but with less elements). Note that his reduction step relies on the existence of a
+proper non-trivial normal subgroup. The SIT is very useful in this approach
+\begin{definition}[Simple Group]
+  A group is \emph{simple} if it is non-trivial and has no proper non-trivial normal
+  subgroups.
+\end{definition}
+
+If we understand all simple groups, and how bigger groups are made up of smaller normal
+groups and their quotients, we would understand all groups. All finite simple groups have
+been classified. For instance, for any $n\geq 5$, the alternate group $A_n$ is simple.
+
+\begin{theorem}
+  Let $G$ be a metabelian group, meaning there exists an abelian normal subgroup $N$ of
+  $G$ sucht that $G/N$ is also abelian. Then every subgroup of $G$ is also metabelian.
+  \label{<+label+>}
+\end{theorem}
+
+\begin{proof}
+    Let $H \leq G$. Since $N$ is a normal abelian subgroup of $G$, $H \cap N$ is abelian as its a subgroup of $N$. Using the SIT we have that $H/H \cap N \cong HN/N$, since $G/N$ is abelian $HN/N$ is abelian and so $H/H \cap N$ is abelian. So H has an abelian normal subgroup $H \cap N$ such that the quotient is abelian, and as $H$ was an arbitrary subgroup of $G$ every subgroup of $G$ is metabelian.
+\end{proof}

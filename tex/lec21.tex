@@ -1,0 +1,114 @@
+\section{Lecture 21 - 8 Nov 2021}
+\subsection{Isomorphism of rings and Cancellation}
+On first isomorphism theorem for rings, zero divisors, and cancellation.
+
+Recall that a subring $U\subset R$ is an additive subgroup of $R$ such that for all
+$r,r'\in U$ we have $rr'\in U$. Morover, if $R$ is unital, we require $1_R\in U$. 
+
+A \emph{two-sided ideal $I$ in a ring $R$ } is an additive subgroup of $R$ such that for
+all $x\in I, r\in R$ we have $xr\in I$, $rx\in I$. Note that if $1\in I$, an ideal, then
+for every $i\in I$ and $r\in R$, then $ir\in R$, but note that if $i=1$, then $1x=x$, so
+we'd require that $I=R$, not a proper ideal. Hence, being an ideal is not a stronger
+condition than being a subgroup.
+
+Recall that if $I$ is an ideal, then we define the quotient $R/I$ to be a ring whose
+underlying additive group is the quotient of additive groups, with multiplication
+$(r+I)(r'+I) = rr'+I$.
+
+\begin{definition}
+  Let $\phi:R\to S$ be a ring homomorphism. The \emph{kernel} of $\phi$ is defined as
+  $\ker\phi=\left\{ r\in R : \phi(r)=0_S \right\}$ and the \emph{image} of $\phi$ is
+  defined as $\img\phi=\left\{ \phi(r) : r\in R \right\}\subset S$
+\end{definition}
+
+\begin{theorem}
+  Let $\phi:R\to S$ be a ring homomorphism of (unital) rings. Then
+  \begin{enumerate}
+    \item The kernel $\ker\phi$ is a proper ideal of $R$;
+    \item The image $\img\phi$ is a subring of $S$;
+    \item $\phi$ induces a ring isomorphism $R/\ker\phi \to \img\phi$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \emph{Kernel:} Note that $\ker\phi$ is an additive subgroup by FIT of groups. Moreover,
+  note that for $a\in\ker\phi$ and $r\in R$ we have $\phi(ra)=\phi(r)\phi(a)=\phi(r)0=0$
+  so $ra\in\ker\phi$ and similarly for $ar\in\ker\phi$. Then note that $1\not\in\ker \phi$
+  since we have that $\phi(1_R)=1_S\neq 0_S$. Hence $\ker\phi\lhd R$.
+
+  \emph{Image:} Note that $\Img\phi$ is an additive subgroup by FIT of groups. Morover, let
+  $r,r'\in\img\phi$, so $\phi(ss')=\phi(s)\phi(s')=rr'\in S$ since $S$ is a ring the
+  product of two elements of the ring will still be in $S$. Hence the claim follows.
+
+  \emph{Isomorphism:} By FIT for groups, we have that the isomorphism exists for the
+  additive group structure. We're left with showing that the homomorphism also holds for
+  the multiplicative operation and that it's bijective. We have that the homomorphism is
+  multiplicative, hence the map holds under multiplication. Moreover, it's a ring
+  homomorphism that is also a bijective, hence the claim follows.
+\end{proof}
+
+\begin{example}[In algebraic number theory]
+  Consider the homomorphism $\phi: \RR[X]\to \CC:f\mapsto f(i)$. This is a ring
+  homomorphism. Its image is all $\CC$, and its kernel is all multiples of $X^2+1$. Hence
+  we have $\ker\phi=(X^2+1)\RR[X]$ and by the FIT, $\RR[X]/(x^2+1)\RR[X]\cong \CC$. Note
+  that as a vector space, $\CC$ is 2-dim, while $\RR[X]$ is infinitely dimensional. Hence
+  we're saying that we just need two basis to represent every coset. 
+\end{example}
+\begin{example}[In analysis]
+  Consider the set of continuous functions on $\RR$, $C^0(\RR)$. This is a ring under
+  pointwise addition and multiplication. The evaluation map $\phi:C^0(\RR)\to \RR:f\mapsto
+  f(0)$ is a ring homomorphism, where the image is $\RR$ and the kernel is
+  $\ker\phi=\{f\in C^0(\RR): f(0)=0\}$, i.e. all the functions that pass through the
+  origin. Hence $C^0(\RR)/\ker\phi \cong \RR$.
+\end{example}
+
+
+\begin{theorem}
+  Let $F$ be a \emph{field} (a ring which is also a group under multiplication when
+  restricted without the addition identity, like $\RR$), and let $R$ be a ring. Then every
+  homomorphism $F\to R$ is injective.
+\end{theorem}
+\begin{proof}
+  Let $\phi:F\to R$ be a ring homomorphism. Assume that $\ker\phi$ is not trivial (hence
+  $\phi$ is non-injective). Then there exists non-zero element $f\in F$, $f\in\ker \phi$.
+  Then, $\phi(f)=0_R$. Since $F$ is a field, we have $f^{-1}f=e_F$, so
+  $\phi(e_F)=0_R$. But we must have $\phi(e_F)=e_R\neq 0_R$. Hence a contradiction.
+\end{proof}
+\begin{remark}
+  Note that we didin't use the fact that $F$ is commutative. In fact, $F$ does not need to
+  be field, but just a division ring (non-commutative field).
+\end{remark}
+
+\begin{definition}
+  Let $R$ be a ring. An element $a\in R$ is a \emph{left zero divisor} if $a\neq 0$ and
+  there exists $b\in R\setminus \{0\}$ s.t. $ab=0$. A right zero divisor is defined
+  analogously.
+\end{definition}
+
+\begin{example}
+  Consider $\ZZ/8\ZZ$. Then $2+8\ZZ$ is a zero divisor since it's non-zero and
+  $(2+8\ZZ)(4+8\ZZ)=8+8\ZZ=0+8\ZZ$. 
+
+  Consider $R=\RR[X]/X^2\RR[X]$, so the element $X+X^2\RR[X]$ is a zero divisor, since
+  the square of itself is $0+X^2\RR[X]$.
+\end{example}
+
+
+\begin{theorem}
+  Let $R$ be a ring. The following are equivalent
+  \begin{enumerate}
+    \item $R$ has not left zero divisors;
+    \item $R$ has not right zero divisors;
+    \item For all $a,b,c\in R$ with $a\neq 0$, one has $ab=ac$ if and only if $b=c$.
+    \item For all $a,b,c\in R$ with $a\neq 0$, one has $ba=ca$ if and only if $b=c$.
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  We have 1 iff 2 because the definition of $a$ being a left zero divisor means that $b$
+  is a right zero divisor.  We have 1 then 3 since, for $ab=ac$ then $ab-ac=a(b-c)=0$,
+  where $a\neq 0$ and we have that there are no zero divisors. Hence $b=c$.
+  Next show that 3 implies 1 by contrapositive. Suppose that $a$ is a zero divisor, hence
+  $ab=ac$. Let $b$ be the element such that $ab=0$ which is non-zero. Then the case where
+  $c=0$ we have $ab=0=ac$ but $b\neq 0$. 
+\end{proof}
+

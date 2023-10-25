@@ -1,0 +1,173 @@
+\section{Lecture 9 - 11 Oct 2021}
+\subsection{First Isomorphism Theorem}
+More group homomorphisms and the first isomorphism theorem.
+\begin{definition} [Kernel of Homomorphisms]
+  Let $\phi:G\to G'$ be a group homomorphism. Then the \emph{kernel} $\ker\phi$ is the set
+  of all elements of $G$ that are mapped to the identity of $G'$, 
+  \[\ker \phi = \left\{ g\in G : \phi(g)=1_{G'} \right\}\]
+  \label{kernel}
+\end{definition}
+
+\begin{theorem}
+  Let $\phi:G\to G'$ be a group homomorphism. Then $\phi$ is injective if and only if
+  $\ker \phi = \left\{ 1_G \right\}$, i.e. the kernel is trivial.
+  \label{kernelHomomorphism}
+\end{theorem}
+\begin{proof}
+  ($\Rightarrow$) Suppose $\exists g,h\in G$ s.t. $\phi(g)=\phi(h)$. Then we have
+  $\phi(gh^{-1})=1_{G'}$ and so $gh^{-1}\in\ker\phi$. The proof follows by injectivity. 
+  Symbolically we have
+  \[ (\phi(g)=\phi(h) \implies g=h) \iff (gh^{-1}\in\ker\phi \implies g=h) \iff \ker\phi
+  = \left\{ 1_{G'} \right\}\]
+
+  ($\Leftarrow$) $gh^{-1}\in\ker\phi \iff \phi(g)=\phi(h)$. The fact that the kernel is
+  trivial automatically implies injectivity.
+\end{proof}
+
+\begin{remark} [Groups as symmetries formalised]
+  If groups are thought of as symmetries, then homomorphisms are changes in the focus of
+  attention of the same symmetry.
+\end{remark}
+
+\begin{example}
+  Consider the dihedral group $D_{12}$ of order 12. We can describe this by the
+  presentation
+  \[D_{12}=\langle \sigma, \tau | \sigma^{6}=\tau^2=1, \tau\sigma\tau^{-1} =
+  \sigma^{-1}\rangle\]
+  If we label the vertices of the hexagon as $1,2,\cdots,6$ we can view this dihedral
+  group inside $S_6$, through its action on the set of vertices (see group actions). Then
+  we observe how the rotation $\sigma$ corresponds to $(1,2,3,4,5,6)$ and reflecion
+  $\tau$ to $(1,6)(2,5)(3,4)$, say. This is really saying that an injective group
+  homomorphism $D_{12}\to S_6$ exists, defined by $\sigma\to (1,2,3,4,5,6), \tau\to
+  (1,6)(2,5)(3,4)$. Observe that we haven't really done much. We just changed the focus of
+  attention from the whole hexagon to only the set of vertices,
+  \[D_{12}=\langle (1,2,3,4,5,6),(1,6)(2,5)(3,4)\rangle \leq S_6\]
+  However, we can also consider the action of $D_12$ on teh set of diagonals of an
+  hexagon. Then, for diagonals $1,2,3$, we have 
+  \[\sigma\mapsto (1,2,3)\]
+  \[\tau\mapsto (1,3)\]
+  I.e. this action gives us a homomorphism $D_{12}\to S_3$, which is non-injective
+  clearly. Hence we must have a non-trivial element in the kernel, naming $\sigma^3$ which
+  rotates $180$ degrees, however in $S_3$ it gives back the identity. Although the
+  homomorphism is non-injective, it is surjective. In fact, $\ker\phi = \left\{ 1,\sigma^3
+  \right\}$.
+\end{example}
+This example illustrated the idea of changing the focus of attention, like deciding which
+question you're going to ask about your object.
+
+\begin{example} [Quotient homomorphisms, Injections]
+  Recall that for $G$ group and $N$ normal subgroup, the quotient map is a surjective
+  homomorphism, $\phi:G\to G/N : g\mapsto gN$.
+
+  Let $H< G$. The map $H\to G:h\mapsto h$ is an injective group homomorphism.
+\end{example}
+
+\begin{example}[A silly isomorphism]
+  Let $G$ be a group s.t. $\left\{ g_1,g_2,\cdots\right\}$ (although it may not be
+  countable). Let us keep the group operation but relabel all elements to form a new set
+  $H$ with elements $\left\{ h_1,h_2,\cdots \right\}$ and define a binary operation on $H$
+  as follows. Whenever $i,j,k$ are such that $g_ig_j=g_k$, define $h_k:=h_ih_j$. Then $H$
+  is isomorphic to $G$ by the homomorphism $g_i\mapsto h_i$ for all $i$.
+\end{example}
+Note that all isomorphisms are essentially like the example above!
+
+Then, the first big theorem of this group is a combination of the above examples of this
+lecture: Every homomorphism is a combination of quotient maps, injections, and
+isomorphisms.
+\begin{theorem} [First isomorphism theorem, Part 1]
+  Let $\phi:G\to G'$ be a group homomorphism. Then 
+  \begin{enumerate}
+    \item $\Img\phi < G'$
+    \item $\ker\phi \trianglelefteq G$
+  \end{enumerate}
+  \label{firstIso1}
+\end{theorem}
+\begin{proof}
+  For the first claim, we have
+  \[x,y\in\Img\phi \implies \exists g,h\in G s.t. \phi(g)=x,\phi(h)=y \implies
+  \phi(gh^{-1})=xy^{-1}\]
+  And recall that by the subgroup test, since $1\in\Img\phi$ by definition of
+  homomorphism, and $xy^{-1}\in\Img\phi$, then $\Img\phi$ is a subgroup of $G'$, as
+  required.
+
+  To prove the second claim, note that $e_G\in\ker\phi$. Moreover, let $x,y\in\ker\phi$.
+  Then we have $\phi (x) = \phi (y) =e_{G'}\iff \phi (xy^{-1}) = e_{G'} \implies
+  xy^{-1}\in\ker\phi$. So $\ker\phi$ is a subgroup. Next, we claim $\forall g\in G,
+  g\ker\phi g^{-1}= \ker\phi$, or $\forall g\in G, h\in\ker\phi,ghg^{-1}\in\ker\phi$.
+  Indeed we observe that 
+  \[\phi(ghg^{-1})= \phi (g)\phi (h) \phi (g)^{-1} = (\phi g)e_{G'} (\phi g)^{-1} = e_{G'}\]
+  So $ghg^{-1}\in\ker\phi$, as required.
+\end{proof}
+
+Now, note that for a some homomorphism $\phi:G\to G'$, it may not be surjective, but it
+will be surjective to its image (that's the definition of image). It may not be injective,
+but we can brutally define an equivalence relation as 
+\[g\sim g' \iff \phi(g)=\phi(g')\iff gg^{-1}\in \ker\phi\]
+Then $\phi(g)$ depends only on the equivalence class of $g$, and is injective as a
+function on equivalence classes. However, now think about what equivalence classes are:
+quotient groups! We have by the definition $g\sim g' \iff gg'^{-1}\in \ker\phi$. We already
+said $\ker\phi$ is a subgroup. So we have $gg'^{-1}\in \ker\phi \iff
+g\ker\phi=g'\ker\phi$. Writing $N=\ker\phi$ we have,
+\[g\sim g' \iff gN = g'N\]
+Observe that by defining the above we're saying that $\phi$ is well-defined on cosets, and
+is injective in the set of cosets. In Theorem \ref{firstIso1} we said the kernel of a
+homomorphism is a normal subgroup of $G$.
+
+An attempt to illustrate this has been made in Figure 1:
+
+\begin{center}
+\[\begin{tikzcd}
+	G && {G'} \\
+	\\
+	{G/\ker \varphi} && {\operatorname{Im}\varphi}
+	\arrow["\varphi", from=1-1, to=1-3]
+	\arrow["\pi"', two heads, from=1-1, to=3-1]
+	\arrow["{\exists ! \widetilde{\varphi}}"', dashed, from=3-1, to=3-3]
+	\arrow["\iota"', hook, from=3-3, to=1-3]
+\end{tikzcd}\]
+\end{center}
+
+\begin{figure}[htpb]
+    \centering
+    \caption{First isomorphism theorem, illustrated. Note how every homomorphism is really
+    a composition of a trivial and surjective quotient map, an bijective (injective and
+    surjective) homomorphism from the quotient to the image.} 
+    \label{fig:isomorphism-theorem}
+\end{figure}
+
+
+\begin{theorem} [First Isomorphism theorem]
+  Let $\phi:G\to G'$ be a group homomorphism. Then,
+  \begin{enumerate}
+    \item The image $\Img\phi=\left\{ \phi(g) : g\in G \right\}$ is a subgroup of $G'$
+    \item The kernel $\ker\phi$ is a normal subgroup of $G$ (also written
+        $\phi^{-1}(1_{G'})$ denoting the pre-image of the identity).
+    \item The bijection 
+      \[\psi: G/\ker\phi\to\Img\phi : g \ker\phi\mapsto \phi(g)\]
+      Is well defined. Moreover, it defines a group isomorphism,
+      \[G/\ker\phi \cong \Img\phi\]
+  \end{enumerate}
+  \label{firstIso}
+\end{theorem}
+\begin{proof}
+  Note that we proved statements $1,2$ in Theorem \ref{firstIso1}. We're left with proving
+  the third statement. Note that the operation $\psi$ is well-defined. Observe that for
+  any $g,g'\in G$ s.t. $g\ker\phi=g'\ker\phi$. Then we have $g=g'h$ for some
+  $h\in\ker\phi$, and so $\phi(g)=\phi(g'h) \iff \phi(g)=\phi(g')$. Hence we shown that
+  $g\ker\phi=g'\ker\phi \implies \phi(g)=\phi(g')$, i.e. $\psi$ is well-defined.
+
+  Furthermore, we claim that $\psi$ is surjective and injective. Note that surjectivity
+  follows from the definition of $\Img\phi$. To prove injectivity, let us proceed by
+  contradiction. Assume $g,g'\in G$ are s.t. $g\ker\phi\neq g'\ker\phi$ and
+  $\phi(g)=\phi(g')$. So $g\neq g'h$ for any $h\in\ker\phi$, and it follows that
+  $g^{-1}g'h=l$ for some non-identity element $l$ of $G$ not necessarily in $\ker\phi$. Hence,
+  \[\phi(g^{-1}g'h) = \phi(l) \iff \phi(g^{-1})\phi(g') = \phi(l) \iff
+  \phi(g)\phi(l)=\phi(g')\]
+  But $\phi(l)\neq 1_{G'}$, a contradiction
+
+  Alternative direct proof for injectivity (nicer imo)
+  
+  Assume $g,g'\in G$ and $\psi(g\ker\phi) = \psi(g'\ker\phi)$. Hence,
+  \[\phi(g) = \phi(g') \iff 1_{G'} = \phi(g)^{-1}\phi(g') = \phi(g^{-1}g') \iff g^{-1}g' \in \ker\phi \iff g\ker\phi = g'\ker\phi\]
+  Therefore, $\psi$ is a bijection.
+\end{proof}

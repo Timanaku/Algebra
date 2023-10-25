@@ -1,0 +1,131 @@
+\section{Lecture 17 - 29 Oct 2021}
+\subsection{Semi-direct product}
+On semidirect product. This is a generalisation of the direct product, which is the
+group theory analogous to the cartesian product in set theory. Recall that we could make
+groups like $\ZZ/n\ZZ \times \ZZ/n\ZZ$, this is an example of direct product. 
+\begin{definition}
+  Let $G$ be a group and let $H\leq G$, $N\trianglelefteq G$ such that $H\cap N = \{e\}$
+  and $HN=G$. Then $G$ is called an \emph{(internal) semi-direct product} of $H,N$.
+  \label{def:intSemidirProd}
+\end{definition}
+Note that for every $h\in H$ we can define an automorphism $\phi_h$ in $N$ given by
+conjugation of by $h$,
+\[\phi_h:n\mapsto hnh^{-1}:N\to N\]
+Where the inverse of $\phi_h$ is $\phi_{h^{-1}}$. Moreover, we have $\phi:H\to \Aut N:h\to
+\phi_h$ is a group homomorphism undercomposition. Note, $\phi_{h_1h_2}:n\to h_1h_2 n
+h_2^{-1}h_{1}^{-1} =\phi_{h_1}(\phi_{h_2}(n))= (\phi_{h_1}\circ\phi_{h_2})(n)$. The entire
+group structure of $G$ is determined by the structures of $N$ and $H$ and the homomorphism
+$\phi$. Indeed, let $g,g'\in G$, and say $g=nh, g'=n'h'$ for $n,n'\in N, h,h'\in H$, then 
+\[gg'=nhn'h'=nhn'h^{-1}hh'=n\phi_h(n')hh'=n''h''\]
+For $n''\in N, h''\in H$, since $\phi_h(n')\in N$. Note that the assumption implies that
+$G$ is in bijection with $N\times H$ via $(n,h)\mapsto nh$. It's injective and well
+defined since $nh=n'h' \iff (n')^{-1}n=h'h^{-1} \iff (n')^{-1}n,h'h^{-1}\in H\cap N =
+\{e\} \iff n=n',h=h'$.
+
+\begin{definition}
+  Given groups $N$ and $H$, and a group homomorphism $\phi:H\to \Aut N$ we define the
+  \todo{How can we define this homomorphism if H and G are not even supposed to be
+  subgroups of the same group? We defined before by conjugation but for conjugation to
+make sense (hnh' in N) we need first for hn to be defined}
+  \emph{(external) semidirect product} of $N$ and $H$ (wrt $\phi$), written $N\rtimes H$
+  or $N\rtimes_{\phi} H$, with the multuplication operation,
+  \[(n,h)(n',h')=(n\phi_h(n'), hh')\]
+    \todo{Check associativity}
+  \label{def:exSemidirProd}
+\end{definition}
+If $G=N\rtimes_{\phi} H$ is as above, we have that $N\times \{1\}$ forms a normal subgroup
+of $G$, $\{1\}\times H$ forms a subgroup of $G$, and $G$ is the internal semidirect
+product of these two groups.
+
+\begin{example}
+  If the definition of the semi direct product we take $\phi:H\to\Aut N$ to be the trivial
+  homomorphism (taking every $h\in H$ to $1\in \Aut N$, where $1:n\to n$ for all $n\in
+  N$, and note that saying is is saying $hn=nh$ for any $n\in N, h\in H$). Then we recover
+  the definition of direct product.
+  \label{ex:trivialHomDirecProd}
+\end{example}
+
+\begin{example}
+  For $n\in\ZZ_{\geq 3}$ the dihedral group $D_{2n}$ is a semidirect product of the normal
+  subgroup $\langle \sigma \rangle$ and the subgroup $\langle \tau \rangle$, where $\sigma
+  ^n=\tau^2=e$. Here $\phi:\langle \tau \rangle\to \Aut \langle \sigma \rangle$ sends
+  $\tau$ to the inversion automorphism, $\phi_{\tau}:\sigma^i\mapsto \sigma^{-1}$.
+\end{example}
+
+\begin{theorem}
+  Every group of order $15$ is cyclic.
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  Let $G$ be a group of order $15$. By Cauchy's we have $g, h\in G$ where $g$ is an
+  element of order $5$ and $h$ of order $3$. Moreover, $3$ is the smallest prime divisor,
+  and $\langle g \rangle$ has order $5$ so by Lagrange it follows that it has index $3$
+  and by Theorem \ref{thm:cauchyGeneral} it follows that $N=\langle g
+  \rangle\trianglelefteq G$. 
+
+  Let $H=\langle h \rangle$, then $H\cap N$ is a normal subgroup of
+  $H$ by the second isomorphism theorem and by Lagrange it follows that $|H\cap N|$ must
+  divide $3$, i.e. $|H\cap N|$ is either $3$ or $1$. Furthermore, $H\cap N$ lies in $N$
+  and it must be a subgroup of $N$, hence its order must also divide $5$ or $1$. Hence
+  $H\cap N=\{1\}$. Therefore, $NH=G$. 
+
+  Note this implies $G= N\rtimes H$. Hence conjugation by $H$
+  defines a group homomorphism $\phi:H\to\Aut N$, but $|\Aut N|=4$. Moreover, $\Img\phi
+  \leq \Aut N$, hence $|\Img\phi|$ divides $|\Aut N|=4$ but note that by the First
+  Isomorphism Theorem and Lagrange, $|\Img \phi|$ also divides $|H|=3$, hence
+  $|\Img\phi|=1$, i.e. the image of $\phi$ is trivial. Therefore every element of $H$
+  gives rise to the trivial automorphism of $N$, and since conjugating by every element of
+  $h$ leaves $n\in N$ unchanged, it implies that $h$ and $n$ commute.
+
+  Hence, by Example \ref{ex:trivialHomDirecProd} $G=N\times H$. Since $N$ is cyclic of
+  order $5$ and $H$ is cyclic of order $3$, note they're coprime, from the second Exercise
+  Sheet, $G$ itself is cyclic, $G=\langle n\cdot h \rangle$.
+\end{proof}
+
+\subsection{An Aside on Free Groups}
+
+\begin{definition}[Free Group]
+Let $S$ be a set, and let $T$ be a set such that each element of $T$ is designated as the inverse of a unique element of $S$, and vice versa. Consider the set of all 'words' that can be formed by concatenating elements of the combined set $S \cup T$, including an empty word (denoted by $e$) which serves as the identity.
+
+We impose the relation of 'reduction' which allows the removal of any adjacent pair of elements $s \in S$ and $t \in T$ where $t$ is the inverse of $s$ (or vice versa), aiming to reduce words to their simplest form. 
+
+The \textbf{free group} on $S$, denoted by $F_S$, is then defined as the set of all such reduced words, equipped with the operation of concatenation followed by reduction. This structure satisfies the group axioms: closure, associativity, identity existence (the empty word), and invertibility (each element can be followed by its inverse leading to their reduction).
+
+Specifically, the relations satisfied by the elements of $F_S$ are precisely those necessary to meet the definition of a group, no more and no less. The group $F_S$ is characterized by the property that any function from $S$ to a group $G$ extends uniquely to a group homomorphism from $F_S$ to $G$. That is the following diagram commutes:
+\[
+\begin{tikzcd}
+S \arrow[r, hook, "i"] \arrow[rd, "f"'] & F_S \arrow[d, "\varphi"] \\
+ & G
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{theorem}
+    Every group $G$ is the quotient of a Free group $F(X)$ by some normal subgroup $N$.
+\end{theorem}
+
+\begin{proof}
+    We know that by the universal property of Free groups, $f$ extends to a unique $\varphi$ where $\varphi$ is a group homomorphism. Take $f: X \to G$ to be the canonical inclusion map with $X$ the underlying set of $G$ and $\varphi(x) = f(x).$ $\varphi$ is clearly surjective onto G so by the FIT, $F_X/\ker \varphi \cong G$. So $N = \ker \phi$.
+\end{proof}
+
+\begin{theorem}[Uniqueness of Free Groups]
+    Let $F_1$ and $F_2$ be free groups on the set $X$. Then $F_1 \cong F_2$
+\end{theorem}
+
+\begin{proof}
+    Suppose \( F_1 \) and \( F_2 \) are both free groups on the set \( X \). We want to show that \( F_1 \) and \( F_2 \) are isomorphic.
+
+By the universal property of $F_1$, for any function $\iota_2: X \to F_2$, there exists a unique group homomorphism $\varphi_1: F_1 \to F_2$ such that $\varphi_1 \circ \iota_1 = \iota_2$, where $\iota_1: X \to F_1$ is the inclusion map. Similarly for the universal property of $F_2$ we get $\varphi_2 \circ \iota_2 = \iota_1$. This gives the following diagram.
+
+\begin{center}
+\begin{tikzcd}
+& X \arrow[ld, "\iota_1"'] \arrow[rd, "\iota_2"] & \\
+F_1 \arrow[rr, "\varphi_1", bend left=25] & & F_2 \arrow[ll, "\varphi_2", bend left=25]
+\end{tikzcd}
+\end{center}
+
+Substituting gives $\iota_1 = (\varphi_2 \circ \varphi_1) \circ \iota_1$ and $\iota_2 = (\varphi_1 \circ \varphi_2) \circ \iota_2$. So by the uniqueness of the universal property, $\varphi_2 \circ \varphi_1 = \id_{F_1}$ and $\varphi_1 \circ \varphi_2 = \id_{F_2}$ so $F_1 \cong F_2$ as required. 
+\end{proof}
+
+
+

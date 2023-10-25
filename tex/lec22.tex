@@ -1,0 +1,69 @@
+\section{Lecture 22 - 10 Nov 2021}
+\subsection{Integral domains}
+\begin{definition}
+  A commutative unital ring with no zero divisors is called an \emph{integral domain}.
+  \label{def:integralDomain}
+\end{definition}
+
+\begin{theorem}
+  Let $R$ be a unital ring. Let $u\in R$ be a \emph{unit} (recall then $\exists u'\in R$
+  s.t. $u'u=uu'=e_R$). Then $u$ is is not a zero divisor.
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  Suppose there exist $v\in R\setminus \{0\}$ s.t. $uv=0$ or $vu=0$. Then note that
+  $v=u^{-1}u v=u^{-1} 0 = 0$, hence a contradiction. Similarly, $v=vuu^{-1}=0$. 
+\end{proof}
+
+\begin{corollary}
+  Every field is an integral domain
+  \label{<+label+>}
+\end{corollary}
+\begin{proof}
+  Recall that a field is a commutative division unital ring. Hence the result follows by
+  the above theorem.
+\end{proof}
+\begin{remark}
+  The converse is not true. An example of an integral domain which is not a field is
+  $\ZZ$.
+  \label{<+label+>}
+\end{remark}
+
+\begin{theorem}
+  A finite integral domain is a field.
+\end{theorem}
+\begin{proof}
+  Recall that a field is a commutative division unital ring, whereas an integral domain is
+  a commutative unital ring. It suffices to show that every element of a finite integral
+  domain has an inverse. Let $r\in R$, and consider $\{r^n | n\in\NN\}$. Then since $R$ is
+  finite there exists $k\in\NN_{>3}$ s.t. $r^k=r$, which implies $r(r^{k-1}-1)=0$. Since
+  cancellation holds in integral domains, it follows that $r^{k-1}=1\iff r^{k-2}r=1$.
+  
+\end{proof}
+
+\begin{corollary}
+  Let $p$ be a prime number. Then $\ZZ/p\ZZ$ is a field.
+  \label{<+label+>}
+\end{corollary}
+\begin{proof}
+  It suffices to show that $\ZZ/p\ZZ$ is an integral domain, i.e. has no $0$-divisors. Let
+  $a+p\ZZ, b+p\ZZ\in \ZZ/p\ZZ$. Then observe that $ab+p\ZZ=0+p\ZZ$ if and only if $ab\in
+  p\ZZ$, so $ab=np$ for some $n\in\ZZ$. Since $p$ is a prime, it must be the case that
+  either $a=p$, $b=p$, or $n=0$ and $b=0$ or $p=0$. Hence either $a+p\ZZ = 0+p\ZZ$ or
+  $b+p\ZZ=0+p\ZZ$. Hence no zero divisor exists. Therefore $\ZZ/p\ZZ$ is an integral
+  domain.
+\end{proof}
+
+\begin{definition}[Maximal ideal]
+  Let $R$ be a ring. An ideal $I$ of $R$ is called \emph{maximal ideal} if $I$ is a proper
+  ideal and for every other ideal $J$ s.t. $I\subseteq J \subseteq R$ we have that $J=I$
+  or $J=R$.
+  \label{def:maximalIdeal}
+\end{definition}
+
+\begin{definition}
+  Let $R$ be a ring. An ideal $I$ of $R$ is called \emph{prime} if $I$ is a proper ideal,
+  and whenever $a,b\in R$ are s.t. $ab\in I$, then one has $a\in I$ or $b\in I$.
+  \label{<+label+>}
+\end{definition}
+

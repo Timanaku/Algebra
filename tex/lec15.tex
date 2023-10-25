@@ -1,0 +1,66 @@
+\section{Lecture 15 - 25 Oct 2021}
+\subsection{Applications of Orbit-Stabiliser Theorem and Cauchy's Theorem}
+Orbit-Stabiliser theorem and applications.
+Note that stabilizers of different points in $X$ will be the same if and only if the
+subgroup $H$ is normal. Recall the theorem from last lecture
+
+\begin{theorem}
+  Let $G$ be a group and let $X$ be a $G$-set. Let $x\in X$. Then
+  \begin{enumerate}
+    \item The $G$-orbit of $x$ is a transitive $G$-set
+    \item The stabiliser of $x$ in $G$ is a subgroup of $G$
+    \item Every transitive $G$-set is isomorphic to some $G/H$, for $H\leq G$.
+    \item The $G$-sets $G/H$ and $G/K$ are isomorphic if and only if the subgroups are
+      conjugate.
+  \end{enumerate}
+\end{theorem}
+Note that even though the $G$-set is transitive, the stabiliser of every point may indeed be
+different sets.
+
+\begin{theorem}[Cauchy's Theorem]
+  Let $G$ be a finite group and $p$ be a prime divisor of $|G|$. Then $G$ contains an
+  element of order $p$
+  \label{thm:cauchy}
+\end{theorem}
+\begin{proof}
+  Consider $X=\left\{ (g_1,\cdots,g_p) \in G^p : \Pi g_i =e\right\}$. Let $C_p =\langle
+  \sigma \rangle$ be a cyclic group of order $p$. Let $C_p$ act on $X$ by $\sigma
+  (g_1,\cdots,g_p)\mapsto (g_p,g_1\cdots, g_{p-1})$. Repeating this $p$ times, we get back
+  the identity. We still need to verify that $(g_p,g_{1},\cdots, g_{p-1})\in X$ since we
+  don't know if $G$ is abelian. However, indeed we have 
+  \[g_p g_1 \cdots g_{p-1} = g_p(g_1\cdots g_p)g_p^{-1}= g_p e g_p^{-1}=e\]
+  Hence we have $(g_{p}, g_{1}, \cdots, g_{p-1})\in X$. Hence the action $C_p$ on $X$ is
+  well defined.
+
+  By Orbit-Stabiliser theorem we have that $|\Orb(x)|$ must divide the size of the group,
+  hence every orbit must be either $p$ or $1$. Then we have that $X$ is a disjoint union of orbits
+  of size $1$ and size $p$,
+  \[|X|= 1\#\{x\in X | \sigma^i x=x \forall i\in\ZZ\} + p \#\{\text{orbits of size $p$}\}\]
+  Note that evey orbit of size $p$ will have $p$ elements, and that's why we multiply by
+  $p$ above.
+
+  We claim that $|X|=|G|^{p-1}$. Note that we can choose
+  $g_1,\cdots,g_{p-1}$ arbitarily, but $g_p$ is forced to be the inverse of the product up
+  to $g_{p-1}$. In particular, $p\Big | |X|$, and so $p$ divides the number of orbits of
+  size 1.  Then by the above expression, we know that there must be either $0$ or
+  $pk\exists k\in\NN$ orbits of size $1$. Let us describe this set of sets by $Y$ (set of
+  orbits of size 1).  Notice that there can't be $0$ orbits of size $1$, since
+  $(e,e,\cdots, e)$ is already of size $1$.
+  \todo{Shouldn't there be more elements, since the number of orbits of size 1 should
+  divide $p$. In particular, shouldn't there be at least $p$ such elements?}
+  Hence, there must be at least one more element, say $(g_1,\cdots, g_p)$ such that
+  $\sigma (g_1,\cdots,g_p)= (g_p, g_1, \cdots, g_{p-1})= (g_1,\cdot,g_p)$ since this
+  element must have order $1$. Then it implies that $g_1=\cdots=g_p$. However, we have
+  that it must also be in $X$, hence $g_1g_2\cdots g_p=g_1^p=e$.
+\end{proof}
+
+\begin{theorem}
+  Let $G$ be a finite gorup and $p$ be the smallest prime dividing $|G|$. Let $H$ be a
+  subgroup of index $p$. Then $H$ is normal in $G$.
+  \label{thm:cauchyGeneral}
+\end{theorem}
+\begin{proof}
+  \todo{Do this. In theory it's in the exercise sheet but I can't find it. It's an
+  application of group actions.}
+\end{proof}<++>
+Note that a subgroup of order $p$ is not guaranteed to exist.

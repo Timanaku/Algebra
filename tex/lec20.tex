@@ -1,0 +1,59 @@
+\section{Lecture 20 - 5 Nov 2021}
+\subsection{Ring homomorphisms}
+\begin{example}
+  Consider the subring $I=(X^2+1)R$, which is an two-sided ideal subring (think why?). We
+  claim that every coset $f+I$ contains a unique polynomial of the form $a_0+a_1x$. It
+  follows that $R/I$ is a 2-dimensional vector space $\RR$ spanned by $\hat{1}=1+I$,
+  $\hat{X}=X+I$, with property $\hat{X}^2=(X^2+1)+I - (1+I)$ (why? think about it in terms
+  of sets, the answer follows), so $\hat{X}^2=I-(1+I)= -\hat{1}$.
+\end{example}
+
+\begin{definition}
+  Let $R,S$ be rings. Let a ring homomorphism from $R$ to $S$ be a function $\phi:R\to S$
+  s.t. for every $a,b\in R$ we have 
+  \begin{enumerate}
+    \item $\phi(a+b)=\phi(a)+\phi(b)$ (note that this defines a group homomorphism under
+      the operation of addition).
+    \item $\phi(ab)=\phi(a)\phi(b)$. (note no necessary a group homomorphism bc $R$ is not
+      a multiplicative groups, but it must respect the operation).
+  \end{enumerate}
+  If $R,S$ are unital, then a ring homomorphism is called \emph{unital} if
+  $\phi(1_R)=1_S$. Unless otherwise stated, a homomorphism between unital rings will be
+  assumed to be unital.
+
+  We say that a homomorphism is an isomorphism if it has a two-sided inverse
+  $\phi\inv:S\to R$ s.t. it's also a ring homomorphism. 
+  \[\phi \circ \phi\inv = \id_S \quad \phi\inv\circ\phi = \id_R\]
+  \label{def:ringHomUnital}
+\end{definition}
+
+\begin{theorem}
+  A ring homomorphism is an isomorphism if and only if it is bijective.
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  If $\phi:R\to S$ is a bijective ring homomorphism, if and only if $\phi\inv$ is also a group
+  homomorphism of addition. 
+
+  We claim that $\phi\inv$ also preserves multiplication, i.e.
+  $\forall g,h\in S$, $\phi\inv(gh)=\phi\inv(g)\phi\inv(h)$. Note that we have
+  $g=\phi(x),h=\phi(y)$ for some $x,y\in R$, hence it follows that
+  $gh=\phi(x)\phi(y)=\phi(xy)$. Note that $x=\phi\inv(g),y=\phi\inv(h)$, hence
+  $\phi\inv(gh)=\phi\inv(\phi(xy))=xy$ and $xy=\phi\inv(g)\phi\inv(h)$, hence it follows
+  that $\phi\inv(gh)=\phi\inv(g)\phi\inv(h)$.
+
+  The reverse direction is trivial.
+\end{proof}
+
+
+\begin{example}
+  Let $R$ be a unital ring and $I$ be a proper two-sided ideal. The quotient map $R\to
+  R/I, r\mapsto r+I$ is a ring homomorphism.
+
+  Another example is for a commutative ring $R$. Let $r\in R$. The evaluation map
+  $\phi_r:R[X]\to R:f\mapsto f(r)$ is a group homomorphism.
+
+  Finally, a more interesting example. Recall that for $I=(X^2+1)\RR[X]$, we had the
+  property that $\hat{X}^2=-\hat{1}$, hence it might not be suprising that
+  $\RR[X]/I\to\CC$ is a ring isomorphism, by sending $\hat{X}$ to $i\in\CC$.
+\end{example}

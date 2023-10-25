@@ -1,0 +1,130 @@
+\section{Lecture 14 - 22 Oct 2021}
+\subsection{Orbit-Stabiliser Theorem}
+Orbit-stabilizer theorem.
+\begin{definition}[Obrit and Stabiliser]
+  Let $G$ be a group and $X$ be a $G$-set. Let $x\in X$. The orbit of $x$ in $G$ is
+  $\Orb_G (x)= G\cdot x = \left\{ g\cdot x :g\in G\right\}$.
+  The stabiliser of $x$ in $G$ is $\Stab_G (x)=\left\{ g\in G | g\cdot x=x \right\}$
+  \label{def:orbStab}
+\end{definition}
+
+
+\begin{theorem}
+  Let $G$ be a group and $X$ be a $G$-set. Then 
+  \begin{enumerate}
+    \item The $G$-orbit of $x$ is a transitive $G$-set.
+    \item The stabiliser of $x$ is a subgroup of $G$.
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  For the first claim, we have to show that $\Orb_G(x)$ is indeed a $G$-set and that it's
+  transitive. To show that it's a $G$-set note that $\forall g\in G, y\in\Orb_G(x)$ we
+  have $g\cdot y = g\cdot (h\cdot x)$ for some $h\in G$. By Definition
+  \ref{def:leftAction} it follows that $g\cdot y = (g\cdot h)\cdot x \in\Orb_G(x)$, as
+  required. Moreover, we claim it's transitive, i.e. $\forall a,b\in\Orb_G(x)\exists h'\in
+  G : b=h'\cdot a$. Note that $b=g\cdot x, a=g'\cdot x$ for some $g,g'\in G$, so it
+  follows that $a=g'\cdot x = g'\cdot (g^{-1}\cdot b)$, and again it follows that
+  $a=(g'g^{-1})\cdot b$, as required.
+
+  For part 2 we show that the stabilizer is indeed a subgroup. Note that the identity
+  $e_G\in\Stab_G(x)$, so the set is non-empty. Next, consider some $a,b\in\Stab_G(x)$, so
+  $a\cdot x=x=b\cdot x \iff (b^{-1}a)\cdot x =x$, so $b^{-1}a\in\Stab_G(x)$, as required.
+\end{proof}
+
+
+\begin{theorem}[Orbit-Stabiliser Theorem]
+  Let $G$ be a group and $X$ be a $G$-set. Let $x\in X$. Then there is an isomorphism of
+  $G$-sets as $\phi:G/\Stab_{G}(x)\to \Orb(x):g\Stab_G(x)\mapsto g\cdot x$.
+  \label{thm:orbStab}
+\end{theorem}
+\begin{proof}
+  We first show that $\phi$ is well defined (doesn't depend on coset representatives) and
+  then show how it's a bijective map with $\phi(g\cdot x)=g\cdot \phi(x)$. We show
+  well-definedness and injectivity in one statement. Let $H=\Stab_G(x)$, so
+  \[gH=hH \iff h^{-1}g\in H \iff h^{-1}g \cdot x = x \iff g\cdot x = h\cdot x\]
+  Note that surjectivity is clear by the definition of $\Orb_G(x)$. Hence $\phi$ is a
+  bijection. Next, observe that $\phi(g\cdot xH)=(gh)\cdot x = g\cdot (h\cdot x)$ by
+  axioms of group actions, and it follows $\phi(g\cdot xH)=g\phi(xH)$, as required.
+\end{proof}
+
+
+\begin{corollary}
+  Let $G$ be a group and $X$ be a $G$-set. Let $x\in X$. We have $|\Orb_{G}(x)|=
+  [G:\Stab_G(x)]$. In particular, if $G$ is finite, then $|\Orb_{G}(x)|=|G|/|\Stab_G(x)|$,
+  by Lagrange, and the size of every orbit divides $|G|$.
+  \label{cor:orbStab}
+\end{corollary}
+
+
+\begin{theorem}
+  Let $G$ be a group and $X$ be a $G$-set. Then lying in the same orbit is an equivalence
+  relation on $X$. In particular, $X$ is a union of disjoint orbits (equivalence classes).
+  \label{thm:eqRelOrb}
+\end{theorem}
+\begin{proof}
+  We prove reflexivity, symmetry, and transitivity. Note that the relation is reflexive
+  since $x=1\cdot x$, the definition of left action. Moreover, note that the relation is
+  symmetric since $x\sim y \iff x=hz$ $y=gz\exists h,g\in G \iff y\sim x$. Finally, we
+  have transivity trivially, since $x=hc,y=gc\exists h,g\in G$ and $y=h'c,z=g'c\exists
+  h',g'\in G$ it follows that $x\sim z$.
+\end{proof}
+
+
+\begin{theorem}
+  Let $G$ be a group, and let $X$ be a transitive $G$-set. Then any two point stabilisers are
+  conjugate in $G$. That is, for any $x,y\in X$ there exists $g\in G$ with
+  $\Stab_G(x)=g\Stab_G(y)g^{-1}$.
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  Since $X$ is transitive, there is $g\in G$ with $x=gy$. Let $h\in\Stab_G(x)$, and
+  observe
+  \[hx=x=hgy=gy\]
+  \[\iff g^{-1}hgy = y\]
+  \[\iff g^{-1}hg\in\Stab_G(y)\]
+  \[\iff h\in g\Stab_G(y)g^{-1}\]
+  Hence $\Stab_G(x)=g\Stab_G(y)g^{-1}$, as required.
+\end{proof}
+
+Recall that since orbits define equivalence relations, we can define equivalence classes,
+and since the orbit of $x$ is isomorphic to the set of left cosets of the stabilizer of
+$x$ in $G$, $G/\Stab_G(x)$, we can find equivalence classes also in $G/\Stab_G(x)$
+\begin{theorem}
+  Let $G$ be a group. Then there is a bijection between conjugancy classes of subgroups of
+  $G$ and isomorphism classes of transitive $G$-sets.
+  \begin{enumerate}
+    \item ($\rightarrow$) Given a subgroup $H\leq G$, assign to it the set $G/H$ of left
+      cosets of $H$ in $G$ -- which will be a transitive $G$-set since by Theorem \ref{thm:orbStab} we
+      have $G/H\cong \Orb(x)$.
+    \item ($\leftarrow$) Given a transitive $G$-set $X$, assign to it $H=\Stab_G(x)\forall
+      x\in X$
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  We first claim that the assignment from subgroups $H$ of $G$ to the set of left cosets
+  $G/H$ is well defined, i.e. if I have two subgroups $H,K$ that are conjugate, then they
+  will map to the same transitive $G$-set. By Theorem \ref{thm:cosetsIsomorphic} if $H,K$
+  are conjugate, we have that the $G$-sets $G/H$ and $G/K$ are isomorphic. Hence this is
+  given.
+
+  More over, if $X$ is a transitive $G$-set, then $\Stab_G(x)$ for any $x\in X$ is a
+  well-defined conjugacy class (independent of $x$).
+   
+  Finally we claim the two assignment sabove are inverses of each other. Fix $H\leq
+  G$ and consider the map $\phi:H\mapsto G/H$. Note how the map
+  $\psi:G/H\mapsto\Stab_G(1\cdot H)$ is $\psi=\phi^{-1}$, since $g\cdot 1H=H \iff g\in H$.
+  Conversely, consider the map from a transitive $G$-set $X\mapsto \Stab(x)$, which has
+  inverse $\Stab(x)\mapsto G/\Stab(x)$ where by the Orbit-Stabilizer theorem we have
+  $G/\Stab(x)\cong X$.
+  
+\end{proof}
+
+All transitive $G$-sets look like sets of left cosets, $G/H$ for a suitable $H$. What $H$?
+Given a transitive $G$-set say $X$, then the subgroup it corresponds to (the conjugacy
+class of subgroups really) is the conjugacy class of point stabilizers.
+\todo{Understand this}
+Note that if you take two different points in $X$, the stabilizer of each point are
+conjugate. Two conjugate subgroups give isomorphic $G$-sets, and hence a bijection arises
+transitive $G$-sets and conjugate classes of subgroups of $G$.

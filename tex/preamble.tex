@@ -1,0 +1,75 @@
+%\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumerate}
+%\usepackage{todonotes}
+%\usepackage{bbm}
+%\usepackage{calligra}
+%\usepackage{mathrsfs}
+% Don't indent paragraphs, leave some space between them
+\usepackage{parskip}
+
+\usepackage{bm}
+%\usepackage{hyperref}
+%\hypersetup{
+%  colorlinks=true,
+%  linktoc=all,
+%}% Already defined in Evan.sty
+\usepackage[sexy]{../ddist/evan} %% Evan.sty to make it look pretty
+
+%% Useful when using report/book to have deeper ramifications
+
+%%\usepackage{titling}
+%%\newcommand{\subtitle}[1]{%
+%%  \posttitle{%
+%%    \par\end{center}
+%%    \begin{center}\large#1\end{center}
+%%    \vskip0.5em}%
+%%}
+%%\setcounter{tocdepth}{4}
+%%\setcounter{secnumdepth}{4}
+
+%% Figures stuff
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+%\newcommand{\incfig}[1]{%
+%  \def\svgwidth{\columnwidth}
+%  \import{./media/}{#1.pdf_tex}
+%}
+\pdfsuppresswarningpagegroup=1
+
+\DeclareTextFontCommand{\emph}{\bfseries\em}
+
+%% Maths Useful commands
+\usepackage{epsfig}
+\def\acts{\mathrel{\reflectbox{$\righttoleftarrow$}}}
+\newcommand{\nt}[1]{\textrm{#1}}
+
+
+%\newcommand{\ii}[1]{\item #1}
+% \DeclareMathOperator{\null}{null}
+\newcommand{\ee}{\bm{e}}
+\newcommand{\e}{\bm{e}}
+\newcommand{\uu}{\bm{u}} 
+\newcommand{\vv}{\bm{v}} 
+
+
+%% Theorems
+%%% Styles
+\usepackage{thmtools}
+
+
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}{Corollary}[thm]
+
+%\theoremstyle{definition}
+%\newtheorem{definition}[thm]{Definition}
+
+\newtheorem{ex}[thm]{Example}
+
+\theoremstyle{rem}
+\newtheorem*{rem}{Remark}

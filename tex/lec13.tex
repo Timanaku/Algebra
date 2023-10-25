@@ -1,0 +1,120 @@
+\section{Lecture 13 - 20 Oct 2021}
+\subsection{Group Actions}
+On group actions. Group actions is in a way the birth of groups.
+\begin{definition} [Left action]
+  Let $G$ be a group, and let $X$ be a set. A left action of $G$ on $X$ is a function
+  \[G\times X \to X\]
+  \[(g,x)\mapsto g\cdot x\in X\]
+  Such that 
+  \begin{enumerate}
+    \item $1_G \cdot x=x$ for any $x\in X$
+    \item $g_1 \cdot (g_2\cdot x) = (g_1g_2)\cdot x$ for any $g_1,g_2\in G$ and $x\in X$.
+  \end{enumerate}
+  Note that $\cdot$ is used to denote the action and the multiplication notation used for
+  group operation. A set equipped with an action of a group $G$ is called $G$-set.
+  \label{def:leftAction}
+\end{definition}
+
+\begin{definition}[Right action]
+  Analogously, a right action of a group $G$ on a set $X$ is a function
+  \[X\times G \to X\]
+  \[(x,g)\mapsto x\cdot g\]
+  Such that
+  \begin{enumerate}
+    \item for all $x\in X$ one has $x\cdot 1_G=x$
+    \item for all $g_1,g_2\in G$ and for all $x\in X$ one has $(x\cdot g_1)\cdot g_2 =
+      x\cdot (g_1g_2)$.
+  \end{enumerate}
+  \label{def:rightAction}
+\end{definition}
+
+\begin{remark}
+  Note that in a left action, first acting by $g_2$ and then acting on the result by $g_1$
+  is the same as acting by the product $g_1g_2$. For a right action, first acting by $g_2$
+  and then by $g_1$ is the same as the product $g_2g_1\neq g_1g_2$.
+\end{remark}
+
+\begin{theorem}
+  Let $G$ be a group and $X$ a $G$-set. Then
+  \begin{enumerate}
+    \item For every $g\in G$, the function $\sigma_g:X\to X:x\mapsto g\cdot x$ is
+      injective. I.e. every $g\in G$ induces a permutation of $X$.
+    \item The function $G\to $ \{permutations of X\} given by $g\mapsto\sigma_g$ is a
+      group homomorphism
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  To prove the first claim, we have $\sigma_g x = \sigma_g y \implies g\cdot x= g\cdot y
+  \implies (g^{-1}g)\cdot x = (g^{-1}g)\cdot y \implies 1_G\cdot x = 1_G\cdot y \implies
+  x=y$.
+  
+  The second claim follows by the second axiom in Definition \ref{def:leftAction}. Let
+  $S_X$ be the set of permutations of $X$, and we have $\phi:G\to S_X: g\mapsto g\cdot x$ Let $g,g'\in G$ and $x \in X$.
+  Then $\phi(gg')(x) = \sigma_{gg'}(x)= (gg')\cdot x = g\cdot \phi (g')(x) = (\phi(g)(\phi (g')(x)) = (\phi(g) \circ \phi(g'))(x)$,
+  as required.
+\end{proof}
+
+\begin{example}
+  Let $n\in\NN$. The group $S_n$ acts on $\left\{ 1,\cdots, n \right\}$.
+
+  For $n\in\NN_{\geq 3}$, the dihedral group of order $2n$ acts on the set of vertices and
+  also on the set of edges of a regular $n$-gon. Moreover, if $n$ is even, it acts on the
+  set of diagonals.
+
+  Let $G$ be the group of rotations of a cube. Then $G$ acts on the set of diagonals of
+  the cube. This defines a group homomorphism $G\to S_4$. Bartel then shows an animation
+  to illustrate the fact that rotations diagonals is equivalent to a $3$-cycle
+  permutation, the rotation about axis through edges is equivalent to the product a
+  transposition, and the rotation about axis through faces is just a product of two
+  transpositions. This shows that every possibility is hit by an element of $S_4$. In fact
+  this defines an isomorphism.
+\end{example}
+
+\begin{definition}
+  Let $G$ be a group. A $G$-action on a set $X$ is called transitive if for any $x,y\in X$
+  there exists $g\in G$ s.t. $y=g\cdot x$.
+  \label{def:transitiveAction}
+\end{definition}
+\begin{example}
+  Let $G$ be a group and $H$ be a subgroup. The set of left cosets of $H$ in $G$ is a
+  transitive $G$-set under action
+  \[G\times G/H \to G/H: (g,xH)\mapsto (gx)H\]
+\end{example}
+
+\begin{definition} [Isomorphism on group action]
+  Let $G$ be a group and $X,Y$ be $G$-sets. An isomorphism from $X$ to $Y$ is a bijection
+  $\phi:X\to Y$ s.t. $\forall x\in X, g\in G$, we have $\phi(g\cdot x)=g\cdot \phi(x)$.
+  \label{defi:isomorphismAction}
+\end{definition}
+
+\begin{theorem}
+  Let $G$ be a group and let $H,K$ be subgroups. The $G$-sets $G/H$ and $G/K$ are
+  isomorphic if and only if there exists $g\in G$ such that $H=gKg^{-1}$.
+  \label{thm:cosetsIsomorphic}
+\end{theorem}
+\begin{proof}
+  Note that the trivial map $G/H\to G/K:gH\mapsto gK$ is not well-defined, as it fails
+  with $g=1$.
+
+  ($\Leftarrow$) Define $\phi:G/H\to G/K$. How do we find a mapping? let us define the
+  placeholder $1\cdot H\to x\cdot K$ and we want to find $x\in G$ s.t. for any $h\in H$,
+  $hxK = xK$, i.e. $x^{-1}hx\in K$ or equivalently $h\in xKx^{-1}$. In our assumption we
+  have $g\in G$ with $H=gKg^{-1}$, so in our case $x=g$. However, we need a map for any
+  $g$, not just the identity. We can define $\phi:xH\mapsto x\cdot g \cdot K$ for any $x\in G$.
+  We claim this is well-defined and injective. We claim $xH=yH$ and it follows
+  \[\iff x^{-1}y\in H=gKg^{-1} \iff x^{-1}yg = gk \exists k\in K \]
+  \[\iff xgk= yg \iff xg\cdot K = yg\cdot K\]
+Hence this is well defined and injective.
+
+  We also claim that this is surjective, which follows from the fact that $G$ is a group,
+  so every element of $x$ will have $x\cdot g\in G$. Finally, let $\alpha\in G$ and $xH\in
+  G/H$. Then $\phi(\alpha xH)=\alpha xgK = \alpha \phi(xH)$.
+
+  ($\Rightarrow$) Let $\phi: G/H\to G/K$ be an isomorphism of $G$-sets. Let $g\in G$ be
+  s.t. $\phi(1\cdot H)=gK$. Claim: $H=gKg^{-1}$. We have 
+  \[\alpha\cdot (1\cdot H)=1\cdot H \iff \alpha\in H \]
+  \[\iff f(\alpha\cdot 1\cdot H)=\alpha\cdot f(1\cdot H)=gK\iff \]
+    \[\alpha g K = gK \iff g^{-1}Kg\in K \iff \alpha \in gKg^{-1}\]
+    Note that the second line follows by Definition \ref{defi:isomorphismAction}.
+\end{proof}

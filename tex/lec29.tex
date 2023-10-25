@@ -1,0 +1,28 @@
+\section{Lecture 29 - 26 Nov 2021}
+\subsection{Ring theory -- Fixing loose ends}
+Note that even though we have used the usual function notation for working with
+polynomials, polynomials are not really functions. They can be defined as a function, but
+that does not hold in general. Consider the ring $R=\ZZ/p\ZZ$ and  the polynomial ring
+$R[X]$. Note that $R$ is indeed a field and that for $f(X)=X^4-X\in R[X]$ we have $f(a)=0$
+for all $a\in R$. Hence note that a polynomial can be the zero function without being the
+$0$ polynomial of the ring. Hence $f$ as $R\to R$ is the $0$ function, but it's not the
+$0$ polynomial of $R[X]$.
+
+\begin{example}
+  Consider the group $A=(\ZZ\times\ZZ, +)$. The set of
+  homomorphisms from $A$ to $A$ forms a ring under 
+  \[(f+g)(a)= f(a)+g(a)\]
+  \[(fg)(a) = f(g(a)) \forall a\in A\]
+  For all $f,g:A\to A$. A homomorphism from a group to itself is called an
+  endomorphism. The set of endomorphisms with these two operations is called the
+  endomorphism ring, called $\End(A)$. We claim this ring is noncommutative. Take as
+  an example $\phi:(m,n)\mapsto (0,n)$ (a ring homomorphism), and $\psi:(m,n)\mapsto
+  (m+n,0)$. Then note $\phi\psi:(m,n)\mapsto (0,0)$, and $\psi\phi:(m,n)\mapsto (n,0)$,
+  hence they are not the same: take $(\phi\psi)(0,1)=(0,0)\neq
+  (\psi\phi)(0,1)=(1,0)$. In fact, note that these two elements serve as a basis for the
+  whole ring -- we can get any $(m,n)$ by $m(1,0)+n(0,1)$.
+\end{example}
+
+Note that earlier in the course we talked about Automorphisms, which are really just
+invertible endomorphisms. And following the above example, it follows that
+$\Aut(A)=(\End(A))^{\times}$, the group of units of $\End(A)$.

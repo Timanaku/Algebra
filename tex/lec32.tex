@@ -1,0 +1,48 @@
+\section{Lecture 32 - 03 Dec 2021}
+\subsection{Algebraic Closure}
+\begin{example}
+  Consider the field extension $\QQ(2^{1/3})=\{a+b2^{1/3} + c2^{2/3} : a,b,c\in\QQ\}$.
+\end{example}
+\begin{theorem}
+  Let $L/F$ and $F/K$ be field extensions. Then $L/K$ is finite if and only if $L/F$ and
+  $F/K$ are both finite. Moreover, if this is the case, we have $[L:K]=[L:F][F:K]$. More
+  precisely, if $\alpha_1,\cdots, \alpha_n$ is an $F$-basis for $L$, and $\beta_1,\cdots,
+  \beta_m$ is a $K$-basis for $F$, then $\{\alpha_i\beta_j : 1\leq i\leq n, 1\leq j\leq
+  m\}$ is a $K$-basis for $L$.
+\end{theorem}
+\begin{proof}
+  TODO: Doable. Should attempt.
+\end{proof}
+
+\begin{theorem}
+  Let $F/K$ be a field extension. Then the set
+  \[\overline{K_F} = \left\{ \alpha\in F : \alpha\text{ is algebraic over } K\right\}\]
+  Is a field.
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  TODO: Constructive approach: Given $\alpha$ being a root of $f$ and $\beta$ being a root
+  of $g$, can we construct a polynomial that has root $\alpha+\beta$ and $\alpha\beta$?
+\end{proof}<++>
+Example, try $\alpha=\sqrt{2}, \beta=\sqrt{3}$. For example $\overline{\QQ_{\CC}}$ is a
+huge extension field of $\QQ$, but still much smaller than $\CC$.
+$\overline{K_F}$ is called the algebraic closure of $K$ in $F$.
+\begin{definition}
+  A field $F$ is called algebraically closed if every $f\in F[X]$ with $\deg f>0$ has a
+  root in $F$.
+  \label{<+label+>}
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Algebra]
+  The field $\CC$ is algebraically closed.
+  \label{thm:FTAlg}
+\end{theorem}
+The above polynomial implies that a given complex polynomial $f$ can be written as factors
+with one root in $\CC$ and then a multiply by another smaller degree polynomial $g$, and
+recursively this implies that any polynomial over $\CC$ splits as a product of linear
+factors (the roots in $\CC$).
+\begin{theorem}
+  Every field $K$ is contained in an algebraic extension (in a field extension whose
+  elements are algebraic over $K$) that is algebraically closed.
+  \label{<+label+>}
+\end{theorem}<++>

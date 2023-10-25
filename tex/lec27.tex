@@ -1,0 +1,42 @@
+\section{Lecture 27 - 22 Nov 2021}
+\subsection{Intermission: Classifying groups of order 21}
+\begin{example}
+  Let $G$ be a group of order 21. How many possibilities are there for $G$.
+\end{example}
+\begin{proof}
+  Note that $21=7\cdot 3$, and by Cauchy, there are elements of $G$, say $g,h\in G$, with
+  order $7$ and $3$, say $g^7=e=h^3$. Let $K=\langle g\rangle$ and $H=\langle h\rangle$.
+  Note that $K\cap H=\{1\}$, since by Lagrange we have that $|K\cap H|$ divides $|K|$ and
+  $|H|$, and $\gcd(|H|,|K|)=1$, and the intersection is required to be a group itself.
+  Moreover, note that $K\trianglelefteq G$ since $[G:K]$ being the smallest prime divisor
+  of $G$ implies $K\trianglelefteq G$.
+
+  Next, let $h\in H$ and consider the automorphism $\phi_h:K\to K:g^i\mapsto hg^ih^{-1}$
+  (it's rather easy to see that the map is well defined and surjective, by normality, it's
+  a homomorphism by the general argument of conjugation as a homomorphism, and it is an
+  isomorphism because the inverse is $\phi_{h^{-1}}$). Suppose that $hgh^{-1}=g^r$, and note
+  that the choice for $r$ will completely determine the automorphism (since $g$ generates
+  $K$). Note that $\phi_h^{j}(g)=h^jgh^{-j}=g^{r^j}$ and we require $j=3\implies h^3=e$
+  hence we require $g^{r^j}=g^1$. Hence we require $r^3\cong 1 \mod 7$, which are obiously
+  $r=1$, $r=2$, $r=4$. 
+
+  An alternate point of view is that, the function $H\to \Aut K:x\mapsto \phi_x$, where
+  $\Aut K$ is a group under composition and the identity is the identity automorphism, and
+  note that there are $|K|-1=6$ possible such automorphisms.  Moreover, we have $K$ is
+  cyclic of order $7$, i.e. $\Aut K \cong (\ZZ/7\ZZ)^{\times}$, its automorphism group is
+  group under composition. More generally we have that $\Aut(\ZZ/n\ZZ)\cong
+  (\ZZ/n\ZZ)^{\times}$.  In fact, note that when $n$ is prime, the unit groups before is
+  cyclic of order $n-1$. Note also that for a cyclic group of order $n$, every elemenet of an
+  order dividing $n$ generates exactly one subgroup of that order. So $\Aut K$ being
+  a cylic of order $6$ we have that there is exactly one subgroup of order $3$.
+
+  Hence we have the following possibilities. 
+  \emph{Case 1: $\phi_h(g)=g$} -- Then $gh=hg$. Note that the semidirect product using
+  this conjugation rule gives $HK=G$ since they intersect trivially and the product of
+  their order is the order of the group, and the fact that the elements commute gives
+  raise to the fact that the group is cylic with generator $gh$.
+  \emph{Case 2: $\phi_h(g)=g^2$} -- Non-commuting where the semidirect product of $H$ and
+  $K$ using this conjugation rule gives $K\rtimes H\cong C_7\rtimes C_3$.
+  \emph{Case 3: $\phi_h(g)=g^4$} -- Note that this hs the case for the previous
+  $\phi_h(g)=g^2$, but $\phi_h^2(g)=\phi_{h^{-1}}=g^4$ (since $H$ has order 3).
+\end{proof}<++>

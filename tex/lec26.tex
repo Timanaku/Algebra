@@ -1,0 +1,56 @@
+\section{Lecture 26 - 19 Nov 2021}
+\subsection{Irreducible polynomials}
+\begin{theorem}
+  Let $F$ be a field, and let $f\in F[X]$ be non-zero. Then the following are equivalent
+  \begin{enumerate}
+    \item The ideal $(f)=\{fg:g\in F[X]\}$ is maximal;
+    \item The ideal $(f)$ is prime;
+    \item The polynomial $f$ is irreducible in $F[X]$.
+  \end{enumerate}
+  \label{<+label+>}
+\end{theorem}
+\begin{proof}
+  \emph{(1) implies (2):} In Corollary \ref{cor:maximalPrime} we proved that every maximal
+  ideal is prime, given a commutative ring. Note that $F[X]$ is a commutative ring, hence
+  the result follows.
+
+  \emph{(2) implies (3):} Note that $\deg f>0$ since if $\deg f=0$ we would have
+  $(f)=F[X]$. Next, consider $f=gh$, so we have that $g\in (f)$ or $h\in (f)$.  If $g\in
+  (f)$, note that $\deg f \geq\deg g$ and $\deg g \geq \deg f$, so we must have $\deg
+  f= \deg g$, as required, hence $\deg h=0$, so $f$ is irreducible. The case for $h\in
+  (f)$, it follows that $\deg g=0$.
+
+  \emph{(3) implies (1):} Note that for $f$ to be irreducible, so $\deg f>0$, and it
+  follows that $(f)$ will be a proper ideal. Moreover, assume we have an ideal $J$ s.t.
+  $I\subseteq J \subseteq F[X]$. In particular, note that $J$ must be principal by Theorem
+  \ref{thm:idealPrinciplas}, hence there exists $g\in F[X]$ s.t. $J=(g)$. Since
+  $I\subseteq J$ we must that some $h\in F[X]$ s.t. $f=gh$. Since $f$ is irreducible, it
+  follows that either $\deg g=0$, in which case $J=F[X]$, or $\deg g=\deg f$, in which
+  case $h\in F$ so it follows that $J=I$.
+\end{proof}
+This theorem gives us a way of easily constructing new fields.
+\begin{theorem}
+  Let $F$ be a field and let $f\in F[X]$ have degree 2 or 3. Then $f$ is reducible if and
+  only if it has a root in $F$, i.e. iff there exists $a\in F$ s.t. $f(a)=0$.
+  \label{thm:deg2o3Root}
+\end{theorem}
+\begin{proof}
+  If $f$ is reducible, then $f=gh$ for some $0<\deg g<\deg f$, $0<\deg h<\deg f$ and
+  $\deg g + \deg h = \deg f$, which implies at least one of the factrs has degree 1,
+  which is of the form $a_0+a_1X$ and has root $\frac{-a_0}{a_1}$.
+\end{proof}
+
+\begin{example}
+  Let $F=\ZZ/3\ZZ$, which is a field. The polynomial $f(X)=X^2+1\in F[X]$ is
+  irreducible. It follows that $F[X]/(f)$ is a field. Recall that for every $g\in F[X]$
+  there exists $h=a_0+a_1x\in F[X]$ s.t. $g+(f)=h+(f)$. Hence we have
+  \[F[X]/f(x) = \left\{ a_0+a_1X : a_0,a_1\in F \right\}\]
+  Note that it has 9 elements.
+\end{example}
+
+\begin{example}
+  Let $d\in \ZZ$ be non-square. Then the quadratic number field is defined as
+  \[\QQ[X]/(X^2-d) \cong \QQ(\sqrt{d})=\left\{ a+b\sqrt{d} | a,b\in \QQ \right\}\]
+  \[a+bX+(X^2-d) \mapsto a+b\sqrt{d}\]
+  Where the inverse of an element $a+b\sqrt{d}$ is $\frac{a-b\sqrt{d}}{a^2-b^2d}$.
+\end{example}

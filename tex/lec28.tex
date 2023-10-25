@@ -1,0 +1,61 @@
+\section{Lecture 28 - 24 Nov 2021}
+\subsection{Irreducibility criteria}
+\begin{definition}
+  A polynomial $f(X)$ ins $\ZZ[X]$ is called primitive if the $\gcd(a_n,\cdots,a_0)=1$,
+  i.e. if there exists no prime number $p$ that divides all $a_i$.
+  \label{def:primitivePol}
+\end{definition}
+
+\begin{theorem}[Gauss's Lemma]
+  Let $f\in \ZZ[X]$ be primitive. Then $f$ is reducible in $\QQ[X]$ into polynomials of
+  degree $r,s\in \NN_{\leq n-1}$ iff it factorises as a product of degree $r$ and $s$
+  polynomials in $\ZZ[X]$.
+  \label{thm:GaussLemmaPol}
+\end{theorem}
+\begin{proof}
+  \todo{Do this. Suppose $f$ is primitive and can be expressed as the product of two
+  polynomials in $\ZZ[X]$, and show that then it can also be expressed as the product of
+two polynomials in $\QQ[X]$, i.e. if it is reducible in $\ZZ[X]$ then it's also reducible
+in $\ZZ[X]$.}
+\end{proof}
+\begin{remark}
+  Note that the working may be a bit confusing. All the above thm is saying is that if a
+  polynomial is primitive, then it's reducible in $\QQ$ iff it's reducible in $\ZZ$. 
+\end{remark}
+\begin{example}
+  The polynomial $X^4+2$ is irreducible in $\QQ[X]$. If it was reducible, then $X^4+2=fg$,
+  then we must have either $\{\deg f, \deg g\}=\{1,3\}$, and so one must have a root in
+  $\QQ$. But we have that $X^4+2$ is strictly positive, hence this is absurd. 
+
+  The other posibility is $\deg f=\deg g=2$. By Gauss's Lemma, it suffices to show that
+  there's no factorization in $\ZZ[X]$. Assume $f,g\in\ZZ[X]$, s.t. $f=a_2x^2+a_1x+a_0$,
+  $g=b_2x^2+b_1x+b_0$, and note that since $X^4$ has coeff $1$, we must have $a_2=b_2=1$
+  (the case where they're both $-1$ is equivalent). However, expanding the product it's
+  easy to see that we require a square of the integers to be $3$, and that's impossible.
+  Hence by Gauss's Lemma, the polynomial is irreducible in $\QQ[X]$.
+\end{example}
+
+\begin{theorem}[Eisenstein's Criterion]
+  Let $p$ be a prime number, and let $f(X)=a_nX^n+\cdots+a_0\in \ZZ[X]$ be s.t.
+  $p\nmid a_n$, $p\mid a_i$ for all $i<n$, and $p^2\nmid a_0$. Then $f$ is
+  irreducible in $\QQ[X]$.
+  \label{thm:eisensteinCriterion}
+\end{theorem}
+\begin{proof}
+  \todo{I think direct should work. Freighleigh has the proof too, but let's try it
+  ourselves.}
+\end{proof}
+
+\begin{example}
+  We can apply Eisenstein's criterion to $X^4+2$ to get an easy proof. 
+\end{example}
+\begin{example}
+  Let $p$ be a prime number. We have that $f(X)=X^{p-1}+\cdots+X+1$ is irreducible in
+  $\QQ[X]$. Note that $f(X)=g(X)h(X)$ iff $f(X+1)=g(X+1)=h(X+1)$ (invertible
+  substitution). We can use the reverse direction to find that $f(X+1)$ is irreducible by
+  using Eisenstein's criterion. In particular, all degrees $<p-1$ have coefficients
+  divisible by $p$ and the constant term is $p$, hence satisfying Eisenstein. I'll skip
+  details but the lecturer gives a nice trick by rewriting $f(X)=\frac{x^p-1}{x-1}$ and
+  using variable substitution $x'=x+1$, and seeing how the combinatorics argument arises
+  naturally and easily.
+\end{example}

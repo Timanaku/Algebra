@@ -1,0 +1,6 @@
+\begin{XTRdefinition} [Kernel of Homomorphisms]
+  Let $\phi:G\to G'$ be a group homomorphism. Then the \emph{kernel} $\ker\phi$ is the set
+  of all elements of $G$ that are mapped to the identity of $G'$,
+  \[\ker \phi = \left\{ g\in G : \phi(g)=1_{G'} \right\}\]
+  \label{kernel}
+\end{XTRdefinition}
