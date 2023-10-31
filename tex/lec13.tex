@@ -93,28 +93,28 @@ On group actions. Group actions is in a way the birth of groups.
   isomorphic if and only if there exists $g\in G$ such that $H=gKg^{-1}$.
   \label{thm:cosetsIsomorphic}
 \end{theorem}
-\begin{proof}
+\begin{proof} 
   Note that the trivial map $G/H\to G/K:gH\mapsto gK$ is not well-defined, as it fails
   with $g=1$.
 
-  ($\Leftarrow$) Define $\phi:G/H\to G/K$. How do we find a mapping? let us define the
-  placeholder $1\cdot H\to x\cdot K$ and we want to find $x\in G$ s.t. for any $h\in H$,
-  $hxK = xK$, i.e. $x^{-1}hx\in K$ or equivalently $h\in xKx^{-1}$. In our assumption we
-  have $g\in G$ with $H=gKg^{-1}$, so in our case $x=g$. However, we need a map for any
-  $g$, not just the identity. We can define $\phi:xH\mapsto x\cdot g \cdot K$ for any $x\in G$.
+  ($\Leftarrow$) Define $\phi:G/H\to G/K$. How do we find a mapping? Let us define the
+  placeholder $H\mapsto gK$ and we want to find $g\in G$ s.t. for any $h\in H$,
+  $hgK = gK$, i.e. $g^{-1}hg\in K$ or equivalently $h\in gKg^{-1}$. In our assumption we
+  have $g\in G$ with $H=gKg^{-1}$, However, we need a map for any
+  $g$, not just the identity. We can define $\phi:xH\mapsto xgK$ for any $x\in G$.
   We claim this is well-defined and injective. We claim $xH=yH$ and it follows
-  \[\iff x^{-1}y\in H=gKg^{-1} \iff x^{-1}yg = gk \exists k\in K \]
-  \[\iff xgk= yg \iff xg\cdot K = yg\cdot K\]
+  \[\iff x^{-1}y\in H=gKg^{-1} \iff x^{-1}yg = gk, \quad \exists k\in K \]
+  \[\iff xgk= yg \iff xgK = ygK\]
 Hence this is well defined and injective.
 
   We also claim that this is surjective, which follows from the fact that $G$ is a group,
-  so every element of $x$ will have $x\cdot g\in G$. Finally, let $\alpha\in G$ and $xH\in
-  G/H$. Then $\phi(\alpha xH)=\alpha xgK = \alpha \phi(xH)$.
+  so every element of $x$ will have $xg\in G$. Finally, let $\alpha\in G$ and $xH\in
+  G/H$. Then $\phi(\alpha \cdot xH)=\alpha \cdot xgK = \alpha \cdot \phi(xH)$.
 
   ($\Rightarrow$) Let $\phi: G/H\to G/K$ be an isomorphism of $G$-sets. Let $g\in G$ be
-  s.t. $\phi(1\cdot H)=gK$. Claim: $H=gKg^{-1}$. We have 
-  \[\alpha\cdot (1\cdot H)=1\cdot H \iff \alpha\in H \]
-  \[\iff f(\alpha\cdot 1\cdot H)=\alpha\cdot f(1\cdot H)=gK\iff \]
-    \[\alpha g K = gK \iff g^{-1}Kg\in K \iff \alpha \in gKg^{-1}\]
+  s.t. $\phi(H)=gK$. Claim: $H=gKg^{-1}$. We have 
+  \[\alpha\cdot H=H \iff \alpha\in H \]
+  \[\iff \phi(\alpha\cdot H)=\alpha\cdot \phi(H)=gK\iff \]
+    \[\alpha g K = gK \iff g^{-1}\alpha g\in K \iff \alpha \in gKg^{-1}\]
     Note that the second line follows by Definition \ref{defi:isomorphismAction}.
 \end{proof}

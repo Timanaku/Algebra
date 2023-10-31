@@ -101,7 +101,7 @@ S \arrow[r, hook, "i"] \arrow[rd, "f"'] & F_S \arrow[d, "\varphi"] \\
 \end{definition}
 
 \begin{theorem}
-    Every group $G$ is the quotient of a Free group $F(X)$ by some normal subgroup $N$.
+    Every group $G$ is the quotient of a Free group $F_X$ by some normal subgroup $N$.
 \end{theorem}
 
 \begin{proof}
@@ -109,22 +109,22 @@ S \arrow[r, hook, "i"] \arrow[rd, "f"'] & F_S \arrow[d, "\varphi"] \\
 \end{proof}
 
 \begin{theorem}[Uniqueness of Free Groups]
-    Let $F_1$ and $F_2$ be free groups on the set $X$. Then $F_1 \cong F_2$
+    Let $F$ and $F'$ be free groups on the set $X$. Then $F \cong F'$
 \end{theorem}
 
 \begin{proof}
-    Suppose \( F_1 \) and \( F_2 \) are both free groups on the set \( X \). We want to show that \( F_1 \) and \( F_2 \) are isomorphic.
+    Suppose \( F\) and \( F' \) are both free groups on the set \( X \). We want to show that \( F \) and \( F' \) are isomorphic.
 
-By the universal property of $F_1$, for any function $\iota_2: X \to F_2$, there exists a unique group homomorphism $\varphi_1: F_1 \to F_2$ such that $\varphi_1 \circ \iota_1 = \iota_2$, where $\iota_1: X \to F_1$ is the inclusion map. Similarly for the universal property of $F_2$ we get $\varphi_2 \circ \iota_2 = \iota_1$. This gives the following diagram.
+By the universal property of $F$, for any function $\iota_2: X \to F'$, there exists a unique group homomorphism $\varphi_1: F \to F'$ such that $\varphi_1 \circ \iota_1 = \iota_2$, where $\iota_1: X \to F$ is the inclusion map. Similarly for the universal property of $F'$ we get $\varphi_2 \circ \iota_2 = \iota_1$. This gives the following diagram.
 
 \begin{center}
 \begin{tikzcd}
 & X \arrow[ld, "\iota_1"'] \arrow[rd, "\iota_2"] & \\
-F_1 \arrow[rr, "\varphi_1", bend left=25] & & F_2 \arrow[ll, "\varphi_2", bend left=25]
+F \arrow[rr, "\varphi_1", bend left=25] & & F' \arrow[ll, "\varphi_2", bend left=25]
 \end{tikzcd}
 \end{center}
 
-Substituting gives $\iota_1 = (\varphi_2 \circ \varphi_1) \circ \iota_1$ and $\iota_2 = (\varphi_1 \circ \varphi_2) \circ \iota_2$. So by the uniqueness of the universal property, $\varphi_2 \circ \varphi_1 = \id_{F_1}$ and $\varphi_1 \circ \varphi_2 = \id_{F_2}$ so $F_1 \cong F_2$ as required. 
+Substituting gives $\iota_1 = (\varphi_2 \circ \varphi_1) \circ \iota_1$ and $\iota_2 = (\varphi_1 \circ \varphi_2) \circ \iota_2$. So by the uniqueness of the universal property, $\varphi_2 \circ \varphi_1 = \id_{F}$ and $\varphi_1 \circ \varphi_2 = \id_{F'}$ so $F \cong F'$ as required. 
 \end{proof}
 
 

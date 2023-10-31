@@ -7,15 +7,41 @@ subgroup $H$ is normal. Recall the theorem from last lecture
 \begin{theorem}
   Let $G$ be a group and let $X$ be a $G$-set. Let $x\in X$. Then
   \begin{enumerate}
-    \item The $G$-orbit of $x$ is a transitive $G$-set
-    \item The stabiliser of $x$ in $G$ is a subgroup of $G$
-    \item Every transitive $G$-set is isomorphic to some $G/H$, for $H\leq G$.
+    \item The $G$-orbit of $x$ is a transitive $G$-set (14.2.1)
+    \item The stabiliser of $x$ in $G$ is a subgroup of $G$ (14.2.2)
+    \item Every transitive $G$-set is isomorphic to some $G/H$, for $H\leq G$. (Consequence of Orbit-Stabiliser)
     \item The $G$-sets $G/H$ and $G/K$ are isomorphic if and only if the subgroups are
-      conjugate.
+      conjugate. (14.6)
   \end{enumerate}
 \end{theorem}
 Note that even though the $G$-set is transitive, the stabiliser of every point may indeed be
 different sets.
+
+\begin{definition}
+    We write $X^G:=\{x \in X: g \cdot x=x$ for all $g \in G\} \subset X$ to denote the set of fixed points of the action then $x \in X^G \Longrightarrow \Orb_G(x)=\{x\}$. In particular, if $X$ is finite then we have
+    \begin{center}
+    $
+    |X|=\left|X^G\right|+\sum_{i=1}^r\left|\Orb_{G}(x)\right|
+    $
+    \end{center}
+    where the sum runs over those orbits whose size are greater than one. This last formula is called the class equation of the group action. \label{classeq}
+\end{definition}
+
+\begin{lem}[The Useful Lemma]
+    Let $G$ be a group of order $p^n$ for some prime $p$ and $n \geq 1$. If $G$ acts on a finite set $X$ then
+    $$
+        \left|X^G\right| \equiv|X| \bmod p. \label{usefullemma}
+    $$
+\end{lem}
+\begin{proof}
+    Since $G$ is a finite group, the orbit-stabiliser theorem shows that $|\Orb_G(x)|$ divides $|G| = p^n$ for all $x$. In particular, if $\Orb_G(x_i)$ is an orbit with $|\Orb_G(x_i)| > 1$ then we must have $|\Orb_G(x_i)| = p^k$ for some $1 \leq k \leq n$. This implies that p divides $|\Orb_G(x_i)|$ for all $i$. Hence the result follows from considering the class equation of the group action (\ref{classeq}).
+    \begin{center}
+    $
+    |X|=\left|X^G\right|+\underbrace{\sum_{i=1}^r\left|\Orb(x)\right|}_{\textrm{multiple of $p$}}
+    \implies \left|X^G\right| \equiv |X| \bmod p.
+    $
+    \end{center}
+\end{proof}
 
 \begin{theorem}[Cauchy's Theorem]
   Let $G$ be a finite group and $p$ be a prime divisor of $|G|$. Then $G$ contains an
@@ -23,39 +49,54 @@ different sets.
   \label{thm:cauchy}
 \end{theorem}
 \begin{proof}
-  Consider $X=\left\{ (g_1,\cdots,g_p) \in G^p : \Pi g_i =e\right\}$. Let $C_p =\langle
-  \sigma \rangle$ be a cyclic group of order $p$. Let $C_p$ act on $X$ by $\sigma
-  (g_1,\cdots,g_p)\mapsto (g_p,g_1\cdots, g_{p-1})$. Repeating this $p$ times, we get back
-  the identity. We still need to verify that $(g_p,g_{1},\cdots, g_{p-1})\in X$ since we
-  don't know if $G$ is abelian. However, indeed we have 
-  \[g_p g_1 \cdots g_{p-1} = g_p(g_1\cdots g_p)g_p^{-1}= g_p e g_p^{-1}=e\]
-  Hence we have $(g_{p}, g_{1}, \cdots, g_{p-1})\in X$. Hence the action $C_p$ on $X$ is
-  well defined.
+    Consider the set
+    $$
+    X=\left\{\left(x_1, \ldots, x_p\right) \in G^p \mid x_1 \cdots x_p=1\right\}
+    $$
+    of $p$-tuples of elements $x_i$ of $G$ whose product is the identity. Notice that such a $p$-tuple is uniquely determined by $p-1$ of its components. Indeed, if $x_1, \ldots, x_{p-1}$ is an arbitrary collection of elements in $G$ then $x_p$ is forced to be $x_p=\left(x_1 \cdots x_{p-1}\right)^{-1}$. Thus, we see that $X$ has $|G|^{p-1}$ elements and hence $|X|$ is divisible by $p$. (As $p$ is a prime divisor of $|G|$)
+    
+    Now observe that the cyclic group $\mathbb{Z}_p=\langle\sigma\rangle$, for $\sigma=(123 \cdots p) \in S_p$, acts on $X$ by
+    $$
+    \sigma \cdot\left(x_1, \ldots, x_p\right)=\left(x_{\sigma(1)}, \ldots, x_{\sigma(p)}\right)=\left(x_2, \ldots, x_p, x_1\right)
+    $$
+    since $x_1 \cdots x_p=1$ implies $x_1^{-1}=x_2 \cdots x_p$ and hence $x_2 \cdots x_p \cdot x_1=1$. Moreover, we can apply Lemma \ref{usefullemma} to this action to get $\left|X^{\mathbb{Z}_p}\right| \equiv 0 \bmod p$. However, the set of fixed points of this action is given by
+    $$
+    X^{\mathbb{Z}_p}=\{(x, \ldots, x) \in X \mid x \in G\}
+    $$
+    since $\sigma$ fixes $\left(x_1, \ldots, x_p\right)$ iff $x_1=x_2=\cdots=x_p$. This set is non-empty, since $(1, \ldots, 1) \in X^{\mathbb{Z}_p}$, and so $\left|X^{\mathbb{Z}_p}\right| \geq p$. This implies that there exists an $x \in G$ with $x \neq 1$ such that $(x, \ldots, x) \in X^{\mathbb{Z}_p}$; that is, $x^p=1$.
+  % Consider $X=\left\{ (g_1,\cdots,g_p) \in G^p : \Pi g_i =e\right\}$. Let $C_p =\langle
+  % \sigma \rangle$ be a cyclic group of order $p$. Let $C_p$ act on $X$ by $\sigma
+  % (g_1,\cdots,g_p)\mapsto (g_p,g_1\cdots, g_{p-1})$. Repeating this $p$ times, we get back
+  % the identity. We still need to verify that $(g_p,g_{1},\cdots, g_{p-1})\in X$ since we
+  % don't know if $G$ is abelian. However, indeed we have 
+  % \[g_p g_1 \cdots g_{p-1} = g_p(g_1\cdots g_p)g_p^{-1}= g_p e g_p^{-1}=e\]
+  % Hence we have $(g_{p}, g_{1}, \cdots, g_{p-1})\in X$. Hence the action $C_p$ on $X$ is
+  % well defined.
 
-  By Orbit-Stabiliser theorem we have that $|\Orb(x)|$ must divide the size of the group,
-  hence every orbit must be either $p$ or $1$. Then we have that $X$ is a disjoint union of orbits
-  of size $1$ and size $p$,
-  \[|X|= 1\#\{x\in X | \sigma^i x=x \forall i\in\ZZ\} + p \#\{\text{orbits of size $p$}\}\]
-  Note that evey orbit of size $p$ will have $p$ elements, and that's why we multiply by
-  $p$ above.
+  % By Orbit-Stabiliser theorem we have that $|\Orb(x)|$ must divide the size of the group,
+  % hence every orbit must be either $p$ or $1$. Then we have that $X$ is a disjoint union of orbits
+  % of size $1$ and size $p$,
+  % \[|X|= 1\#\{x\in X | \sigma^i x=x \forall i\in\ZZ\} + p \#\{\text{orbits of size $p$}\}\]
+  % Note that evey orbit of size $p$ will have $p$ elements, and that's why we multiply by
+  % $p$ above.
 
-  We claim that $|X|=|G|^{p-1}$. Note that we can choose
-  $g_1,\cdots,g_{p-1}$ arbitarily, but $g_p$ is forced to be the inverse of the product up
-  to $g_{p-1}$. In particular, $p\Big | |X|$, and so $p$ divides the number of orbits of
-  size 1.  Then by the above expression, we know that there must be either $0$ or
-  $pk\exists k\in\NN$ orbits of size $1$. Let us describe this set of sets by $Y$ (set of
-  orbits of size 1).  Notice that there can't be $0$ orbits of size $1$, since
-  $(e,e,\cdots, e)$ is already of size $1$.
-  \todo{Shouldn't there be more elements, since the number of orbits of size 1 should
-  divide $p$. In particular, shouldn't there be at least $p$ such elements?}
-  Hence, there must be at least one more element, say $(g_1,\cdots, g_p)$ such that
-  $\sigma (g_1,\cdots,g_p)= (g_p, g_1, \cdots, g_{p-1})= (g_1,\cdot,g_p)$ since this
-  element must have order $1$. Then it implies that $g_1=\cdots=g_p$. However, we have
-  that it must also be in $X$, hence $g_1g_2\cdots g_p=g_1^p=e$.
+  % We claim that $|X|=|G|^{p-1}$. Note that we can choose
+  % $g_1,\cdots,g_{p-1}$ arbitarily, but $g_p$ is forced to be the inverse of the product up
+  % to $g_{p-1}$. In particular, $p\Big | |X|$, and so $p$ divides the number of orbits of
+  % size 1.  Then by the above expression, we know that there must be either $0$ or
+  % $pk\exists k\in\NN$ orbits of size $1$. Let us describe this set of sets by $Y$ (set of
+  % orbits of size 1).  Notice that there can't be $0$ orbits of size $1$, since
+  % $(e,e,\cdots, e)$ is already of size $1$.
+  % \todo{Shouldn't there be more elements, since the number of orbits of size 1 should
+  % divide $p$. In particular, shouldn't there be at least $p$ such elements?}
+  % Hence, there must be at least one more element, say $(g_1,\cdots, g_p)$ such that
+  % $\sigma (g_1,\cdots,g_p)= (g_p, g_1, \cdots, g_{p-1})= (g_1,\cdot,g_p)$ since this
+  % element must have order $1$. Then it implies that $g_1=\cdots=g_p$. However, we have
+  % that it must also be in $X$, hence $g_1g_2\cdots g_p=g_1^p=e$.
 \end{proof}
 
 \begin{theorem}
-  Let $G$ be a finite gorup and $p$ be the smallest prime dividing $|G|$. Let $H$ be a
+  Let $G$ be a finite group and $p$ be the smallest prime dividing $|G|$. Let $H$ be a
   subgroup of index $p$. Then $H$ is normal in $G$.
   \label{thm:cauchyGeneral}
 \end{theorem}
@@ -63,4 +104,4 @@ different sets.
   \todo{Do this. In theory it's in the exercise sheet but I can't find it. It's an
   application of group actions.}
 \end{proof}<++>
-Note that a subgroup of order $p$ is not guaranteed to exist.
+Note that a subgroup of index $p$ is not guaranteed to exist.
