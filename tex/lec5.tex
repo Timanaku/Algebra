@@ -7,13 +7,18 @@
   $H$ in $G$ is denoted by $H\setminus G$.
   \label{cosets}
 \end{definition}
-Note that everything we said about left cosets apply symmetrically to right cosets, but
-the partitions of a given subgroup $H$ may be different between left and right cosets.
-This is because we cann define a natural injective map $Ha\mapsto a^{-1}H$.
+Everything we have said about left cosets applies symmetrically to right cosets, since we can define a natural injective map $Ha\mapsto a^{-1}H$.
+However, it is important to note that the way $H$ partitions $G$ into left and right cosets is different in general. 
+%of a given subgroup $H$ may be different between left and right cosets.
+%This is because we can define a natural injective map $Ha\mapsto a^{-1}H$.
 
-\begin{corollary}
+\begin{theorem}[Lagrange's theorem]
   Let $G$ be a finite group, and let $H$ be a subgroup. Then $|H|$ divides $|G|$
-\end{corollary}
+\end{theorem}
+
+\begin{proof}
+    We have that $G$ is the disjoint union of its left cosets. Since $\forall g \in G, |gH| = |H|,$ we can observe that $|G|$ must be a multiple of $|H|$; in other words $|H|$ divides $|G|$.
+\end{proof}
 
 \begin{definition}
   The number of (left) cosets of $H$ in $G$ is called the index of $H$ in $G$, written
@@ -38,9 +43,9 @@ The index may be infinite.
   Define a bijection $G/H\to H\setminus G$ as $gH\mapsto Hg^{-1}$. To show injectivity,
   suppose $Hg^{-1}=Hg'^{-1}$ for some $g,g'\in G$. Then $\exists h\in H$ s.t.
   $hg^{-1} = g'^{-1}$, so $g' = gh^{-1}\in gH \implies g'H=gH$. Surjectivity follows from
-  the fact that every element in $G$ has an inverse, so it's not possible that an element
-  of the image of the defined mapping is not mapped.
+  the fact that every element $g \in G$ has an inverse, since the left coset $g^{-1}H$ will map to $H\left(g^{-1}\right)^{-1} = Hg$.
 \end{proof}
+
 Note that we may have infinite-order groups but with finite index (finite number of
 cosets).
 
@@ -49,11 +54,11 @@ cosets).
   \label{lagrangeConsequence}
 \end{corollary}
 \begin{proof}
-  Let $H=\langle g \rangle$ so that $H<G$. By Lagrange we have $|G|=|H|[G:H]=|g|k$ for $k=[G:H]$.
+  Let $H=\langle g \rangle$ so that $H\leq G$. By Lagrange we have $|G|=|H|\cdot[G:H]=|g| \cdot [G:H]$, so $\lvert g\rvert \text{ divides } |G|$ since $[G:H] \in \NN$.
 \end{proof}
 
 \begin{example}
-  A particular example where Lagrange theorem is useful is the following. Let
+  A particular example where Lagrange's theorem is useful is the following. Let
   $n\in\NN$. The set $\left\{ i\in \left\{ 1,2,\cdots,n-1 \right\} : gcd(i,n)=1 \right\}$
   forms a group under multiplication mod $n$. This group is denoted by
   $(\ZZ/n\ZZ)^{\times}$. Note that if $n$ is prime, then the group has order $n-1$. Let us

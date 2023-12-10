@@ -7,35 +7,37 @@ Applications of Cauchy's Theorem and Burnside's lemma (not Burnside's work!)
 \end{example}
 \begin{proof}
   Cauchy Theorem suggest that there exists an element of $h\in G$ of order $2$ and an
-  element $g\in G$ of order $3$. Notice that $K=\langle g \rangle$ will have index $2$ by
+  element $k\in G$ of order $3$. Notice that $K=\langle k \rangle$ will have index $2$ by
   Lagrange, and so by Theorem \ref{thm:cauchyGeneral} it must be normal in $G$. Since $K$
   is normal, it means that conjugation by $h$ will preserve the subgroup meaning that
-  $hgh^{-1}\in K$. In particular, conjugation by $h$ defines an automorphism on $K$. 
+  $hkh^{-1}\in K$. In particular, conjugation by $h$ defines an automorphism on $K$. 
 
-  We claim that $\phi_K:K\to K: g^i\to hg^ih^{-1}$ is an isomorphism. Since $K$ is normal,
-  we're guaranteed to have $hg^ig^{-1}\in K$ for any $i$. Furthermore, we claim we have an
-  homomorphism. For $g',g''\in K$ we have $\phi_K(g'g'')=hg'g''h^{-1}=
-  hg'h^{-1}hg''h^{-1}=\phi_K(g')\phi_K(g'')$, hence we indeed have a group homomorphism.
-  Finally, note that the inverse of $\phi_K$ is just $\phi_K^2$ since $h$ has order $2$,
-  $\phi_K^2(g)=h(hgh^{-1})h^{-1}= h^2 g h^{-2} = g$, hence $\phi_K$ is indeed bijection. But
+  We claim that $\phi_K:K\to K: k^i\to hk^ih^{-1}$ is an isomorphism. Since $K$ is normal,
+  we're guaranteed to have $hk^ih^{-1}\in K$ for any $i$. Furthermore, we claim we have an
+  homomorphism. For $k',k''\in K$ we have $\phi_K(k'k'')=hk'k''h^{-1}=
+  hk'h^{-1}hk''h^{-1}=\phi_K(k')\phi_K(k'')$, hence we indeed have a group homomorphism.
+  Finally, note that the inverse of $\phi_K$ is just $\phi_K$ since $h$ has order $2$,
+  $\phi_K^2(k)=h(hkh^{-1})h^{-1}= h^2 k h^{-2} = k$, hence $\phi_K$ is indeed bijection. But
   the set of automorphism on $K$ of prime order must have size $p-1$ (we proved this in week
-  2 exercise sheet), hence we should have $2$ automorphisms. Indeed we have $g\mapsto g$ and
-  $g\mapsto g^2$. We found that $\phi_K$ is an automorphism so it must be one of these two.
-  In \emph{case 1} we consider $hgh^{-1}=g$, so $hg=gh$, so 
-  \[G=\langle g,h | g^3=e=h^2, gh=hg \rangle\]
-  So $G=\langle g \rangle \times \langle h \rangle$, which is cyclic by exercise sheet 2.
-  In particular, $G=\langle gh \rangle$.
+  2 exercise sheet), hence we should have $2$ automorphisms. Indeed we have $k\mapsto k$ and
+  $k\mapsto k^2$. We found that $\phi_K$ is an automorphism so it must be one of these two.
+  In \emph{case 1} we consider $hkh^{-1}=k$, so $hk=kh$, so 
+  \[G=\langle k,h | k^3=e=h^2, kh=hk \rangle\]
+  So $G=\langle k \rangle \times \langle h \rangle$, which is cyclic by exercise sheet 2.
+  In particular, $G=\langle kh \rangle$.
 
-  In \emph{case 2} we consider $hgh^{-1}=g^{-1}$, so we have
-  \[G=\langle g,h | g^3=e=h^2, hg=g^{-1}h\rangle\]
-  Which is the Dihedral group of order $6$, and this is isomorphic to $S_3$. Furthermore,
-  by Theorem \ref{thm:cauchyGeneral} the subgroup of order $3$ is normal in $G$, since it
-  has index 2. When the group is normal, the subgroups 
+  In \emph{case 2} we consider $hkh^{-1}=k^{2}=k^{-1}$, so we have
+  \[G=\langle k,h | k^3=e=h^2, hk=k^{-1}h\rangle\]
+  Which is the Dihedral group of order $6$, and this is isomorphic to $S_3$. 
 \end{proof}
 
 \begin{definition}
+    Let $G$ be a group and $g \in G$ and $X$ the associated $G$-Set. Then we denote $X^{g} := \{x \in X : g \cdot x = x\}$.
+\end{definition}
+
+\begin{definition}
   Let $G$ be a group and $X$ be a $G$-set. The set of $G$-orbits of $X$ is denoted by
-  $X/G$. Thus we have $X=\bigsqcup_{\mathcal{O}\in X/G} O$ (note, disjoint union).
+  $X/G$. Thus we have $X=\bigsqcup_{\mathcal{O}\in X/G} \mathcal{O}$ (note, disjoint union).
 \end{definition}
 
 \begin{theorem}[non-Burn's lemma]
@@ -44,15 +46,15 @@ Applications of Cauchy's Theorem and Burnside's lemma (not Burnside's work!)
   \label{thm:notBurnside}
 \end{theorem}
 \begin{proof}
-  Consider the set $S=\left\{ (g,x)\in G\times X : gx=x \right\}$. We aim to count $|S|$.
+  Consider the set $S=\left\{ (g,x)\in G\times X : g \cdot x=x \right\}$. We aim to count $|S|$.
   On the one side, we can go over each element of $G$ and find every $x$ for which that
-  $g$ has $gx=x$, and that's exactly $|X^g|$, hence $|S|=\sum_{g\in G} |X^g|$.
+  $g$ has $g \cdot x=x$, and that's exactly $|X^g|$, hence $|S|=\sum_{g\in G} |X^g|$.
 
   On the other hand, we can go over each element $x\in X$ and find every $g\in G$ for which
-  that $x$ has $gx=x$. That's just $|\Stab_G x|= |G|/|\Orb x|$ (by the Orbit Stabilizer
+  that $x$ has $g\cdot x=x$. That's just $|\Stab x|= |G|/|\mathcal{O}|$ (by the Orbit Stabilizer
   theorem). Then, 
-  \[|S|= \sum_{x\in X} |\Stab_G x|= \sum_{x\in X} \frac{|G|}{|\Orb x|}= |G|
-  \sum_{O\in X/G} \sum_{x\in O} \frac{1}{|O|}= |G|\sum_{O\in X/G} 1 = |G||X/G|\]
+  \[|S|= \sum_{x\in X} |\Stab x|= \sum_{x\in X} \frac{|G|}{|\mathcal{O}|}= |G|
+  \sum_{\mathcal{O}\in X/G} \sum_{x\in \mathcal{O}} \frac{1}{|\mathcal{O}|}= |G|\sum_{\mathcal{O}\in X/G} 1 = |G||X/G|\]
   Hence
   \[|G||X/G| = \sum_{g\in G} |X^g|\]
   As required.

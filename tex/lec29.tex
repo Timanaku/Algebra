@@ -3,10 +3,48 @@
 Note that even though we have used the usual function notation for working with
 polynomials, polynomials are not really functions. They can be defined as a function, but
 that does not hold in general. Consider the ring $R=\ZZ/p\ZZ$ and  the polynomial ring
-$R[X]$. Note that $R$ is indeed a field and that for $f(X)=X^4-X\in R[X]$ we have $f(a)=0$
+$R[X]$. Note that $R$ is indeed a field and that for $f(X)=X^p-X\in R[X]$ we have $f(a)=0$
 for all $a\in R$. Hence note that a polynomial can be the zero function without being the
 $0$ polynomial of the ring. Hence $f$ as $R\to R$ is the $0$ function, but it's not the
 $0$ polynomial of $R[X]$.
+
+\begin{theorem}[Universal Property of Polynomial Rings]
+Let $\phi: R \longrightarrow S$ be any ring homomorphism and let $s \in S$ be any element of $S$. Then there is a unique ring homomorphism
+$$
+\psi: R[X] \longrightarrow S,
+$$
+such that $\psi(X)=s$ and which makes the following diagram commute
+\begin{center}
+\begin{tikzcd}
+R \arrow{r}{\phi} \arrow[swap]{d}{i} & S \\
+R[X] \arrow[dashed]{ur}[swap]{\exists ! \psi}
+\end{tikzcd}
+\end{center}
+\end{theorem}
+
+\begin{proof}
+    We define the map $\psi: R[X] \longrightarrow S$ as follows, for any $f \in R[X]$ with $f = a_0 + a_1X + \ldots + a_nX^n$ with $a_i \in R$, set $\psi(f) = \phi\left(a_0\right)+\phi\left(a_1\right) s+\phi\left(a_2\right) s^2+\ldots+\phi\left(a_n\right) s^n$. This clearly extends $\phi$ as $\psi(r) = \phi(r)$ for $r \in R$ and it also maps $X$ to $s$. One can then check it is also a ring homomorphism. Let $g=b_0+b_1x+\ldots +b_mx^m.$ The proof for additivity is simple. We check multiplication is preserved,
+    \begin{align*}
+        \psi(fg)&=\psi((a_0 + a_1X + \ldots + a_nX^n)(b_0+b_1x+\ldots +b_mx^m))
+        \\ &=\psi((a_0b_0+a_0b_1x+b_0a_1x+a_1b_1x^2+\ldots +a_nb_mx^{n+m})
+        \\ &= \phi(a_0b_0) +\phi(a_0b_1)x+\phi(b_0a_1)x+\phi(a_1b_1)x^2+\ldots+\phi(a_nb_m)x^{n+m}
+        \\ &= \phi(a_0)\phi(b_0)+\phi(a_0)\phi(b_1)x+\phi(b_0)\phi(a_1)x+\phi(a_1)\phi(b_1)x^2+\ldots+\phi(a_n)\phi(b_m)x^{n+m},
+    \end{align*}
+    where the last equality follows from $\phi$ being a ring homomorphism. Now, factoring the equation back out gives,
+    \begin{align*}
+        \psi(fg)&=(\phi(a_0)+\phi(a_1)x+\ldots+\phi(a_n)x^n)(\phi(b_0)+\phi(b_1)x+\ldots+\phi(b_m)x^m)
+        \\ &=\psi(f)\psi(g),
+    \end{align*}
+    as required. 
+\end{proof}
+
+Making this definition slightly less general and taking $\phi$ to be the identity map, we end up recovering $\psi$ as the evaluation maps we have seen previously. If we think of polynomial rings as a pointed $R$-algebra, then there is a unique pointed algebra homomorphism from $R[X]$ to some $S$ which is the evaluation homomorphism.
+
+\begin{remark}
+    A pointed set is a set in which we fix a basepoint, so its an ordered pair $(X, x_0)$ where X is a set, in our case our basepoint is the element we use to define our evaluation homomorphism.
+\end{remark}
+
+So we can define a polynomial ring via a unique evaluation map, this tells us why it is okay to interchange the two notions that polynomials are either formal sums or functions. As mentioned previously we do have to be careful in the case of finite fields.
 
 \begin{example}
   Consider the group $A=(\ZZ\times\ZZ, +)$. The set of

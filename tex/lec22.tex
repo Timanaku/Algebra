@@ -11,8 +11,8 @@
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  Suppose there exist $v\in R\setminus \{0\}$ s.t. $uv=0$ or $vu=0$. Then note that
-  $v=u^{-1}u v=u^{-1} 0 = 0$, hence a contradiction. Similarly, $v=vuu^{-1}=0$. 
+  Let $u$ be a unit and assume there exists $v\in R$ s.t. $uv=0$ or $vu=0$. Since $u$ is a unit, $\exists u^{-1}$ s.t. $u^{-1} u=1$. We have,
+  $$uv=0 \implies u^{-1}uv=u^{-1}0=0\implies 1v=0 \implies v=0.$$ Similarly, $vu=0 \implies v=0$. Therefore, $u$ is not a zero divisor.
 \end{proof}
 
 \begin{corollary}
@@ -33,26 +33,34 @@
   A finite integral domain is a field.
 \end{theorem}
 \begin{proof}
-  Recall that a field is a commutative division unital ring, whereas an integral domain is
-  a commutative unital ring. It suffices to show that every element of a finite integral
-  domain has an inverse. Let $r\in R$, and consider $\{r^n | n\in\NN\}$. Then since $R$ is
-  finite there exists $k\in\NN_{>3}$ s.t. $r^k=r$, which implies $r(r^{k-1}-1)=0$. Since
-  cancellation holds in integral domains, it follows that $r^{k-1}=1\iff r^{k-2}r=1$.
-  
-\end{proof}
+  It suffices to show that every element of a finite integral
+  domain has an inverse. Let $R$ be a finite integral domain, and let $r\in R\setminus\{0\}$. Consider the set $\{r^n \mid n\in\NN\}\subseteq R$. Since $R$ is
+  finite, there exists $k\in\NN_{\geq 2}$ s.t. $r^k=r$, so $r(r^{k-1}-1)=0$. Since
+  $R$ is an integral domain, we must have $r^{k-1}-1 = 0$ since $r \neq 0.$ Equivalently, we can say that $r^{k-2}r=1$, so $r$ is invertible.
+  \end{proof}
 
 \begin{corollary}
   Let $p$ be a prime number. Then $\ZZ/p\ZZ$ is a field.
   \label{<+label+>}
 \end{corollary}
 \begin{proof}
-  It suffices to show that $\ZZ/p\ZZ$ is an integral domain, i.e. has no $0$-divisors. Let
+  Since $\ZZ/p\ZZ$ is finite, it suffices to show that it is an integral domain. Let
   $a+p\ZZ, b+p\ZZ\in \ZZ/p\ZZ$. Then observe that $ab+p\ZZ=0+p\ZZ$ if and only if $ab\in
-  p\ZZ$, so $ab=np$ for some $n\in\ZZ$. Since $p$ is a prime, it must be the case that
-  either $a=p$, $b=p$, or $n=0$ and $b=0$ or $p=0$. Hence either $a+p\ZZ = 0+p\ZZ$ or
-  $b+p\ZZ=0+p\ZZ$. Hence no zero divisor exists. Therefore $\ZZ/p\ZZ$ is an integral
+  p\ZZ$, thus either $p \mid a $ or $p \mid b$ i.e. $a \in p\ZZ$ or $b \in p\ZZ$, so either $a+p\ZZ = 0 + p\ZZ$ or $b+p\ZZ = 0 +p\ZZ $.
+  % so $ab=np$ for some $n\in\ZZ$. Since $p$ is a prime, it must be the case that
+  % either $a=p$, $b=p$, or $n=0$ and $b=0$ or $a=0$. Hence either $a+p\ZZ = 0+p\ZZ$ or
+  % $b+p\ZZ=0+p\ZZ$. 
+  Hence no zero divisor exists. Therefore $\ZZ/p\ZZ$ is an integral
   domain.
 \end{proof}
+
+This is exactly what it means to be prime, as if $ab$ is a multiple of $p$, then one of $a$ or $b$ must be a multiple of $p$. We generalise this definition below in terms of ideals.
+
+\begin{definition}[Prime Ideal]
+  Let $R$ be a ring. An ideal $I$ of $R$ is called \emph{prime} if $I$ is a proper ideal,
+  and whenever $a,b\in R$ are s.t. $ab\in I$, then one has $a\in I$ or $b\in I$.
+  \label{<+label+>}
+\end{definition}
 
 \begin{definition}[Maximal ideal]
   Let $R$ be a ring. An ideal $I$ of $R$ is called \emph{maximal ideal} if $I$ is a proper
@@ -61,9 +69,4 @@
   \label{def:maximalIdeal}
 \end{definition}
 
-\begin{definition}
-  Let $R$ be a ring. An ideal $I$ of $R$ is called \emph{prime} if $I$ is a proper ideal,
-  and whenever $a,b\in R$ are s.t. $ab\in I$, then one has $a\in I$ or $b\in I$.
-  \label{<+label+>}
-\end{definition}
 

@@ -37,10 +37,12 @@ $\overline{K_F}$ is called the algebraic closure of $K$ in $F$.
   The field $\CC$ is algebraically closed.
   \label{thm:FTAlg}
 \end{theorem}
-The above polynomial implies that a given complex polynomial $f$ can be written as factors
-with one root in $\CC$ and then a multiply by another smaller degree polynomial $g$, and
-recursively this implies that any polynomial over $\CC$ splits as a product of linear
-factors (the roots in $\CC$).
+% The above theorem implies that a given complex polynomial $f$ can be written as factors
+% with one root in $\CC$ and then a multiply by another smaller degree polynomial $g$, and
+% recursively this implies that any polynomial over $\CC$ splits as a product of linear
+% factors (the roots in $\CC$).
+
+By the above theorem, if $f$ is a complex polynomial of degree $n$, then $f$ has a root $\alpha_1$, i.e. we can write $f$ as $(x-\alpha_1) f_1(x)$. And again, $f_1$ must have a root $\alpha_2$, so $f = (x-\alpha_1) (x-\alpha_2) f_2(x)$. Repeating inductively, we are able to factorise $f$ completely as $(x-\alpha_1)(x-\alpha_2)\cdots (x-\alpha_n)$. In other words, a polynomial of degree $n$ over $\CC$ has exactly $n$ roots in $\CC$.
 \begin{theorem}
   Every field $K$ is contained in an algebraic extension (in a field extension whose
   elements are algebraic over $K$) that is algebraically closed.

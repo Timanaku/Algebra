@@ -1,30 +1,31 @@
 \section{Lecture 24 - 15 Nov 2021}
-\subsection{Prime and maximal ideals - division with reminder in polynomials}
-Prime and maximal ideals, examples, division with reminder in polynomial rings.
-
+\subsection{Prime and maximal ideals - division with remainder in polynomials}
+The following is an immediate consequence of the previous theorems.
 \begin{corollary}
-  Let $R$ be a commucative unital ring. Then every maximal of $R$ is prime.
+  Let $R$ be a commutative unital ring. Then every maximal ideal of $R$ is prime.
   \label{cor:maximalPrime}
 \end{corollary}
 \begin{proof}
-  $I$ is an ideal of $R$ and maximal. Hence $R/I$ is a field, so $R/I$ is an integral
+  Let $I$ be a maximal ideal of $R$. Then $R/I$ is a field, so $R/I$ is an integral
   domain, hence $I$ is prime.
 \end{proof}
 
+\begin{remark}
+  The converse is false. For example consider $\ZZ[X]$ and the the prime ideal $(X)$. Since $\ZZ[X]/(X)\cong
+  \ZZ$ is an integral domain, but $(X)$ is not maximal since $\ZZ$ is not a field. 
+\end{remark}
 \begin{example}
-  The converse is false. For example, $\ZZ[X]$, the ideal $(X)$, since $\ZZ[X]/(X)\cong
-  \ZZ$ is an integral domain, but $(X)$ is not maximal, since $\ZZ$ is not a field. Let
+    Let us consider an ideal that is maximal in $\ZZ[X]$. Let
   $p$ be a prime number, so the ideal $(p,X)=\{pf+Xg: f,g\in\ZZ[X]\}$ is the polynomials
-  where constant terms are multiples of $p$, and is maximal and contains $(X)$.
+  where constant terms are multiples of $p$. The ideal is maximal as $\ZZ[X]/(p,X)$ is a field.
 \end{example}
-
 \begin{definition}
-  Let $F$ be a field, and let $f(X)=a_0+a_1x+\cdots + a_d X^d\in F[X]$ be a polynomial
+  Let $F$ be a field, and let $f(X)=a_0+a_1X+\cdots + a_d X^d\in F[X]$ be a polynomial
   with $a_d\neq 0$. The degree $\deg f$ of $f$ is defined as $d$.
   \label{<+label+>}
 \end{definition}
 
-\begin{theorem}[Division with reminder in polynomial rings]
+\begin{theorem}[Division with remainder in polynomial rings]
   Let $F$ be a field, and let $f(X)$, $g(X)\in F[X]$. Then there exist unique $q(X),
   r(X)\in F[X]$ s.t. 
   \[f(X)=g(X)q(X)+r(X)\]
@@ -51,12 +52,12 @@ Prime and maximal ideals, examples, division with reminder in polynomial rings.
 
 \begin{corollary}
   Let $F$ be a field and let $f\in F[X]$, $a\in F$. Then $f(a)=0$ if and only if $\exists
-  g\in F[X]$ s.t. $f(X)=(X-a)g(X)$.
+  h\in F[X]$ s.t. $f(X)=(X-a)h(X)$.
   \label{<+label+>}
 \end{corollary}
 \begin{proof}
-  The right to left direction is trivial. On the other hand, to prove its converse, divide
-  $f(X)$ by $(X-a)$ with remainder. By the previous theorem we have that $\exists q,r\in
-  F[X]$ s.t. $r=0$ or $\deg r <1$, since $g$ in this case is $(X-a)$, a linear term, so
-  $r\in F$ and $f = (x-a)q+c$ but we have $f(a)=0=c$, so $c=0$. Hence the result follows.
+  %backwards
+  We have $f(X) = (X-a)q(X)+r(X) \implies f(a)=0$ trivially. 
+  %forwards
+  Assume $f(a)=0.$ By the previous theorem we have that there exists $q(X),r(X)\in F[X]$, such that $f(X) = (X-a)q(X)+r(X)$. We must have $\deg r < \deg (X-a) = 1$, so $r(X)$ is a constant. We have from our assumption that $f(a)=r(X)=0$, hence the result follows.
 \end{proof}

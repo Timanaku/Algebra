@@ -101,7 +101,16 @@ different sets.
   \label{thm:cauchyGeneral}
 \end{theorem}
 \begin{proof}
-  \todo{Do this. In theory it's in the exercise sheet but I can't find it. It's an
-  application of group actions.}
-\end{proof}<++>
-Note that a subgroup of index $p$ is not guaranteed to exist.
+    Consider the action of $H$ on the set of left cosets $G/H$. By the orbit-stabiliser theorem the size of every orbit of cosets divides $|H|$ and hence also divides $|G|$. Since there are exactly $p$ cosets of $H$ and $p$ is the smallest prime dividing $|G|$, we must have that there is either a single orbit of size $p$ or there are $p$ different orbits of size 1.
+    Clearly the first option is impossible, since for every $h \in H, hH = H$. Which means the action fixes the coset corresponding to the identity. Hence there is an orbit of size 1, so they must all be of size 1.
+    This means that for every $h \in H, g \in G$ we have
+    $$
+        \begin{gathered}
+        h g^{-1} H=g^{-1} H \Longrightarrow \exists h_1 \in H \text { s.t. } h g^{-1}=g^{-1} h_1 \Longrightarrow \\
+        g h g^{-1}=h_1 \in H
+        \end{gathered}
+    $$
+\end{proof}
+\begin{remark}
+    Note that a subgroup of index $p$ is not guaranteed to exist.
+\end{remark}

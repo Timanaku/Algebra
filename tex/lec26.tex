@@ -10,24 +10,34 @@
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  \emph{(1) implies (2):} In Corollary \ref{cor:maximalPrime} we proved that every maximal
-  ideal is prime, given a commutative ring. Note that $F[X]$ is a commutative ring, hence
-  the result follows.
+(1) $\Rightarrow$ (2) Suppose $(f)$ is maximal. Then $(f)$ is maximal $\Rightarrow$ $F[X]/(f)$ is a field $\Rightarrow$ $F[X]/(f)$ is an integral domain $\Rightarrow$ $(f)$ is prime. (Corollary \ref{cor:maximalPrime})
 
-  \emph{(2) implies (3):} Note that $\deg f>0$ since if $\deg f=0$ we would have
-  $(f)=F[X]$. Next, consider $f=gh$, so we have that $g\in (f)$ or $h\in (f)$.  If $g\in
-  (f)$, note that $\deg f \geq\deg g$ and $\deg g \geq \deg f$, so we must have $\deg
-  f= \deg g$, as required, hence $\deg h=0$, so $f$ is irreducible. The case for $h\in
-  (f)$, it follows that $\deg g=0$.
+(2) $\Rightarrow$ (3) Suppose the ideal $(f)$ is prime. Consider $f = gh$ for some $g,h \in F[X]$, so $g \in (f)$ or $h \in (f)$. Assume without loss of generality that $g \in (f)$, i.e., there exists $k \in F[X]$ such that $g = fk$. Now, we have that $\deg f = \deg g + \deg h$ and $\deg g = \deg f + \deg k$. Hence, $\deg h = \deg k = 0$, so $h,k \in F$ and are units. Therefore, $f$ is irreducible in $F[X]$.
 
-  \emph{(3) implies (1):} Note that for $f$ to be irreducible, so $\deg f>0$, and it
-  follows that $(f)$ will be a proper ideal. Moreover, assume we have an ideal $J$ s.t.
-  $I\subseteq J \subseteq F[X]$. In particular, note that $J$ must be principal by Theorem
-  \ref{thm:idealPrinciplas}, hence there exists $g\in F[X]$ s.t. $J=(g)$. Since
-  $I\subseteq J$ we must that some $h\in F[X]$ s.t. $f=gh$. Since $f$ is irreducible, it
-  follows that either $\deg g=0$, in which case $J=F[X]$, or $\deg g=\deg f$, in which
-  case $h\in F$ so it follows that $J=I$.
+(3) $\Rightarrow$ (1) Suppose $f$ is irreducible in $F[X]$. For $f$ to be irreducible, it must be of degree greater than zero and therefore $(f)$ is a proper ideal. Assume there exists an ideal $J$ such that $(f) \unlhd J\unlhd F[X]$. By theorem \ref{thm:idealPrinciplas}, $F[X]$ is a PID, so $\exists g \in F[X]$ s.t. $J = (g)$. Since $f \in (f) \subset (g)$ $\exists h \in F[X]$ s.t. $f = gh$. Since $f$ is irreducible, either $g$ or $h$ is a unit. Suppose $g$ is a unit. Then $g^{-1} \in F[X]$ s.t. $gg^{-1} = 1$, and since $g \in J$, $g^{-1} \in J$, so $J = F[X]$. Suppose now that $h$ is a unit. $g \in J$, $g^{-1} \in J$, so $f = gh \in J$ (since $h$ is a unit). Thus $(f) \subset J$ so $(f) = J$. Therefore $(f)$ is maximal. Then $ghh^{-1} = fh^{-1} = g \in (f)$, so $(g) = (f)$. Therefore $(f)$ is maximal.
 \end{proof}
+
+  % \emph{(1) implies (2):} In Corollary \ref{cor:maximalPrime} we proved that every maximal
+  % ideal of a commutative ring is prime. Note that $F[X]$ is a commutative ring, hence
+  % the result follows.
+
+  % \emph{(2) implies (3):} Note that $\deg f>0$ since if $\deg f=0$ we would have
+  % $(f)=F[X]$. Next, consider $f=gh$, so we have that $g\in (f)$ or $h\in (f)$.  If $g\in
+  % (f)$, note that $\deg f \geq\deg g$ and $\deg g \geq \deg f$, so we must have $\deg
+  % f= \deg g$, as required, hence $\deg h=0$, so $f$ is irreducible. The case for $h\in
+  % (f)$, it follows that $\deg g=0$.
+
+  % \emph{(3) implies (1):} Suppose $f$ is irreducible in $F[X].$ 
+  
+  
+  % Note that for $f$ to be irreducible, we must have $\deg f>0$, and it
+  % follows that $(f)$ will be a proper ideal. Moreover, assume we have an ideal $J$ s.t.
+  % $I\subseteq J \subseteq F[X]$. In particular, note that $J$ must be principal by Theorem
+  % \ref{thm:idealPrinciplas}, hence there exists $g\in F[X]$ s.t. $J=(g)$. Since
+  % $I\subseteq J$ we must that some $h\in F[X]$ s.t. $f=gh$. Since $f$ is irreducible, it
+  % follows that either $\deg g=0$, in which case $J=F[X]$, or $\deg g=\deg f$, in which
+  % case $h\in F$ so it follows that $J=I$.
+
 This theorem gives us a way of easily constructing new fields.
 \begin{theorem}
   Let $F$ be a field and let $f\in F[X]$ have degree 2 or 3. Then $f$ is reducible if and
@@ -50,7 +60,7 @@ This theorem gives us a way of easily constructing new fields.
 
 \begin{example}
   Let $d\in \ZZ$ be non-square. Then the quadratic number field is defined as
-  \[\QQ[X]/(X^2-d) \cong \QQ(\sqrt{d})=\left\{ a+b\sqrt{d} | a,b\in \QQ \right\}\]
+  \[\QQ[X]/(X^2-d) \cong \QQ[\sqrt{d}]=\left\{ a+b\sqrt{d} | a,b\in \QQ \right\}\]
   \[a+bX+(X^2-d) \mapsto a+b\sqrt{d}\]
   Where the inverse of an element $a+b\sqrt{d}$ is $\frac{a-b\sqrt{d}}{a^2-b^2d}$.
 \end{example}

@@ -24,13 +24,9 @@ defined since $nh=n'h' \iff (n')^{-1}n=h'h^{-1} \iff (n')^{-1}n,h'h^{-1}\in H\ca
 
 \begin{definition}
   Given groups $N$ and $H$, and a group homomorphism $\phi:H\to \Aut N$ we define the
-  \todo{How can we define this homomorphism if H and G are not even supposed to be
-  subgroups of the same group? We defined before by conjugation but for conjugation to
-make sense (hnh' in N) we need first for hn to be defined}
   \emph{(external) semidirect product} of $N$ and $H$ (wrt $\phi$), written $N\rtimes H$
-  or $N\rtimes_{\phi} H$, with the multuplication operation,
+  or $N\rtimes_{\phi} H$, with the multiplication operation,
   \[(n,h)(n',h')=(n\phi_h(n'), hh')\]
-    \todo{Check associativity}
   \label{def:exSemidirProd}
 \end{definition}
 If $G=N\rtimes_{\phi} H$ is as above, we have that $N\times \{1\}$ forms a normal subgroup
@@ -82,7 +78,7 @@ product of these two groups.
   Sheet, $G$ itself is cyclic, $G=\langle n\cdot h \rangle$.
 \end{proof}
 
-\subsection{An Aside on Free Groups}
+\subsection{An Aside on Free Groups (Non-Examinable)}
 
 \begin{definition}[Free Group]
 Let $S$ be a set, and let $T$ be a set such that each element of $T$ is designated as the inverse of a unique element of $S$, and vice versa. Consider the set of all 'words' that can be formed by concatenating elements of the combined set $S \cup T$, including an empty word (denoted by $e$) which serves as the identity.

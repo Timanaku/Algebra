@@ -5,11 +5,13 @@ On first isomorphism theorem for rings, zero divisors, and cancellation.
 Recall that a subring $U\subset R$ is an additive subgroup of $R$ such that for all
 $r,r'\in U$ we have $rr'\in U$. Morover, if $R$ is unital, we require $1_R\in U$. 
 
-A \emph{two-sided ideal $I$ in a ring $R$ } is an additive subgroup of $R$ such that for
-all $x\in I, r\in R$ we have $xr\in I$, $rx\in I$. Note that if $1\in I$, an ideal, then
-for every $i\in I$ and $r\in R$, then $ir\in R$, but note that if $i=1$, then $1x=x$, so
-we'd require that $I=R$, not a proper ideal. Hence, being an ideal is not a stronger
-condition than being a subgroup.
+% A \emph{two-sided ideal $I$ in a ring $R$ } is an additive subgroup of $R$ such that for
+% all $x\in I, r\in R$ we have $xr\in I$, $rx\in I$. Note that if $1\in I$, an ideal, then
+% for every $i\in I$ and $r\in R$, then $ir\in R$, but note that if $i=1$, then $1x=x$, so
+% we'd require that $I=R$, not a proper ideal. Hence, being an ideal is not a stronger
+% condition than being a subgroup.
+
+If a two-sided ideal $I$ of $R$ contains $1$, then $I = R$, since by properties of ideals, $x \in R \implies x = 1x \in I$. 
 
 Recall that if $I$ is an ideal, then we define the quotient $R/I$ to be a ring whose
 underlying additive group is the quotient of additive groups, with multiplication
@@ -40,10 +42,15 @@ $(r+I)(r'+I) = rr'+I$.
   product of two elements of the ring will still be in $S$. Hence the claim follows.
 
   \emph{Isomorphism:} By FIT for groups, we have that the isomorphism exists for the
-  additive group structure. We're left with showing that the homomorphism also holds for
-  the multiplicative operation and that it's bijective. We have that the homomorphism is
-  multiplicative, hence the map holds under multiplication. Moreover, it's a ring
-  homomorphism that is also a bijective, hence the claim follows.
+  additive group structure with $\psi:R\to \operatorname{Im} \phi$ defined by $\psi(r+\ker \phi)=\phi(r)$. As $\psi$ is bijective, we're left with showing that the homomorphism also holds for
+  the multiplicative operation. Consider $r_1,r_2\in R$,
+\begin{align*}
+    \psi(r_1+\ker\phi)\psi(r_2+\ker\phi)&=\phi(r_1)\phi(r_2)
+    \\&=\phi(r_1 r_2)
+    \\&=\psi(r_1 r_2+\ker\phi)
+    \\&=\psi((r_1+\ker\phi)(r_2+\ker\phi)).
+\end{align*}
+Therefore, we have a bijective ring homomorphism, hence the claim follows.
 \end{proof}
 
 \begin{example}[In algebraic number theory]
@@ -64,17 +71,16 @@ $(r+I)(r'+I) = rr'+I$.
 
 \begin{theorem}
   Let $F$ be a \emph{field} (a ring which is also a group under multiplication when
-  restricted without the addition identity, like $\RR$), and let $R$ be a ring. Then every
+  restricted without the addition identity, like $\RR$), and let $R$ be a non-trivial ring. Then every
   homomorphism $F\to R$ is injective.
 \end{theorem}
 \begin{proof}
-  Let $\phi:F\to R$ be a ring homomorphism. Assume that $\ker\phi$ is not trivial (hence
-  $\phi$ is non-injective). Then there exists non-zero element $f\in F$, $f\in\ker \phi$.
-  Then, $\phi(f)=0_R$. Since $F$ is a field, we have $f^{-1}f=e_F$, so
-  $\phi(e_F)=0_R$. But we must have $\phi(e_F)=e_R\neq 0_R$. Hence a contradiction.
+  Let $\phi:F\to R$ be a ring homomorphism. Assume that $\ker\phi$ is not trivial, and hence $\phi$ is not injective. Then there exists non-zero element $f\in F$, $f\in\ker \phi$.
+  Then, $\phi(f)=0_R$. Since $F$ is a field, we have $f^{-1}\in F$ s.t. $f^{-1}f=e_F$. So,
+  $$1_R=\phi(1_F)=\phi(f f^{-1})=\phi(f)\phi(f^{-1})=0_R.$$ Hence $R$ must be trivial, a contradiction.
 \end{proof}
 \begin{remark}
-  Note that we didin't use the fact that $F$ is commutative. In fact, $F$ does not need to
+  Note that we didn't use the fact that $F$ is commutative. In fact, $F$ does not need to
   be field, but just a division ring (non-commutative field).
 \end{remark}
 
@@ -96,18 +102,18 @@ $(r+I)(r'+I) = rr'+I$.
 \begin{theorem}
   Let $R$ be a ring. The following are equivalent
   \begin{enumerate}
-    \item $R$ has not left zero divisors;
-    \item $R$ has not right zero divisors;
+    \item $R$ has no left zero divisors;
+    \item $R$ has no right zero divisors;
     \item For all $a,b,c\in R$ with $a\neq 0$, one has $ab=ac$ if and only if $b=c$.
     \item For all $a,b,c\in R$ with $a\neq 0$, one has $ba=ca$ if and only if $b=c$.
   \end{enumerate}
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  We have 1 iff 2 because the definition of $a$ being a left zero divisor means that $b$
-  is a right zero divisor.  We have 1 then 3 since, for $ab=ac$ then $ab-ac=a(b-c)=0$,
+  We have 1 $\iff$ 2 because the definition of $a$ being a left zero divisor means that $b$
+  is a right zero divisor.  We have 1 $\implies$ 3 since, for $ab=ac$ then $ab-ac=a(b-c)=0$,
   where $a\neq 0$ and we have that there are no zero divisors. Hence $b=c$.
-  Next show that 3 implies 1 by contrapositive. Suppose that $a$ is a zero divisor, hence
+  Next show that 3 $\implies$ 1 by contrapositive. Suppose that $a$ is a zero divisor, hence
   $ab=ac$. Let $b$ be the element such that $ab=0$ which is non-zero. Then the case where
   $c=0$ we have $ab=0=ac$ but $b\neq 0$. 
 \end{proof}

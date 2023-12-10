@@ -1,7 +1,7 @@
 \section{Lecture 27 - 22 Nov 2021}
 \subsection{Intermission: Classifying groups of order 21}
 \begin{example}
-  Let $G$ be a group of order 21. How many possibilities are there for $G$.
+  Let $G$ be a group of order 21. How many possibilities are there for $G$?
 \end{example}
 \begin{proof}
   Note that $21=7\cdot 3$, and by Cauchy, there are elements of $G$, say $g,h\in G$, with
@@ -26,17 +26,23 @@
   cyclic of order $7$, i.e. $\Aut K \cong (\ZZ/7\ZZ)^{\times}$, its automorphism group is
   group under composition. More generally we have that $\Aut(\ZZ/n\ZZ)\cong
   (\ZZ/n\ZZ)^{\times}$.  In fact, note that when $n$ is prime, the unit groups before is
-  cyclic of order $n-1$. Note also that for a cyclic group of order $n$, every elemenet of an
+  cyclic of order $n-1$. Note also that for a cyclic group of order $n$, every element of an
   order dividing $n$ generates exactly one subgroup of that order. So $\Aut K$ being
-  a cylic of order $6$ we have that there is exactly one subgroup of order $3$.
+  a cyclic of order $6$ we have that there is exactly one subgroup of order $3$.
 
   Hence we have the following possibilities. 
-  \emph{Case 1: $\phi_h(g)=g$} -- Then $gh=hg$. Note that the semidirect product using
+  \emph{Case 1: $\phi_h(g)=g$} -- Then $gh=hg$. Note that the semi-direct product using
   this conjugation rule gives $HK=G$ since they intersect trivially and the product of
   their order is the order of the group, and the fact that the elements commute gives
-  raise to the fact that the group is cylic with generator $gh$.
-  \emph{Case 2: $\phi_h(g)=g^2$} -- Non-commuting where the semidirect product of $H$ and
+  raise to the fact that the group is cyclic with generator $gh$.
+  \emph{Case 2: $\phi_h(g)=g^2$} -- Non-commuting where the semi-direct product of $H$ and
   $K$ using this conjugation rule gives $K\rtimes H\cong C_7\rtimes C_3$.
-  \emph{Case 3: $\phi_h(g)=g^4$} -- Note that this hs the case for the previous
-  $\phi_h(g)=g^2$, but $\phi_h^2(g)=\phi_{h^{-1}}=g^4$ (since $H$ has order 3).
-\end{proof}<++>
+  \emph{Case 3: $\phi_h(g)=g^4$} -- Note that this is the case for the previous
+  $\phi_h(g)=g^2$, but $\phi_h^2(g)=\phi_{h^{-1}}=g^4$ (since $K$ has order 7, $(\phi_h \circ \phi_{h^{-1}})(g) = g^8 = g$). These automorphism's define a faithful map $\varphi : C_3 \rightarrow \Aut(C_7)$ by 
+  \begin{align*}
+      & e \mapsto \phi_{e}(g) = g, \\
+      & a \mapsto \phi_{a}(g) = g^2, \\
+      & a^2 \mapsto \phi_{a^2}(g) = g^4.
+  \end{align*}
+  where $e,a \in C_3$ and $g \in C_7$. Which gives rise to the semi-direct product $C_7\rtimes_{\varphi} C_3$
+\end{proof}

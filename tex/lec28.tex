@@ -1,33 +1,45 @@
 \section{Lecture 28 - 24 Nov 2021}
 \subsection{Irreducibility criteria}
+% \begin{definition}
+%     The content of a nonzero polynomial 
+% $$ f(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0 \in \mathbb{Z}[x] \text{ is } c(f(x))=\gcd(a_n, \ldots, a_0).$$ 
+% \end{definition}
+
 \begin{definition}
-  A polynomial $f(X)$ ins $\ZZ[X]$ is called primitive if the $\gcd(a_n,\cdots,a_0)=1$,
-  i.e. if there exists no prime number $p$ that divides all $a_i$.
-  \label{def:primitivePol}
+    The content of a nonzero polynomial $f \in \ZZ[X]$ with coefficients $a_0, a_1, \ldots, a_n$ is
+    $$
+    c(f)=\gcd(a_0, \ldots, a_n).
+    $$
 \end{definition}
 
-\begin{theorem}[Gauss's Lemma]
+\begin{definition}
+  A polynomial $f(X) \in \ZZ[X]$ is called primitive if its content is 1.
+  \label{def:primitivePol}
+\end{definition}
+\begin{lemma}[Gauss's Lemma - Primitivity]
+    The product of two primitive polynomials is also primitive.
+\end{lemma}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{theorem}[Gauss's Lemma - Irreducibility]
   Let $f\in \ZZ[X]$ be primitive. Then $f$ is reducible in $\QQ[X]$ into polynomials of
   degree $r,s\in \NN_{\leq n-1}$ iff it factorises as a product of degree $r$ and $s$
   polynomials in $\ZZ[X]$.
   \label{thm:GaussLemmaPol}
 \end{theorem}
 \begin{proof}
-  \todo{Do this. Suppose $f$ is primitive and can be expressed as the product of two
-  polynomials in $\ZZ[X]$, and show that then it can also be expressed as the product of
-two polynomials in $\QQ[X]$, i.e. if it is reducible in $\ZZ[X]$ then it's also reducible
-in $\ZZ[X]$.}
+  Assume $f\in\ZZ[X]$ is primitive and can be factorised as $f(X)=g(X)h(X)$ where $g$ and $h$ are polynomials in $\ZZ[X]$ of degree r and s respectively. Then $f$ is clearly reducible in $\QQ[X]$ because $\ZZ[X]\subseteq\QQ[X].$
+  
+  Assume now that $f$ is reducible in $\QQ[X],$ i.e. there exists polynomials $p(X)$ and $q(X)$ in $\QQ[X]$ with degrees $r$ and $s$ respectively such that $f(X)=p(X)q(X).$ Now multiply $p$ and $q$ by suitable integers (lcm of denominators of coefficients), say $a$ and $b$, to get new polynomials $P$ and $Q$ such that $P,Q\in \ZZ[X].$ We therefore have $P(X)=ap(X)$ and $Q(X)=bq(x)$ and therefore $f=\frac{1}{ab} PQ.$ Factoring out the contents of $P$ and $Q$ gives $f=\frac{c(P)c(Q)}{ab}P'Q'$ where $P'$ and $Q'$ are now primitive polynomials in $\ZZ[X]$. By the previous lemma, we have $ab=\pm c(P)c(Q).$ Therefore, $f$ factorises into a product of degree $r$ and $s$ polynomials in $\ZZ[X]$, as required.
 \end{proof}
-\begin{remark}
-  Note that the working may be a bit confusing. All the above thm is saying is that if a
-  polynomial is primitive, then it's reducible in $\QQ$ iff it's reducible in $\ZZ$. 
-\end{remark}
+
 \begin{example}
   The polynomial $X^4+2$ is irreducible in $\QQ[X]$. If it was reducible, then $X^4+2=fg$,
   then we must have either $\{\deg f, \deg g\}=\{1,3\}$, and so one must have a root in
   $\QQ$. But we have that $X^4+2$ is strictly positive, hence this is absurd. 
 
-  The other posibility is $\deg f=\deg g=2$. By Gauss's Lemma, it suffices to show that
+  The other possibility is $\deg f=\deg g=2$. By Gauss's Lemma, it suffices to show that
   there's no factorization in $\ZZ[X]$. Assume $f,g\in\ZZ[X]$, s.t. $f=a_2x^2+a_1x+a_0$,
   $g=b_2x^2+b_1x+b_0$, and note that since $X^4$ has coeff $1$, we must have $a_2=b_2=1$
   (the case where they're both $-1$ is equivalent). However, expanding the product it's
@@ -41,10 +53,13 @@ in $\ZZ[X]$.}
   irreducible in $\QQ[X]$.
   \label{thm:eisensteinCriterion}
 \end{theorem}
-\begin{proof}
-  \todo{I think direct should work. Freighleigh has the proof too, but let's try it
-  ourselves.}
-\end{proof}
+Let $f(x)$ be as in the statement. The aim is to show that $f(x)$ does not factor into a product of two polynomials in $\ZZ[X]$. We will assume for contradiction that $f(x)=g(x)h(x),$ where $g(x)=b_rx^r+\cdots +b_0 \in \ZZ[X]$ and $h(x)=c_sx^s+\cdots +c_0 \in \ZZ[X]$, and $r+s=n.$ We have, $$a_nx^n+\ldots +a_0 = b_rc_sx^{r+s}+\cdots +b_0c_0.$$ We must have $a_n=b_rc_s$ and $a_0=b_0c_0.$ Since $a_n,$ and therefore both $b_r$ and $c_s,$ is not divisible by $p$, we must have that all the $b_i$ and $c_i$ $(i < n)$ must be divisible by $p$ or there would exist a term in $g(x)h(x)$ with degree less than $n$ with a coefficient that is not divisible by $p$ after distributing. In particular, $p$ must divide both $b_0$ and $c_0$, which means that $p^2$ divides $b_0c_0=a_0,$ a contradiction. Therefore, no such $g(x)$ and $h(x)$ exist, so $f$ is irreducible in $\QQ[X].$
+
+
+% \begin{proof}
+%   \todo{I think direct should work. Freighleigh has the proof too, but let's try it
+%   ourselves.}
+% \end{proof}
 
 \begin{example}
   We can apply Eisenstein's criterion to $X^4+2$ to get an easy proof. 
