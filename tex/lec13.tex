@@ -1,120 +1,240 @@
-\section{Lecture 13 - 20 Oct 2021}
+\section{Lecture 13}
 \subsection{Group Actions}
-On group actions. Group actions is in a way the birth of groups.
+Group actions are in a way the birth of groups; the notion of a group action came before the notion of an abstract group.
 \begin{definition} [Left action]
-  Let $G$ be a group, and let $X$ be a set. A left action of $G$ on $X$ is a function
+  Let $G$ be a group, and let $X$ be a set. A \emph{left action} of $G$ on $X$ is a function
   \[G\times X \to X\]
   \[(g,x)\mapsto g\cdot x\in X\]
-  Such that 
+  such that 
   \begin{enumerate}
-    \item $1_G \cdot x=x$ for any $x\in X$
-    \item $g_1 \cdot (g_2\cdot x) = (g_1g_2)\cdot x$ for any $g_1,g_2\in G$ and $x\in X$.
+    \item $1_G \cdot x=x$ for any $x\in X,$ and
+    \item $g_1 \cdot (g_2\cdot x) = (g_1\cdot g_2)\cdot x$ for any $g_1,g_2\in G$ and $x\in X$.
   \end{enumerate}
-  Note that $\cdot$ is used to denote the action and the multiplication notation used for
-  group operation. A set equipped with an action of a group $G$ is called $G$-set.
+ 
   \label{def:leftAction}
 \end{definition}
+\begin{remark}
+     In the second property above, the $\cdot$ symbol in the bracket on the right hand side denotes the group operation, while all the other “multiplications” in that equality are the actions of G on X.
+\end{remark}
 
 \begin{definition}[Right action]
-  Analogously, a right action of a group $G$ on a set $X$ is a function
+  Analogously, a \emph{right action} of a group $G$ on a set $X$ is a function
   \[X\times G \to X\]
   \[(x,g)\mapsto x\cdot g\]
   Such that
   \begin{enumerate}
-    \item for all $x\in X$ one has $x\cdot 1_G=x$
+    \item for all $x\in X$ one has $x\cdot 1_G=x,$ and
     \item for all $g_1,g_2\in G$ and for all $x\in X$ one has $(x\cdot g_1)\cdot g_2 =
-      x\cdot (g_1g_2)$.
+      x\cdot (g_1\cdot g_2)$.
   \end{enumerate}
   \label{def:rightAction}
 \end{definition}
 
 \begin{remark}
-  Note that in a left action, first acting by $g_2$ and then acting on the result by $g_1$
-  is the same as acting by the product $g_1g_2$. For a right action, first acting by $g_2$
-  and then by $g_1$ is the same as the product $g_2g_1\neq g_1g_2$.
+    Note that in a left action, first acting by $g_2$ and then acting on the result by $g_1$ is the same as acting by the product $g_1g_2$. For a right action, first acting by $g_2$ and then by $g_1$ is the same as acting by the product $g_2g_1$. In other words, right and left actions are not the same.
 \end{remark}
+
+\begin{definition}
+    A set $X$ equipped with an action by a group $G$ is called a $G$-set.
+\end{definition}
+
+% \begin{definition}[Right action]
+%   Analogously, a right action of a group $G$ on a set $X$ is a function
+%   \[X\times G \to X\]
+%   \[(x,g)\mapsto x\cdot g\]
+%   Such that
+%   \begin{enumerate}
+%     \item for all $x\in X$ one has $x\cdot 1_G=x$
+%     \item for all $g_1,g_2\in G$ and for all $x\in X$ one has $(x\cdot g_1)\cdot g_2 =
+%       x\cdot (g_1\cdot g_2)$.
+%   \end{enumerate}
+%   \label{def:rightAction}
+% \end{definition}
+
 
 \begin{theorem}
   Let $G$ be a group and $X$ a $G$-set. Then
   \begin{enumerate}
-    \item For every $g\in G$, the function $\sigma_g:X\to X:x\mapsto g\cdot x$ is
-      injective. I.e. every $g\in G$ induces a permutation of $X$.
-    \item The function $G\to $ \{permutations of X\} given by $g\mapsto\sigma_g$ is a
-      group homomorphism
+    \item For every $g\in G$, the function $\sigma_g:X\to X \text{ given by } x\mapsto g\cdot x$ is
+      injective. In other words, every $g\in G$ induces a permutation of $X$.
+    \item The function $\phi :G\to $ $\operatorname{Sym}(X)$ given by $g\mapsto\sigma_g$ is a group homomorphism.
   \end{enumerate}
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  To prove the first claim, we have $\sigma_g x = \sigma_g y \implies g\cdot x= g\cdot y
+  To prove the first claim, we have $\sigma_g(x) = \sigma_g(y )\implies g\cdot x= g\cdot y
   \implies (g^{-1}g)\cdot x = (g^{-1}g)\cdot y \implies 1_G\cdot x = 1_G\cdot y \implies
   x=y$.
   
-  The second claim follows by the second axiom in Definition \ref{def:leftAction}. Let
-  $S_X$ be the set of permutations of $X$, and we have $\phi:G\to S_X: g\mapsto g\cdot x$ Let $g,g'\in G$ and $x \in X$.
-  Then $\phi(gg')(x) = \sigma_{gg'}(x)= (gg')\cdot x = g\cdot \phi (g')(x) = (\phi(g)(\phi (g')(x)) = (\phi(g) \circ \phi(g'))(x)$,
+  The second claim follows by the second axiom in Definition \ref   {def:leftAction}. Let
+  $\operatorname{Sym}(X)$ be the set of permutations of $X$. Let $g,g'\in G$ and $x \in X$.
+  Then $\phi(gg')(x) = \sigma_{gg'}(x)= (gg')\cdot x = 
+  g \cdot (g' \cdot x) = g \cdot (\sigma_{g'}(x)) = \sigma_g(\sigma_{g'}(x)) = \phi(g)\phi(g')$,
+  % g\cdot \phi (g')(x) = (\phi(g)(\phi (g')(x)) = (\phi(g) \circ \phi(g'))(x)$,
   as required.
 \end{proof}
 
-\begin{example}
-  Let $n\in\NN$. The group $S_n$ acts on $\left\{ 1,\cdots, n \right\}$.
-
-  For $n\in\NN_{\geq 3}$, the dihedral group of order $2n$ acts on the set of vertices and
-  also on the set of edges of a regular $n$-gon. Moreover, if $n$ is even, it acts on the
-  set of diagonals.
-
-  Let $G$ be the group of rotations of a cube. Then $G$ acts on the set of diagonals of
-  the cube. This defines a group homomorphism $G\to S_4$. Bartel then shows an animation
-  to illustrate the fact that rotations diagonals is equivalent to a $3$-cycle
-  permutation, the rotation about axis through edges is equivalent to the product a
-  transposition, and the rotation about axis through faces is just a product of two
-  transpositions. This shows that every possibility is hit by an element of $S_4$. In fact
-  this defines an isomorphism.
-\end{example}
+As we have just seen, every $g\in G$ induces a permutation of $X$, so we can think of group actions in another way. The following is the 2F definition of a group action.
 
 \begin{definition}
-  Let $G$ be a group. A $G$-action on a set $X$ is called transitive if for any $x,y\in X$
+    A group $G$ is said to act on a set $X$ if there exists a group homomorphism
+    $$
+    \phi: G \rightarrow \operatorname{Sym}(X).
+    $$
+    Given such a homomorphism $\phi$, then we say an element $g \in G$ acts on $X$ by sending an element $x \in X$ to the element $g \cdot x$ defined by
+    $$
+    g \cdot x=\phi(g)(x).
+    $$
+\end{definition}
+
+\begin{example}
+  Let $n\in\NN$. The group $S_n$ acts on $\left\{ 1,\ldots, n \right\}$.
+
+  For $n\in\NN_{\geq 3}$, the dihedral group of order $2n$ acts on the set of vertices and
+  also on the set of edges of a regular $n$-gon. Moreover, if $n$ is even, it acts on the set of diagonals.
+\end{example}
+
+\begin{example} 
+  Let $G$ be the group of symmetries of a cube. Then $G$ acts on the set of diagonals of the cube. We can label each diagonal of the cube 1, 2, 3 and 4, and any symmetry of the cube will permute these labels. Let us consider all the symmetries of a cube (you may want to view \href{https://www.geogebra.org/m/CytXh7eW}{this webpage} to help with the visualisation of this). 
+  
+  First, consider the axis of symmetry through a face of the cube. We have an element of order two, rotation by $\pi$. We have two elements of order four, rotation by $\frac{\pi}{2}$ and $\frac{3\pi}{2}.$ Since we have three opposite face pairs, we calculate 3(2+1)= 9 elements constituting symmetries about an axis through opposite faces.
+  
+  Next, we consider the axis of symmetry through the midpoints of a pair of opposite edges. We have one element of order two, rotation by $\pi.$ Since we have 6 opposite edge pairs, we have 6 such elements. 
+  
+  Finally, we consider the axis of symmetry through a pair of opposite vertices. We have two elements of order three, rotation by $\frac{2\pi}{3}$ and $\frac{4\pi}{3.}$ We have four opposite vertex pairs, and therefore 8 such elements.
+  
+  In total, we have 6+8+9=23 non-identity elements, so $G$ is isomorphic to a group of order 24. By considering the orders of the elements we've counted above (6 elements of order 4, 8 of order 3, etc...), we see that this group is in fact $S_4.$  
+  
+%link* to see the fact that rotations diagonals is equivalent to a 33-cycle permutation, the rotation about axis through edges is equivalent to the product a
+ %  transposition, and the rotation about axis through faces is just a product of two transpositions. This shows that every possibility is hit by an element of S4S_4. In fact this defines an isomorphism.
+\end{example}
+\begin{definition}
+    Let $G$ be group acting on a set $X$. That is, we have a group homomorphism $\phi: G \rightarrow \operatorname{Sym}(X)$. We say that this is a \emph{faithful} group action if the homomorphism $\phi$ is injective. \label{def:faithfulAction}
+\end{definition}
+
+What this is saying is that the action ``faithfully'' represents the symmetries of the group. That is no two elements $g,g' \in G$ are mapped to the same permutation $\sigma \in \operatorname{Sym}(X).$ A faithful action embeds the group structure into the symmetries of the set $X$. Each group element corresponds to a unique permutation of $X$, and observing how the set $X$ is transformed reveals the group element responsible for that action. This means that the action of the group on the set effectively "encodes" the group's structure.
+%the group's symmetries are fully realised in the 'object'
+
+\begin{example}
+    Consider the usual action of $G=S_3$ on the set $X=\{1,2,3\}$. This is a faithful group action.
+
+    Define an action of $G=S_3$ on the set $X=\{x\}$ by the formula $\sigma \cdot x=x$ for all $\sigma \in S_3$. This is NOT a faithful group action.
+\end{example}
+
+\begin{remark}
+    Note that with non-faithful actions we ``lose information'' about the group. If we think of groups as encoding the symmetries of an object, then in this situation we have not made a suitable choice of set for our group to act on in order to preserve all of the information.
+    % If we think of groups as encoding the symmetries of an object, %a non faithful action means some elements of the group get mapped to the same element of Sym(X); bla bla, 
+    % the symmetries of teh group are not fully realixed.
+    
+    % % In contrast, a faithful action embeds the group structure into the symmetries of the set $X$. Each group element corresponds to a unique permutation of $X$, and observing how the set $X$ is transformed can reveal the group element responsible for that action. This means that the action of the group on the set effectively "encodes" the group's structure.
+
+
+%     unfaithful actions do not allow us to distinguish between certain group elements based on their action alone. (losing info)
+   % its more that you havent chosen an appropriate set to act on to induce a faithful action
+    % also if something isnt faithful, then there are elements which act trivially on the set so that is why you have information loss, certain elements that represent symmetries (ofc because its a group) are not being represented in the action
+    %essentially every element of G is represented by a distinct permutation in Sym(G).
+\end{remark}
+
+The following is a proof of Cayley's Theorem again, however this time using the new tools we have developed. You should compare this with the first proof in lecture 9.
+
+\begin{theorem}[Cayley's Theorem]
+    Every finite group $G$ is isomorphic to a subgroup of the symmetric group $\operatorname{Sym}(G)$.
+\end{theorem}
+
+\begin{proof}
+    Let $G$ be a group. Then we can view $G$ itself as a $G$-set through the  action of left multiplication
+    % \begin{align*}
+    %     L: G \times G &\to G \\
+    %     (g,h) &\mapsto gh.
+    % \end{align*}
+    % % We define an action of $G$ on the set $G$ by constructing a homomorphism
+    $$
+    L: G \rightarrow \operatorname{Sym}(G)
+    $$
+    defined by $L(g)(h)=g h$. 
+    We claim this action is faithful; this is equivalent to Cayley's theorem as our action being faithful means our group homomorphism $L$ is injective, meaning there is an isomorphism between $G$ and $\Img L \leq \operatorname{Sym}(G)$.
+
+    % We claim this action is faithful, which is equivalent to Cayley's theorem as if it is faithful then every group $G$ can be embedded into $\operatorname{Sym}(G)$, and as the image is a subgroup, $G$ will be isomorphic to $\Img L$.
+    
+    Checking that $L$ is a group action is straightforward. Let us check that it is faithful. Suppose $g \in \ker L$. That mean $L(g)$ is the identity element of $\operatorname{Sym}(G)$, that is $L(g)(h)=h$ for all $h \in G$. Since $L(g)(h)=g h$ by definition of $L$, we have $g h=h$ for all $h \in G$. Therefore $g$ must be the identity element of $G$. So $\ker L=\{1_G\}$, i.e. the homomorphism $L$ is injective. So the action is faithful.
+\end{proof}
+
+\begin{definition}
+  Let $G$ be a group. A $G$-action on a set $X$ is called \emph{transitive} if for any $x,y\in X$
   there exists $g\in G$ s.t. $y=g\cdot x$.
   \label{def:transitiveAction}
 \end{definition}
+
 \begin{example}
   Let $G$ be a group and $H$ be a subgroup. The set of left cosets of $H$ in $G$ is a
-  transitive $G$-set under action
-  \[G\times G/H \to G/H: (g,xH)\mapsto (gx)H\]
+  transitive $G$-set under the action
+  \begin{align*}
+      G\times G/H &\to G/H
+      \\ (g,xH)&\mapsto (gx)H.
+  \end{align*}
+  It is easy to check this action is well defined, transitivity is also simple: given any two left cosets $xH,yH\in G/H$, we want to find $g \in G$ such that $g \cdot (xH) = yH$. One can see that taking $g=yx^{-1}$ completes the proof.
 \end{example}
 
+
 \begin{definition} [Isomorphism on group action]
-  Let $G$ be a group and $X,Y$ be $G$-sets. An isomorphism from $X$ to $Y$ is a bijection
+  Let $G$ be a group and $X,Y$ be $G$-sets. A $G$-set \emph{isomorphism} from $X$ to $Y$ is a bijection
   $\phi:X\to Y$ s.t. $\forall x\in X, g\in G$, we have $\phi(g\cdot x)=g\cdot \phi(x)$.
   \label{defi:isomorphismAction}
 \end{definition}
 
 \begin{theorem}
-  Let $G$ be a group and let $H,K$ be subgroups. The $G$-sets $G/H$ and $G/K$ are
-  isomorphic if and only if there exists $g\in G$ such that $H=gKg^{-1}$.
+  Let $G$ be a group and let $H,K$ be subgroups. Then the $G$-sets $G/H$ and $G/K$ are isomorphic if and only if there exists $g\in G$ such that $H=gKg^{-1}$.
   \label{thm:cosetsIsomorphic}
 \end{theorem}
-\begin{proof} 
-  Note that the trivial map $G/H\to G/K:gH\mapsto gK$ is not well-defined, as it fails
-  with $g=1$.
+% \begin{proof} 
+%   Note that the trivial map $G/H\to G/K:gH\mapsto gK$ is not well-defined, as it fails
+%   with $g=1_G$.
 
-  ($\Leftarrow$) Define $\phi:G/H\to G/K$. How do we find a mapping? Let us define the
-  placeholder $H\mapsto gK$ and we want to find $g\in G$ s.t. for any $h\in H$,
-  $hgK = gK$, i.e. $g^{-1}hg\in K$ or equivalently $h\in gKg^{-1}$. In our assumption we
-  have $g\in G$ with $H=gKg^{-1}$, However, we need a map for any
-  $g$, not just the identity. We can define $\phi:xH\mapsto xgK$ for any $x\in G$.
-  We claim this is well-defined and injective. We claim $xH=yH$ and it follows
-  \[\iff x^{-1}y\in H=gKg^{-1} \iff x^{-1}yg = gk, \quad \exists k\in K \]
-  \[\iff xgk= yg \iff xgK = ygK\]
-Hence this is well defined and injective.
+%given an iso, show conjugacy
+%   Define $\phi:G/H\to G/K$. How do we find a mapping? Let us define the placeholder $H\mapsto gK$ and we want to find $g\in G$ s.t. for any $h\in H$,
+%   $hgK = gK$, i.e. $g^{-1}hg\in K$ or equivalently $h\in gKg^{-1}$. In our assumption we
+%   have $g\in G$ with $H=gKg^{-1}$, However, we need a map for any
+%   $g$, not just the identity. We can define $\phi:xH\mapsto xgK$ for any $x\in G$.
+%   We claim this is well-defined and injective. We claim $xH=yH$ and it follows
+%   \[\iff x^{-1}y\in H=gKg^{-1} \iff x^{-1}yg = gk, \quad \exists k\in K \]
+%   \[\iff xgk= yg \iff xgK = ygK\]
+% Hence this is well defined and injective.
 
-  We also claim that this is surjective, which follows from the fact that $G$ is a group,
-  so every element of $x$ will have $xg\in G$. Finally, let $\alpha\in G$ and $xH\in
-  G/H$. Then $\phi(\alpha \cdot xH)=\alpha \cdot xgK = \alpha \cdot \phi(xH)$.
+%   We also claim that this is surjective, which follows from the fact that $G$ is a group,
+%   so every element of $x$ will have $xg\in G$. Finally, let $\alpha\in G$ and $xH\in
+%   G/H$. Then $\phi(\alpha \cdot xH)=\alpha \cdot xgK = \alpha \cdot \phi(xH)$.
 
-  ($\Rightarrow$) Let $\phi: G/H\to G/K$ be an isomorphism of $G$-sets. Let $g\in G$ be
-  s.t. $\phi(H)=gK$. Claim: $H=gKg^{-1}$. We have 
-  \[\alpha\cdot H=H \iff \alpha\in H \]
-  \[\iff \phi(\alpha\cdot H)=\alpha\cdot \phi(H)=gK\iff \]
-    \[\alpha g K = gK \iff g^{-1}\alpha g\in K \iff \alpha \in gKg^{-1}\]
-    Note that the second line follows by Definition \ref{defi:isomorphismAction}.
+% %construct a map, prove it's a G-set iso
+%   ($\impliedby$) Given that $H$ and $K$ are conjugate subgroups, we want to construct a $G$-set isomorphism between $G/H$ and $G/K$. 
+  
+%   We have that there is a $g\in G$ such that $H = gKg^{-1}.$ Let $\varphi: G/H \to G/K$ be the mapping $xH \mapsto xgK.$ We claim that $\varphi$ is a well-defined isomorphism of $G$-sets.
+%   %show stuff here
+  
+%   % Any such map must send $H$ to $K$
+  
+  
+%   Let $\phi: G/H\to G/K$ be an isomorphism of $G$-sets. Let $g\in G$ be
+%   s.t. $\phi(H)=gK$. Claim: $H=gKg^{-1}$. We have 
+%   \[\alpha\cdot H=H \iff \alpha\in H \]
+%   \[\iff \phi(\alpha\cdot H)=\alpha\cdot \phi(H)=gK\iff \]
+%     \[\alpha g K = gK \iff g^{-1}\alpha g\in K \iff \alpha \in gKg^{-1}\]
+%     Note that the second line follows by Definition \ref{defi:isomorphismAction}.
+% \end{proof}
+
+
+
+\begin{proof}
+Note that we need to be clever with how we define our $G$-set isomorphism, the map $f: G/H\to G/K$ defined by $gH\mapsto gK$ is not a $G$-set isomorphism as it fails to preserve the action, that is $h \cdot f(H) = hK \neq H = f(hH)$ for $h \in H$.
+
+($\impliedby$) Assume $H$ and $K$ are conjugate, so there exists $g \in G$ such that $H = gKg^{-1}$. Define a map $\phi: G / H \rightarrow G / K$ by $\phi(xH) = xgK$. This map is well-defined because if $xH = yH$ for $x, y \in G$, then $y^{-1}x \in H = gKg^{-1}$, and so $g^{-1}y^{-1}xg \in K$. It follows that $ygK = xgK$, hence $\phi(xH) = \phi(yH)$.
+
+To show that $\phi$ is a $G$-set isomorphism, we need to prove that it is bijective and respects the $G$ action. For bijectivity, define a map $\psi: G / K \rightarrow G / H$ by $\psi(xK) = xg^{-1}H$. By a similar argument to that above, $\psi$ is well-defined and it is easily seen that $\psi$ is the inverse of $\phi$. 
+
+To show that $\phi$ respects the $G$ action, let $g' \in G$ and $xH \in G / H$. Then $\phi(g' \cdot xH) = \phi(g'xH) = g'xgK$. Since $g'xH = g'(xH)$, we have $g'xgK = g' \cdot \phi(xH)$. Hence, $\phi$ respects the $G$ action, and so $G / H$ and $G / K$ are isomorphic as $G$-sets.
+
+($\implies$) Conversely, assume the $G$-sets $G / H$ and $G / K$ are isomorphic. This means there exists a bijective function $f: G / H \rightarrow G / K$ that also respects the $G$ action; that is, for all $g \in G$ and $xH \in G / H$, we have $f(g \cdot xH) = g \cdot f(xH)$. Consider $f(1_G \cdot H) = gK$ for some $g \in G$. Since $f$ respects the $G$ action, for any $h \in H$, we have $f(h \cdot H) = h \cdot f(H) = h \cdot gK$. Since $hH = H$, it follows that $hgK = gK$ and so $g^{-1}hg \in K$. This shows that $H \subseteq gKg^{-1}$. 
+
+To show the other inclusion, consider the inverse isomorphism $f^{-1}: G / K \rightarrow G / H$. We have $f^{-1}(1_G \cdot K) = g^{-1}H$ for some $g^{-1} \in G$. By a similar argument as above, for any $k \in K$, we have $g^{-1}kg \in H$, which shows that $K \subseteq g^{-1}Hg$. Thus, $H = gKg^{-1}$, and $H$ and $K$ are conjugate.
+
+Therefore, $G / H$ and $G / K$ are isomorphic $G$-sets if and only if $H$ and $K$ are conjugate subgroups.
 \end{proof}

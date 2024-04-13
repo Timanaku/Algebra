@@ -1,76 +1,160 @@
-\section{Lecture 11 - 13 Oct 2021}
+\section{Lecture 11}
 \subsection{Second Isomorphism Theorem}
-On Isomorphism theorems. We will continue applying the FIT. First we will apply it to the
-second isomorphism theorem.
 \begin{theorem}[Second Isomorphism Theorem]
-  Let $G$ be a group, $H<G$, let $N\trianglelefteq G$. Then,
+  Let $G$ be a group, $H \leq G$, $N\trianglelefteq G$. Then,
   \begin{enumerate}
-    \item The set $HN=\left\{ hn |h\in H,n\in N \right\} <G$ .
-    \item The intesection $H\cap N \trianglelefteq H$, not necessarily of $G$.
-    \item There is an isomorphism $H/H\cap N \cong HN/N$.
+    \item $HN=\left\{ hn \mid h\in H,n\in N \right\} \leq G$,
+    \item $H\cap N \trianglelefteq H$,
+    \item $H/H\cap N \cong HN/N$.
   \end{enumerate}
   \label{secondIso}
 \end{theorem}
 \begin{proof}
-  \todo{Part 1 and 2 are exercise sheet 2, q 2}
-  To prove the third point, we use the FIT. We claim there exists an homomorphism $\phi$
-  where $\Img\phi= HN/N$ and $\ker\phi = H\cap N$. Consider the composition $\phi:H\xhookrightarrow{}
-  G\to G/N: h\mapsto hN$. Note that the operation is a homomorphism because it's a
-  composition of two homomorphisms: the embedding of $H$ in $G$ and the quotient map.
-  Moreover note that $h\in\ker\phi \iff h\in H \text{ and } hN=N \iff h\in H \text{ and } h\in N$, i.e.
-  $h\in H\cap N$. On the other hand, note that $xN\in\Img\phi \iff \exists h\in H : hN=xN
-  \iff  h^{-1}x\in N \iff x = hn \in HN$.
-  Therefore $\Img\phi = HN/N$, and by the FIT it follows
-  that $H/H\cap N \cong HN/N$. 
-\end{proof}
-Recall from the previous lecture that the first isomorphism theorem says that taking the
-quotient of $G$ by some normal subgroup $N$ is equivalent to applying a homomorphism $\phi$
-from $G$ whose kernel is $N$.
+    % (1) First, we have $1_G\in HN$, so $HN$ is nonempty. Let $x,y \in HN,$ meaning we have $h_1,h_2 \in H$ and $n_1,n_2 \in N$ such that $x = h_1n_1$, $y = h_2n_2.$ Then $$xy^{-1} = (h_1n_1)(h_2n_2)^{-1} = h_1 n_1 n_2^{-1} h_2^{-1}.$$ 
 
-The second isomorphism theorem addresses the question: What if I apply the same $\phi$ to
-a subgroup $H$ of $G$? 
+    % Now if we let $h_1 = h h_2$ for some $h \in H$ (such a $h$ exists since $H$ is a group) and $n_1 n_2^{-1} = n \in N,$ we have that $$xy^{-1} = h (h_2 \cdot n \cdot h_2^{-1}) \in HN,$$ since $N \trianglelefteq G$. Therefore, $HN\leq G$ by the subgroup test. 
+    
+    (1) We will start by showing that $HN=NH.$ Let $hn\in HN.$ Since $N\trianglelefteq G,$ $hnh^{-1}\in N,$ so there exists $n'\in N$ such that $hnh^{-1}=n'.$ Therefore $hn=n'h,$ so $HN\subset NH.$ It can be shown similarly that $NH\subset HN,$ so $HN=NH.$ 
+    
+    We now show that $HN$ is a subgroup of $G$ by the subgroup test.
+    We have $1_G\in HN$, so $HN$ is nonempty.
+    Now let $x=h_1n_1\in HN$ and $y=h_2n_2\in HN.$ Then
+    $$xy^{-1} = (h_1n_1)(h_2n_2)^{-1} = h_1 n_1 n_2^{-1} h_2^{-1}.$$ As we have shown $HN=NH,$ we can write $n_2^{-1} h_2^{-1}=\hat{h}\hat{n}$ for some $\hat{h}\hat{n} \in HN,$ so $$xy^{-1}=h_1 n_1\hat{h}\hat{n}.$$ Again, we can write $n_1\hat{h}=\tilde{h}\tilde{n}$ for some $\tilde{h}\tilde{n}\in HN,$ so $$xy^{-1}=h_1\tilde{h}\tilde{n}\hat{n}\in HN,$$ as required.
+
+    (2) We want to show $H\cap N$ is closed under conjugation by elements of $H.$ Let $h \in H$ and $x \in H \cap N$, i.e. $x\in H$ and $x\in N$. We have $hxh^{-1}\in H$ as $H$ is a group. Also, since $N \trianglelefteq G$, $hxh^{-1} \in N$. Therefore, $hxh^{-1}\in H\cap N,$ as required.
+
+    (3) We define 
+    % \begin{align*}
+    %    \varphi: H \xhookrightarrow{} & G \to G/N \\
+    %    h \mapsto & h \longmapsto hN.
+    % \end{align*}
+    \[
+    \begin{array}{cccccc}
+         \varphi: & H & \xhookrightarrow{} \: G \: \to & G/N \\
+         & \vin & & \vin \\
+         & h & \longlonglongmapsto & hN.
+    \end{array}
+    \]
+    
+    %need homomorphism, surjective
+    Since $\varphi$ is the composition of an inclusion map and a natural projection, which are both homomorphisms, it is also a homomorphism.
+    %The map is surjective, since if $gN \in G/N,$
+    
+    We have that $\ker \varphi = \{h \in H \mid \varphi(h) = N \} = \{h \in H \mid h \in N \} = H \cap N.$
+
+    Also, 
+    \begin{align*}
+        \Img \varphi &= \{\varphi(h) \mid h \in H\} \\
+        &= \{gN \mid gN=\varphi(h) \text{ for some } h \in H\} \\
+        &= \{gN \mid gN = hN \text{ for some } h \in H \} \\
+        &= \{gN \mid h^{-1}g \in N, h\in H\} \\
+        &= \{gN \mid g\in HN\} \\
+        &= HN/N.
+    \end{align*}
+
+    Hence, by the first isomorphism theorem,
+    $$
+    H/H\cap N \cong HN/N.
+    $$
+  % The first and second point are exercises in sheet 2 (question 2).
+  % To prove the third point, we use the FIT. We claim there exists a homomorphism $\phi$
+  % where $\Img\phi= HN/N$ and $\ker\phi = H\cap N$. Consider the composition $\phi:H\xhookrightarrow{}
+  % G\to G/N: h\mapsto hN$. Note that the operation is a homomorphism because it's a
+  % composition of two homomorphisms: the embedding of $H$ in $G$ and the quotient map.
+  % Moreover note that $h\in\ker\phi \iff h\in H \text{ and } hN=N \iff h\in H \text{ and } h\in N$, i.e.
+  % $h\in H\cap N$. On the other hand, note that $xN\in\Img\phi \iff \exists h\in H : hN=xN
+  % \iff  h^{-1}x\in N \iff x = hn \in HN$.
+  % Therefore $\Img\phi = HN/N$, and by the FIT it follows
+  % that $H/H\cap N \cong HN/N$. 
+\end{proof}
+% Recall from the previous lecture that the first isomorphism theorem says that taking the
+% quotient of $G$ by some normal subgroup $N$ is equivalent to applying a homomorphism $\phi$
+% from $G$ whose kernel is $N$.
+
+% The second isomorphism theorem addresses the question: What if I apply the same $\phi$ to a subgroup $H$ of $G$? 
+
+% \begin{tikzpicture}[>=latex]
+
+% \node[above] at (2,3) {$G$};
+
+% \fill[red!20] (0,3) rectangle (1,2);
+
+% \fill[green!20] (0,3) rectangle (4,2.5);
+
+% \begin{scope}
+%   \clip (0,3) rectangle (4,2.5);
+%   \fill[red!20, opacity=0.5] (0,3) rectangle (1,2);
+% \end{scope}
+
+% \node at (0.5,2.5) {$N$};
+% \node at (3.5,2.75) {$H$};
+
+% \draw[step=1cm, draw=black] (0,0) grid (4,3);
+
+% \end{tikzpicture}
+
+
+% \begin{tikzpicture}[>=latex]
+
+% \fill[green!20] (0,1) rectangle (4,1.5);
+% \fill[red!20, opacity=0.5] (0,1.5) rectangle (1,1);
+% \node at (0.5,1.25) {$H \cap N$};
+
+% \draw[step=1cm, draw=black] (0,1) grid (4,1.5);
+% \draw (0,1) -- (4,1); 
+
+% \end{tikzpicture}
+
+
 
 \begin{example}
-  Let $GL_2(\RR)$ be a multiplicative group. Let $SL_2(\RR)\leq GL_2(\RR)$ be the subgroup
-  of matrices with determinant $1$. This is a normal subgroup. What's the structure of
-  $GL_2(\RR)/SL_2(\RR)$? By the first isom theorem we have that $SL_2(\RR)$ must be the
+  Let $\operatorname{GL}_2(\RR)$ be the multiplicative group of invertible $2\times2$ matrices over $\RR$. Let $SL_2(\RR)\leq \operatorname{GL}_2(\RR)$ be the subgroup
+  of matrices with determinant $1$. This is a normal subgroup. What is the structure of
+  $\operatorname{GL}_2(\RR)/SL_2(\RR)$? 
+  
+  By the first isomorphism theorem we have that $\operatorname{SL}_2(\RR)$ must be the
   kernel of some group homomorphism, namely the determinant map. The image of the
-  determinant is all $\RR^{\times}$, so by the FIT, we deduce that
-  $GL_2(\RR)/SL_2(\RR)\cong \RR^{\times}$. Consider the subgroup
-  \[Z= \left\{ \diag (a,a) : a\in \RR^{\times} \right\} \leq GL_{2}(\RR)\]
-  Observe that $z\in Z, |z|=a^2$, so we see that $Z\cap SL_{2}(\RR) = \left\{ \pm
-  \diag(1,1) \right\}$. 
+  determinant is all $\RR^{\times}$, so we deduce that
+$\operatorname{GL}_2(\RR)/\operatorname{SL}_2(\RR)\cong \RR^{\times}$. 
+  
+  Consider the subgroup
+  \[Z= \left\{ \diag (a,a) \mid a\in \RR^{\times} \right\} \leq \operatorname{GL}_{2}(\RR)\]
+  of diagonal matrices. We wish to understand $Z$ in the context of $\operatorname{GL}_2(\RR)/\operatorname{SL}_2(\RR)$ using the SIT.
+  Observe that $\diag(a,a) \in Z$ has determinant $a^2$, so we see that $Z\cap \operatorname{SL}_{2}(\RR) = \left\{ \pm
+  \diag(1,1) \right\},$ a group consisting of 2 elements. 
 
-  We claim that $Z\cdot SL_2(\RR)$ is the subgroup $GL_2^+(\RR)$
-  consisting of all matrices with positive determinant. The proof is left as an exercise
-  to the reader (it's not too hard). By the SIT applied with $H=Z$ and $N=SL_2(\RR)$ we
-  have
-  \[ Z/\left\{ \pm \diag(1,1) \right\} \cong GL_2^+(\RR)/ SL_2(\RR) \cong \RR_{>0}\]
+  The remaining component of the SIT to understand is $Z\cdot \operatorname{SL}_2(\RR).$ We claim without proof this is $\operatorname{GL}_2^+(\RR) = \{X \in \operatorname{GL}_{2}(\RR) \mid \det(X) > 0\}.$
 
+  Applying the SIT with  $H=Z$ and $N=\operatorname{SL}_2(\RR),$ we have
+  $$
+  Z/\left\{ \pm \diag(1,1) \right\} \cong \operatorname{GL}_2^+(\RR)/ \operatorname{SL}_2(\RR) \cong \RR_{>0}.
+  $$
+  % We claim that $Z\cdot \operatorname{SL}_2(\RR)$ is the subgroup $\operatorname{GL}_2^+(\RR)$
+  % consisting of all matrices with positive determinant. The proof is left as an exercise
+  % to the reader (it's not too hard). By the SIT applied with $H=Z$ and $N=SL_2(\RR)$ we
+  % have
+  % \[ Z/\left\{ \pm \diag(1,1) \right\} \cong \operatorname{GL}_2^+(\RR)/ \operatorname{SL}_2(\RR) \cong \RR_{>0}\]
 \end{example}
 
 \subsection{Non-examinable aside}
-Bartel makes a non-examinable aside to try to explain how SIT will be useful eventually.
-First, he introduces the idea of \emph{atoms of group theory}. If we want to understand a
-big and complicated group $G$, we can do so by finding a normal subgroup $N$ and
-understand that and its quotient $G/N$ (which is in essence a group with similar structure
-to $G$ but with less elements). Note that his reduction step relies on the existence of a
-proper non-trivial normal subgroup. The SIT is very useful in this approach
+To explain how SIT will be useful eventually, we introduce the idea of \emph{atoms of group theory}. If we want to understand a big and complicated group $G$, we can do so by finding a normal subgroup $N$ and understanding its quotient $G/N$ (which is in essence a group with similar structure
+to $G$ but with less elements). Note that this reduction step relies on the existence of a proper non-trivial normal subgroup. The SIT is very useful in this approach.
 \begin{definition}[Simple Group]
   A group is \emph{simple} if it is non-trivial and has no proper non-trivial normal
   subgroups.
 \end{definition}
 
-If we understand all simple groups, and how bigger groups are made up of smaller normal
-groups and their quotients, we would understand all groups. All finite simple groups have
-been classified. For instance, for any $n\geq 5$, the alternate group $A_n$ is simple.
+If we understand all simple groups, and how bigger groups are made up of smaller simple groups and their quotients, we would understand all groups. All finite simple groups have
+been classified. 
 
+\begin{definition}
+    A group $G$ is called \emph{metabelian} if it has a normal subgroup $N$ such that both $N$ and $G/N$ are abelian.
+\end{definition}
 \begin{theorem}
-  Let $G$ be a metabelian group, meaning there exists an abelian normal subgroup $N$ of
-  $G$ such that $G/N$ is also abelian. Then every subgroup of $G$ is also metabelian.
+  Let $G$ be a metabelian group. Then every subgroup of $G$ is also metabelian.
   \label{<+label+>}
 \end{theorem}
 
 \begin{proof}
-    Let $H \leq G$. Since $N$ is a normal abelian subgroup of $G$, $H \cap N$ is abelian as its a subgroup of $N$. Using the SIT we have that $H/H \cap N \cong HN/N$, since $G/N$ is abelian $HN/N$ is abelian and so $H/H \cap N$ is abelian. So H has an abelian normal subgroup $H \cap N$ such that the quotient is abelian, and as $H$ was an arbitrary subgroup of $G$ every subgroup of $G$ is metabelian.
+   Let $G$ be metabelian, let $N$ be a normal subgroup such that $N$ and $G/N$ are abelian, and let $H$ be an arbitrary subgroup of $G$. We claim that $H$ is also metabelian. Indeed, $H \cap N$ is a normal subgroup of $H$, and it is abelian, since it is a subgroup of the abelian group $N$; moreover, by SIT we have $H/(H \cap N) \cong HN/N \leq G/N,$ so $H/(H \cap N)$ is abelian, being (isomorphic to) a subgroup of an abelian group. Thus $H \cap N$ is the required normal subgroup of $H$.
 \end{proof}

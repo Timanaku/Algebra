@@ -1,63 +1,85 @@
-\section{Lecture 24 - 15 Nov 2021}
-\subsection{Prime and maximal ideals - division with remainder in polynomials}
-The following is an immediate consequence of the previous theorems.
-\begin{corollary}
-  Let $R$ be a commutative unital ring. Then every maximal ideal of $R$ is prime.
-  \label{cor:maximalPrime}
-\end{corollary}
-\begin{proof}
-  Let $I$ be a maximal ideal of $R$. Then $R/I$ is a field, so $R/I$ is an integral
-  domain, hence $I$ is prime.
-\end{proof}
+\section{Lecture 24}
+\subsection{Division with remainder of polynomials}
+% The following is an immediate consequence of the previous theorems.
+% \begin{corollary}
+%   % Let $R$ be a commutative unital ring. Then every maximal ideal of $R$ is prime.
+%   Every maximal ideal in a commutative unital ring is prime.
+%   \label{cor:maximalPrime}
+% \end{corollary}
+% \begin{proof}
+%   Let $R$ be a commutative unital ring and let $I$ be a maximal ideal of $R$. Then $R/I$ is a field, so $R/I$ is an integral
+%   domain, hence $I$ is prime.
+% \end{proof}
 
-\begin{remark}
-  The converse is false. For example consider $\ZZ[X]$ and the the prime ideal $(X)$. Since $\ZZ[X]/(X)\cong
-  \ZZ$ is an integral domain, but $(X)$ is not maximal since $\ZZ$ is not a field. 
-\end{remark}
-\begin{example}
-    Let us consider an ideal that is maximal in $\ZZ[X]$. Let
-  $p$ be a prime number, so the ideal $(p,X)=\{pf+Xg: f,g\in\ZZ[X]\}$ is the polynomials
-  where constant terms are multiples of $p$. The ideal is maximal as $\ZZ[X]/(p,X)$ is a field.
-\end{example}
+% \begin{remark}
+%   The converse is false in general. For example, consider $\ZZ[X]$ and the the prime ideal $(X)$. We know $\ZZ[X]/(X)\cong \ZZ$ is an integral domain, but $(X)$ is not maximal since $\ZZ$ is not a field. 
+% \end{remark}
+% \begin{example}
+%     Let us consider an ideal that is maximal in $\ZZ[X]$. Let
+%   $p$ be a prime number, so the ideal $(p,X)=\{pf+Xg \mid f,g\in\ZZ[X]\}$ is the polynomials
+%   where constant terms are multiples of $p$. The ideal is maximal as $\ZZ[X]/(p,X)$ is a field.
+% \end{example}
 \begin{definition}
   Let $F$ be a field, and let $f(X)=a_0+a_1X+\cdots + a_d X^d\in F[X]$ be a polynomial
-  with $a_d\neq 0$. The degree $\deg f$ of $f$ is defined as $d$.
+  with $a_d\neq 0$. Then we say the \emph{degree} of $f$, written $\deg f,$ is $d$.
   \label{<+label+>}
 \end{definition}
 
-\begin{theorem}[Division with remainder in polynomial rings]
-  Let $F$ be a field, and let $f(X)$, $g(X)\in F[X]$. Then there exist unique $q(X),
-  r(X)\in F[X]$ s.t. 
-  \[f(X)=g(X)q(X)+r(X)\]
-  and s.t. either $r(X)=0$ or $\deg r < \deg g$.
+% \begin{theorem}[Division with remainder in polynomial rings]
+%   Let $F$ be a field, and let $f(X)$, $g(X)\in F[X]$. Then there exist unique $q(X),
+%   r(X)\in F[X]$ s.t. 
+%   \[f(X)=g(X)q(X)+r(X),\]
+%   where $\deg r < \deg g$ or $r(X)=0$.
+%   \label{thm:divisionReminderPolynomial}
+% \end{theorem}
+% \begin{proof}
+%   (Proof of existence) Note that $\deg g> \deg f \implies q=0, r=f$ so we will consider $\deg g< \deg f.$
+  
+%   Now consider $f(x)=a_nx^n+\cdots+a_1x+a_0$, and $g(x)=b_mx^m+\cdots+b_1x+b_0$, with $a_n,b_m\neq 0$
+%   and $n\geq m$. Assume the statement is true for all $f_0$ with $\deg f_0<\deg f$. Let 
+%   \[f_0(x)=f-\frac{a_n}{b_m}x^{n-m}\cdot g = a'_{n-1}x^{n-1}+\cdots+a'_0\]
+%   So $\deg f_0< \deg f$. Then by induction we have that there exists $q_0, r\in F[X]$ with
+%   either $r=0$ or $\deg r< \deg g$ s.t.  $f_0=q_0g + r \implies f=
+%   (q_0+\frac{a_n}{bm}x^{n-m})g + r$
+
+%   (Proof of uniqueness) For the sake of contradiction, assume that there exists
+%   $q,q',r,r'\in F[X]$ s.t. $f(x)=qg+r=q'g+r'$ and each $r,r'=0$ or $\deg r,r'<\deg g$.
+%   However, note that then 
+%   \[qg+r=q'g+r' \implies g(q-q')=r'-r.\]
+%   Note that $\deg g(q-q')\geq \deg g$ since $q\neq q'$ and $g$ is not the $0$ polynomial
+%   since no polynomial has divisor $0$. Hence, $\deg r'-r\geq \deg g$, a
+%   contradiction.
+% \end{proof}
+
+\begin{theorem}[Division with Remainder in Polynomial Rings]
+  Let \( F \) be a field, and let \( f(X), g(X) \in F[X] \). Then there exist unique polynomials \( q(X), r(X) \in F[X] \) such that 
+  \[ f(X) = g(X)q(X) + r(X), \]
+  where \( \deg(r) < \deg(g) \) or \( r(X) = 0 \).
   \label{thm:divisionReminderPolynomial}
 \end{theorem}
-\begin{proof}
-  \emph{Proof of existence.} Note $\deg g> \deg f \implies q=0, r=f$. Next, consider
-  $f(x)=a_nx^n+\cdots+a_1x+a_0$, and $g(x)=b_mx^m+\cdots+b_1x+b_0$, with $a_n,b_m\neq 0$
-  and $n\geq m$. Assume the statement is true for all $f_0$ with $\deg f_0<\deg f$. Let 
-  \[f_0(x)=f-\frac{a_n}{b_m}x^{n-m}\cdot g = a'_{n-1}x^{n-1}+\cdots+a'_0\]
-  So $\deg f_0< \deg f$. Then by induction we have that there exists $q_0, r\in F[X]$ with
-  either $r=0$ or $\deg r< \deg g$ s.t.  $f_0=q_0g + r \implies f=
-  (q_0+\frac{a_n}{bm}x^{n-m})g + r$
 
-  \emph{Proof of uniqueness}. For the sake of contradiction, assume that there exists
-  $q,q',r,r'\in F[X]$ s.t. $f(x)=qg+r=q'g+r'$ and each $r,r'=0$ or $\deg r,r'<\deg g$.
-  However, not that then 
-  \[qg+r=q'g+r' \implies g(q-q')=r'-r.\]
-  Note that $\deg g(q-q')\geq \deg g$ since $q\neq q'$ and $g$ is not the $0$ polynomial
-  since no polynomial has divisor $0$. Henceforth, $\deg r'-r\geq \deg g$, a
-  contradiction.
+\begin{proof}
+  (Proof of Existence) If \( \deg(g) > \deg(f) \), then take \( q = 0 \) and \( r = f \). Now assume \( \deg(g) \leq \deg(f) \). Write \( f(X) = a_nX^n + \cdots + a_1X + a_0 \) and \( g(X) = b_mX^m + \cdots + b_1X + b_0 \) with \( a_n, b_m \neq 0 \) and \( n \geq m \). We look to prove the claim by strong induction, so we assume the theorem holds for all \( f_0 \) with \( \deg(f_0) < \deg(f) \). Define
+  \[ f_0(X) = f(X) - \frac{a_n}{b_m}X^{n-m} g(X), \]
+  which has \( \deg(f_0) < \deg(f) \). By assumption, there exist \( q_0, r \in F[X] \) with \( r = 0 \) or \( \deg(r) < \deg(g) \) such that \( f_0 = q_0g + r \). Thus,
+  \[ f = q_0g + r + \frac{a_n}{b_m}X^{n-m}g  =\left( q_0 + \frac{a_n}{b_m}X^{n-m} \right)g + r. \]
+  Hence $f$ can also be expressed in the required form, so by strong induction the claim holds for all $f \in F[X].$
+
+  (Proof of Uniqueness) Assume for contradiction that there are \( q, q', r, r' \in F[X] \) such that \( f = qg + r = q'g + r' \), with both $r$ and $r'$ either zero or with degree less than $g.$ 
+  % $\deg(r), \deg(r') < \deg(g)$
+  % \( r, r' = 0 \) or \( \deg(r), \deg(r') < \deg(g) \). 
+  Then
+  \[ g(q - q') = r' - r. \]
+  Since \( g \) is not the zero polynomial and \( q \neq q' \), \( \deg(g(q - q')) \geq \deg(g) \). This implies \( \deg(r' - r) \geq \deg(g) \), contradicting the assumption that \( \deg(r), \deg(r') < \deg(g) \).
 \end{proof}
 
 \begin{corollary}
   Let $F$ be a field and let $f\in F[X]$, $a\in F$. Then $f(a)=0$ if and only if $\exists
   h\in F[X]$ s.t. $f(X)=(X-a)h(X)$.
-  \label{<+label+>}
+  \label{cor:rootFactor}
 \end{corollary}
 \begin{proof}
-  %backwards
-  We have $f(X) = (X-a)q(X)+r(X) \implies f(a)=0$ trivially. 
-  %forwards
-  Assume $f(a)=0.$ By the previous theorem we have that there exists $q(X),r(X)\in F[X]$, such that $f(X) = (X-a)q(X)+r(X)$. We must have $\deg r < \deg (X-a) = 1$, so $r(X)$ is a constant. We have from our assumption that $f(a)=r(X)=0$, hence the result follows.
+We have $f(X) = (X-a)h(X)\implies f(a)=0$ trivially. 
+    
+Assume $f(a)=0.$ By Theorem \ref{thm:divisionReminderPolynomial}, there exists $q(X),r(X)\in F[X]$, such that $$f(X) = (X-a)q(X)+r(X).$$ We must have $\deg r < \deg (X-a) = 1$, so $r(X)$ is a constant. We have from our assumption that $0=f(a)=0+r(a)$, hence the result follows.
 \end{proof}

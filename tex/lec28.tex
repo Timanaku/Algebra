@@ -1,4 +1,4 @@
-\section{Lecture 28 - 24 Nov 2021}
+\section{Lecture 28}
 \subsection{Irreducibility criteria}
 % \begin{definition}
 %     The content of a nonzero polynomial 
@@ -6,55 +6,97 @@
 % \end{definition}
 
 \begin{definition}
-    The content of a nonzero polynomial $f \in \ZZ[X]$ with coefficients $a_0, a_1, \ldots, a_n$ is
+    The \emph{content} of a nonzero polynomial $f \in \ZZ[X]$ with coefficients $a_0, a_1, \ldots, a_n$ is
     $$
     c(f)=\gcd(a_0, \ldots, a_n).
     $$
 \end{definition}
 
 \begin{definition}
-  A polynomial $f(X) \in \ZZ[X]$ is called primitive if its content is 1.
+  A polynomial $f(X) \in \ZZ[X]$ is called \emph{primitive} if its content is 1.
   \label{def:primitivePol}
 \end{definition}
 \begin{lemma}[Gauss's Lemma - Primitivity]
     The product of two primitive polynomials is also primitive.
 \end{lemma}
 \begin{proof}
-    Exercise.
+    % Let $f$, $g \in \ZZ[X]$ be primitive polynomials, i.e., there is no prime $p$ that divides all of the coefficients of both polynomials, and since the coefficients of $fg$ are made up of combinations of 
+    % Sketch:
+    % \begin{itemize}
+    %     \item Suppose $fg$ is not primitive, $\exists p$ divisor 
+    %     \item $f,g$ primitive means there exists at least one (pick the smallest) coefficient of each not divisible by $p$ 
+    %     \item Suppose they are the $r^{\text{th}}$ coefficient of $f$ and $s^{\text{th}}$ coefficient of $g$ 
+    %     \item Consider the coefficient of $X^{r+s}$ in $fg$ 
+    %     \item Argue that since $p$ divides all smaller coefficients of $f$ and $g$ that $p$ cannot divide the overall coefficient, qed
+    % \end{itemize}
+
+
+    Let $f = a_0 + a_1X + \cdots + a_nX^n$ and $g = b_0 + b_1X + \cdots + b_mX^m$ be primitive polynomials and suppose the product $fg$ is not primitive. That is, there is a prime $p$ that divides all coefficients of $fg.$ 
+
+    Since $f$ and $g$ are primitive, we can find the smallest coefficients $a_r$ and $b_s$ of $f$ and $g$ respectively that are not divisible by $p$. Consider the coefficient of $X^{r+s}$ of $fg$:
+
+    $$
+    \cdots a_{r-2}b_{s+2}+a_{r-1}b_{s+1} +a_r b_s +  a_{r+1}b_{s-1}+a_{r+2}b_{s-2}\cdots .
+    $$
+
+    We have that all terms containing an $a_i$ for $i<r$ and $b_j$ for $j<s$ are divisible by $p$, and $a_r b_s$ was assumed to be not divisible by $p,$ so overall the coefficient of $X^{r+s}$ cannot be divisible by $p,$ a contradiction.
 \end{proof}
 \begin{theorem}[Gauss's Lemma - Irreducibility]
   Let $f\in \ZZ[X]$ be primitive. Then $f$ is reducible in $\QQ[X]$ into polynomials of
-  degree $r,s\in \NN_{\leq n-1}$ iff it factorises as a product of degree $r$ and $s$
-  polynomials in $\ZZ[X]$.
+  degree $r,s\in \NN_{\leq n-1}$ iff it factorises as a product of degree $r$ and $s$ polynomials in $\ZZ[X]$.
   \label{thm:GaussLemmaPol}
 \end{theorem}
 \begin{proof}
   Assume $f\in\ZZ[X]$ is primitive and can be factorised as $f(X)=g(X)h(X)$ where $g$ and $h$ are polynomials in $\ZZ[X]$ of degree r and s respectively. Then $f$ is clearly reducible in $\QQ[X]$ because $\ZZ[X]\subseteq\QQ[X].$
   
-  Assume now that $f$ is reducible in $\QQ[X],$ i.e. there exists polynomials $p(X)$ and $q(X)$ in $\QQ[X]$ with degrees $r$ and $s$ respectively such that $f(X)=p(X)q(X).$ Now multiply $p$ and $q$ by suitable integers (lcm of denominators of coefficients), say $a$ and $b$, to get new polynomials $P$ and $Q$ such that $P,Q\in \ZZ[X].$ We therefore have $P(X)=ap(X)$ and $Q(X)=bq(x)$ and therefore $f=\frac{1}{ab} PQ.$ Factoring out the contents of $P$ and $Q$ gives $f=\frac{c(P)c(Q)}{ab}P'Q'$ where $P'$ and $Q'$ are now primitive polynomials in $\ZZ[X]$. By the previous lemma, we have $ab=\pm c(P)c(Q).$ Therefore, $f$ factorises into a product of degree $r$ and $s$ polynomials in $\ZZ[X]$, as required.
+  Assume now that $f$ is reducible in $\QQ[X],$ i.e. there exists polynomials $p(X)$ and $q(X)$ in $\QQ[X]$ with degrees $r$ and $s$ respectively such that $f(X)=p(X)q(X).$ Now multiply $p$ and $q$ by suitable integers (lcm of denominators of coefficients), say $a$ and $b$, to get new polynomials $P$ and $Q$ such that $P,Q\in \ZZ[X].$ We therefore have $P(X)=ap(X)$ and $Q(X)=bq(x)$ and therefore $f=\frac{1}{ab} PQ.$ Factoring out the contents of $P$ and $Q$ gives 
+  % $$f=\frac{c(P)c(Q)}{ab}P'Q',$$ 
+  $$
+  \frac{ab}{c(P)c(Q)}f = P'Q',
+  $$
+  where $P'$ and $Q'$ are now primitive polynomials in $\ZZ[X]$. By the previous lemma, the product $P'Q'$ must remain primitive, so the coefficient of $f$ must be $\pm 1,$ so we see that $ab=\pm c(P)c(Q).$
+  
+  % we have $ab=\pm c(P)c(Q),$ since the product $P'Q'$ must remain primitive.
+  % otherwise we could distribute this factor into either $P'$ or $Q'$ and this would violate the contrapositive of Lemma bla.
+  % $f$ could not be primitive.
+  Therefore, $f = \pm P'Q'.$ Hence $f$  factorises into a product of degree $r$ and $s$ polynomials in $\ZZ[X]$, as required.
 \end{proof}
 
 \begin{example}
-  The polynomial $X^4+2$ is irreducible in $\QQ[X]$. If it was reducible, then $X^4+2=fg$,
-  then we must have either $\{\deg f, \deg g\}=\{1,3\}$, and so one must have a root in
-  $\QQ$. But we have that $X^4+2$ is strictly positive, hence this is absurd. 
+  The polynomial $X^4+2$ is irreducible in $\QQ[X]$. This can be shown by contradiction.
+  
+  Assume the polynomial is reducible, then $X^4+2=fg$ for some $f,g \in \QQ[x].$ We have two cases; we must have either (WLOG) $\deg f=1$ and $\deg g =3$, or both $\deg f =\deg g =2.$
 
-  The other possibility is $\deg f=\deg g=2$. By Gauss's Lemma, it suffices to show that
-  there's no factorization in $\ZZ[X]$. Assume $f,g\in\ZZ[X]$, s.t. $f=a_2x^2+a_1x+a_0$,
-  $g=b_2x^2+b_1x+b_0$, and note that since $X^4$ has coeff $1$, we must have $a_2=b_2=1$
-  (the case where they're both $-1$ is equivalent). However, expanding the product it's
-  easy to see that we require a square of the integers to be $3$, and that's impossible.
-  Hence by Gauss's Lemma, the polynomial is irreducible in $\QQ[X]$.
+  For the first case, $f$ and therefore $X^4+2$ has a root in
+  $\QQ$. But we have that $X^4+2$ is strictly positive, and therefore does not cross the origin, so this is not possible.
+
+  Now consider the second case. By Gauss's Lemma, it suffices to show that $X^4+2$ has no factorization in $\ZZ[X]$. Assume $f,g\in\ZZ[X]$, s.t. $f=a_2x^2+a_1x+a_0$,
+  $g=b_2x^2+b_1x+b_0$. Note that since $X^4$ has coefficient $1$, we must have $a_2=b_2=1$ (similar when $a_2=b_2=-1$).
+  % (and the case where they are both $-1$ is equivalent). 
+  Expanding the product $fg$ gives
+  $$fg=a_2b_2X^4+(a_2b_1+a_1b_2)X^3+(a_2b_0+a_1b_1+a_0b_2)X^2+(a_1b_0+a_0b_1)X+a_0b_0.$$
+  We can see that we must have $a_0b_0=2.$ Let $a_0=1$ and $b_0=2.$ 
+  % (the argument is the same for $a_0=2$ and $b_0=1$ as we only care about their sum). 
+  We must have $a_2b_0+a_0b_2+a_1b_1=0$ for the $X^2$ term to cancel out. Equivalently, we must have $a_1b_1=-3.$ There are two choices for $a_1$ and $b_1;$
+  % but for the sake of showing the argument we will 
+  consider $a_1=-1$ and $b_1=3.$ We must have $a_1b_0+a_0b_1=0$ for the $X$ term to cancel out, but we have $-1+6=5\neq 0;$ a contradiction.
+
+  Note that the argument is the same for any choice of coefficients of $f$ and $g$ we could have made; for example, taking $a_0=-1$ and $b_0=-2$ or $a_1=1$ and $b_1=-3.$
 \end{example}
 
+% However, expanding the product it's
+%   easy to see that we require a square of the integers to be $3$, and that's impossible.
+%   Hence by Gauss's Lemma, the polynomial is irreducible in $\QQ[X]$.
 \begin{theorem}[Eisenstein's Criterion]
   Let $p$ be a prime number, and let $f(X)=a_nX^n+\cdots+a_0\in \ZZ[X]$ be s.t.
   $p\nmid a_n$, $p\mid a_i$ for all $i<n$, and $p^2\nmid a_0$. Then $f$ is
   irreducible in $\QQ[X]$.
   \label{thm:eisensteinCriterion}
 \end{theorem}
-Let $f(x)$ be as in the statement. The aim is to show that $f(x)$ does not factor into a product of two polynomials in $\ZZ[X]$. We will assume for contradiction that $f(x)=g(x)h(x),$ where $g(x)=b_rx^r+\cdots +b_0 \in \ZZ[X]$ and $h(x)=c_sx^s+\cdots +c_0 \in \ZZ[X]$, and $r+s=n.$ We have, $$a_nx^n+\ldots +a_0 = b_rc_sx^{r+s}+\cdots +b_0c_0.$$ We must have $a_n=b_rc_s$ and $a_0=b_0c_0.$ Since $a_n,$ and therefore both $b_r$ and $c_s,$ is not divisible by $p$, we must have that all the $b_i$ and $c_i$ $(i < n)$ must be divisible by $p$ or there would exist a term in $g(x)h(x)$ with degree less than $n$ with a coefficient that is not divisible by $p$ after distributing. In particular, $p$ must divide both $b_0$ and $c_0$, which means that $p^2$ divides $b_0c_0=a_0,$ a contradiction. Therefore, no such $g(x)$ and $h(x)$ exist, so $f$ is irreducible in $\QQ[X].$
 
+\begin{proof}
+    Let $f(x)$ be as in the statement. The aim is to show that $f(x)$ does not factor into a product of two polynomials in $\ZZ[X]$. We will assume for contradiction that $f(x)=g(x)h(x),$ where $g(x)=b_rx^r+\cdots +b_0 \in \ZZ[X]$ and $h(x)=c_sx^s+\cdots +c_0 \in \ZZ[X]$, and $r+s=n.$ We have, $$a_nx^n+\ldots +a_0 = b_rc_sx^{r+s}+\cdots +b_0c_0.$$ We must have $a_n=b_rc_s$ and $a_0=b_0c_0.$ Since $a_n,$ and therefore both $b_r$ and $c_s,$ is not divisible by $p$, we must have that all the $b_i$ and $c_i$ $(i < n)$ are divisible by $p$ or there would exist a term in $g(x)h(x)$ with degree less than $n$ with a coefficient that is not divisible by $p$ after distributing. In particular, $p$ must divide both $b_0$ and $c_0$, which means that $p^2$ divides $b_0c_0=a_0,$ a contradiction. Therefore, no such $g(x)$ and $h(x)$ exist, so $f$ is irreducible in $\QQ[X].$
+\end{proof}
 
 % \begin{proof}
 %   \todo{I think direct should work. Freighleigh has the proof too, but let's try it
@@ -62,15 +104,41 @@ Let $f(x)$ be as in the statement. The aim is to show that $f(x)$ does not facto
 % \end{proof}
 
 \begin{example}
-  We can apply Eisenstein's criterion to $X^4+2$ to get an easy proof. 
-\end{example}
-\begin{example}
   Let $p$ be a prime number. We have that $f(X)=X^{p-1}+\cdots+X+1$ is irreducible in
-  $\QQ[X]$. Note that $f(X)=g(X)h(X)$ iff $f(X+1)=g(X+1)=h(X+1)$ (invertible
-  substitution). We can use the reverse direction to find that $f(X+1)$ is irreducible by
-  using Eisenstein's criterion. In particular, all degrees $<p-1$ have coefficients
-  divisible by $p$ and the constant term is $p$, hence satisfying Eisenstein. I'll skip
-  details but the lecturer gives a nice trick by rewriting $f(X)=\frac{x^p-1}{x-1}$ and
-  using variable substitution $x'=x+1$, and seeing how the combinatorics argument arises
-  naturally and easily.
+  $\QQ[X]$. To show this, note that $f(X)=g(X)h(X)$ iff $f(X+1)=g(X+1)=h(X+1)$ (invertible
+  substitution), so it suffices to show that $f(X+1)$ is irreducible. 
+
+  Explicitly computing $f(X+1)$ for different primes $p$, we see that the coefficients are all but the last term in the $p^{\text{th}}$ row of Pascal's triangle. For example, for $p=5,$ 
+  $$
+  f(X+1) = X^4 + 5X^3 + 10X^2 + 10X + 5.
+  $$
+  We can see that such a polynomial satisfies Eisenstein's Criterion, and is therefore irreducible.
+  % We can use the reverse direction to find that $f(X+1)$ is irreducible by
+  % using Eisenstein's criterion. In particular, all degrees $<p-1$ have coefficients
+  % divisible by $p$ and the constant term is $p$, hence satisfying Eisenstein. I'll skip
+  % details but the lecturer gives a nice trick by rewriting $f(X)=\frac{x^p-1}{x-1}$ and
+  % using variable substitution $x'=x+1$, and seeing how the combinatorics argument arises
+  % naturally and easily.
+  \label{eisensteinex}
 \end{example}
+
+The following example is a slight aside on what was done in this lecture, however it is important to see.
+
+\begin{example}
+  Consider the group $A=(\ZZ\times\ZZ, +)$. The set of
+  homomorphisms from $A$ to $A$ forms a ring under 
+  \[(f+g)(a)= f(a)+g(a)\]
+  \[(fg)(a) = f(g(a)) \, \, \forall a\in A\]
+  For all $f,g:A\to A$. A homomorphism from a group to itself is called an
+  endomorphism. The set of endomorphisms with these two operations is called the
+  endomorphism ring, called $\End(A)$. We claim this ring is noncommutative. Take as
+  an example $\phi:(m,n)\mapsto (0,n)$ (a ring homomorphism), and $\psi:(m,n)\mapsto
+  (m+n,0)$. Then note $\phi\psi:(m,n)\mapsto (0,0)$, and $\psi\phi:(m,n)\mapsto (n,0)$,
+  hence they are not the same: take $(\phi\psi)(0,1)=(0,0)\neq
+  (\psi\phi)(0,1)=(1,0)$. In fact, note that these two elements serve as a basis for the
+  whole ring -- we can get any $(m,n)$ by $m(1,0)+n(0,1)$.
+\end{example}
+
+Note that earlier in the course we talked about Automorphisms, which are really just
+invertible endomorphisms. And following the above example, it follows that
+$\Aut(A)=(\End(A))^{\times}$, the group of units of $\End(A)$.

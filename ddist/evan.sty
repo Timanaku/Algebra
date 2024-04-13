@@ -570,7 +570,7 @@
 		\fi
 		\declaretheorem[name=Conjecture,sibling=theorem]{conjecture}
 		\declaretheorem[name=Conjecture,numbered=no]{conjecture*}
-		\declaretheorem[name=Definition,sibling=theorem]{definition}
+		\declaretheorem[ name=Definition,sibling=theorem]{definition}
 		\declaretheorem[name=Definition,numbered=no]{definition*}
 		\declaretheorem[name=Exercise,sibling=theorem]{exercise}
 		\declaretheorem[name=Exercise,numbered=no]{exercise*}
@@ -708,10 +708,10 @@
 			\addtolength{\textheight}{3.14cm}
 			\setlength{\footskip}{0.5in}
 			\setlength{\headsep}{10pt}
-			\ihead{\footnotesize\textbf{\theauthor} (\thedate)}
+			\ihead{\scriptsize\textbf{\theauthor}}
 			\automark{section}
 			\chead{}
-			\ohead{\footnotesize\textbf{\thetitle}}
+			\ohead{\scriptsize\textbf{\thetitle}}
 			\cfoot{\pagemark}
 		}
 	\fi

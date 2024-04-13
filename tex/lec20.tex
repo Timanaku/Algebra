@@ -1,29 +1,38 @@
-\section{Lecture 20 - 5 Nov 2021}
+\section{Lecture 20}
 \subsection{Ring homomorphisms}
 \begin{example}
-  Consider the subring $I=(X^2+1)R$, which is an two-sided ideal subring (think why?). We
-  claim that every coset $f+I$ contains a unique polynomial of the form $a_0+a_1x$. It
+  Let $R = \RR[X]$ and consider the subring $I=(X^2+1)R$, which is a two-sided ideal. It can be shown that every coset $f+I$ contains a unique polynomial of the form $a_0+a_1x$. It
   follows that $R/I$ is a 2-dimensional vector space $\RR$ spanned by $\hat{1}=1+I$,
-  $\hat{X}=X+I$, with property $\hat{X}^2=(X^2+1)+I - (1+I)$ (why? think about it in terms
-  of sets, the answer follows), so $\hat{X}^2=I-(1+I)= -\hat{1}$.
+  $\hat{X}=X+I$. We have the additional property that $\hat{X}^2 = -\hat{1},$ since $\hat{X}^2= X^2 + I = (X^2+1)+I - (1+I)$. 
+  % (why? think about it in terms
+  % of sets, the answer follows), 
+  % so $\hat{X}^2=I-(1+I)= -\hat{1}$.
 \end{example}
 
 \begin{definition}
-  Let $R,S$ be rings. Let a ring homomorphism from $R$ to $S$ be a function $\phi:R\to S$
-  s.t. for every $a,b\in R$ we have 
+  Let $R,\text{ }S$ be rings. A \emph{ring homomorphism} from $R$ to $S$ is a function $\phi:R\to S$
+  such that for all $a,\text{ }b\in R$ we have 
   \begin{enumerate}
-    \item $\phi(a+b)=\phi(a)+\phi(b)$ (note that this defines a group homomorphism under
-      the operation of addition).
-    \item $\phi(ab)=\phi(a)\phi(b)$. (note no necessary a group homomorphism bc $R$ is not
-      a multiplicative groups, but it must respect the operation).
+    \item $\phi(a+b)=\phi(a)+\phi(b);$ 
+    \item $\phi(ab)=\phi(a)\phi(b)$. 
+    
+    %(note no necessary a group homomorphism bc $R$ is not
+      %a multiplicative groups, but it must respect the operation).
   \end{enumerate}
-  If $R,S$ are unital, then a ring homomorphism is called \emph{unital} if
-  $\phi(1_R)=1_S$. Unless otherwise stated, a homomorphism between unital rings will be
-  assumed to be unital.
 
-  We say that a homomorphism is an isomorphism if it has a two-sided inverse
-  $\phi\inv:S\to R$ s.t. it's also a ring homomorphism. 
-  \[\phi \circ \phi\inv = \id_S \quad \phi\inv\circ\phi = \id_R\]
+  If $R$ and $S$ are unital, then a ring homomorphism is called \emph{unital} if $\phi(1_R)=1_S$. Unless otherwise stated, a homomorphism between unital rings will be assumed to be unital.
+
+  \end{definition}
+  
+  \begin{remark}
+     A ring homomorphism is a homomorphism of additive groups. It is not necessarily a homomorphism of multiplicative groups (as rings are not groups under multiplication in general), but it must still respect the operation. %bosh
+  \end{remark}
+  
+  
+\begin{definition}
+  We say that a ring homomorphism is an \emph{isomorphism} if it has a two-sided inverse
+  $\phi\inv:S\to R$, also a ring homomorphism. Symbolically, we have 
+  \[\phi \circ \phi\inv = \id_S \quad \phi\inv\circ\phi = \id_R.\]
   \label{def:ringHomUnital}
 \end{definition}
 
@@ -32,28 +41,48 @@
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
+  Clearly any isomorphism must be bijective, so there is nothing to check in the forward direction --- we must only check that a bijective ring homomorphism is necessarily an isomorphism.
+  
   ($\impliedby$) We have that if $\phi:R\to S$ is a bijective ring homomorphism then $\phi\inv$ is also a group
-  homomorphism of addition. So it remains to check multiplication is preserved.
+  homomorphism of addition; it remains to check multiplication is preserved.
 
   We claim that $\phi\inv$ also preserves multiplication, i.e.
-  $\forall g,h\in S$, $\phi\inv(gh)=\phi\inv(g)\phi\inv(h)$. Note that we have
-  $g=\phi(x),h=\phi(y)$ for some $x,y\in R$, hence it follows that
-  $gh=\phi(x)\phi(y)=\phi(xy)$. Note that $x=\phi\inv(g),y=\phi\inv(h)$, hence
-  $\phi\inv(gh)=\phi\inv(\phi(xy))=xy$ and $xy=\phi\inv(g)\phi\inv(h)$, hence it follows
-  that $\phi\inv(gh)=\phi\inv(g)\phi\inv(h)$.
-
-  The reverse direction is trivial. 
+  $\forall g,h\in S$, $$\phi\inv(gh)=\phi\inv(g)\phi\inv(h).$$
+  If $g,h \in S,$ then by the surjectivity of $\phi$ we have $x,y \in R$ such that $g =\phi(x)$ and $h=\phi(y)$. Then
+  $$
+  \phi\inv(gh) = \phi\inv(\phi(x)\phi(y)) = \phi\inv(\phi(xy)) = xy = \phi\inv(g) \phi\inv(h),
+  $$
+  as required.
+  % Note that we have
+  % $g=\phi(x),h=\phi(y)$ for some $x,y\in R$, hence it follows that
+  % $gh=\phi(x)\phi(y)=\phi(xy)$. Note that $x=\phi\inv(g),y=\phi\inv(h)$, hence
+  % $\phi\inv(gh)=\phi\inv(\phi(xy))=xy$ and $xy=\phi\inv(g)\phi\inv(h)$, hence it follows
+  % that $\phi\inv(gh)=\phi\inv(g)\phi\inv(h)$.
+  % The reverse direction is trivial. 
 \end{proof}
-
 
 \begin{example}
   Let $R$ be a unital ring and $I$ be a proper two-sided ideal. The quotient map $R\to
-  R/I, r\mapsto r+I$ is a ring homomorphism.
+  R/I$,  $r\mapsto r+I$ is a ring homomorphism.
 
-  Another example is for a commutative ring $R$. Let $r\in R$. The evaluation map
-  $\phi_r:R[X]\to R:f\mapsto f(r)$ is a group homomorphism.
-
-  Finally, a more interesting example. Recall that for $I=(X^2+1)\RR[X]$, we had the
-  property that $\hat{X}^2=-\hat{1}$, hence it might not be suprising that
-  $\RR[X]/I\to\CC$ is a ring isomorphism, by sending $\hat{X}$ to $i\in\CC$.
+  % Another example is for a commutative ring $R$. Let $r\in R$. The evaluation map
+  % $\phi_r:R[X]\to R$, $f\mapsto f(r)$ is a ring homomorphism.
+ 
+  Recall that for $I=(X^2+1)\RR[X]$, we had the
+  property that $\hat{X}^2=-\hat{1}$, hence it might not be surprising that
+  $\RR[X]/I\to\CC$ sending $\hat{X}$ to $i\in\CC$ is a ring isomorphism. 
 \end{example}
+
+\begin{definition}
+%[Evaluation Map]
+    Let $R\leq S$ be rings and $s \in S$. Then the \emph{evaluation map} at $s$ is defined by 
+    \begin{align*}
+        \phi_{s}: R[X] &\to S \\
+        f &\mapsto f(s).
+    \end{align*}
+    If $f = a_0 + a_1X + \cdots + a_dX^d$, then we say $f(s) = a_0 + a_1s + \cdots + a_ds^d$.
+\end{definition}
+
+\begin{remark}
+    If $R$ is commutative, then the evaluation map is a ring homomorphism. We will see that this is a common way to induce ring isomorphisms.
+\end{remark}

@@ -1,5 +1,6 @@
 \documentclass[11pt]{scrartcl}
 \input{../tex/preamble}
+
 %\usepackage{xcomment}
 \usepackage[
   active,
@@ -9,11 +10,15 @@
 ]{extract}
 \usepackage{tikz-cd}
 
-\title{Algebra}
-\subtitle{Taught by Alex Bartel}
-\author{A. Perez\thanks{Original Notes} \and L. Foskett \and M. Kiwan \and E. Ferguson\thanks{Adaptations and Additional Content}}
-\date{Updated: Dec 9th, 2023}
+% \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Abstract Algebra 3H and Beyond}
+% \subtitle{Taught by Alex Bartel}
+% \author{A. Perez\thanks{Original Notes} \and L. Foskett \and M. Kiwan \and E. Ferguson\thanks{Adaptations and Additional Content}}
+\author{L. Foskett \and Allan Perez}
+\date{Jan 2024}
 \let\ltxcup\cup
+
 
 %\xcomment{theorem,section,subsection}
 %\xcomment{definition,section,subsection}
@@ -23,7 +28,7 @@
 \begin{document}
 %\frontmatter
 % \renewcommand{\thepage}{\arabic{page}}
- \maketitle
+\maketitle
  
 % Notable Changes:
 % Changed commutative diagram for THM 9.7
@@ -41,27 +46,31 @@
 % Most group action proofs were waffle or unreadable, fixed
 % Rewrote proof of Cauchy's Thm and added supporting definitions / lemmas to make it more understandable
 % Provided proof of theorem 15.4
+% Fixed dubious notation in THM 18.6 and added clarification below
 % Rewrote most of lecture 19 to remotivate definition of ideals better.
 % Fixed/rewrote theorem 20.3 proof
 % Fixed/rewrote thm 21.5
 % Fixed 22.2
+% Rewrote 22.3
 % Fixed 22.5
-% Corolloray 22.6 dubious, fixed
+% Corollary 22.6 dubious, fixed
 % Added better definitions for principle ideals
 % Rewrote thm 23.4, made easier to read
 % Fixed theorem 23.5, made easier to read
-% Made notation  sliughtly clerer for theorem 23.7
+% Made notation  slightly clearer for theorem 23.7
 % Wrote proof for THM 25.1
 % Rewrote all of THM 26.1
 % Classifying groups of order 21, made the end more clear and provided the faithful map for the semi direct product
 % Lecture 28, added def of content, changed primitive def in light of this, fixed statement of gauss's lemma, proved irreducibility part
 % Proved Eisensteins criterion (sexy)
+% Completely reworked proof of THM 31.3
+% Rewrote consequence of THM 32.5
 
 
 \tableofcontents
 \newpage
-\listoftheorems
-\newpage
+% \listoftheorems
+% \newpage
 
 \input{../tex/lec1}
 \input{../tex/lec2}

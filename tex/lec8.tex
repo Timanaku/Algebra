@@ -1,58 +1,79 @@
-\section{Lecture 8 - 8 Oct 2021}
+\section{Lecture 8}
 \subsection{Group Homomorphisms, Types and Facts}
-On group homomorphisms. 
+
 \begin{definition}
   Let $G,G'$ be groups. A group homomorphism from $G$ to $G'$ is a function $\phi:G\to G'$
-  s.t. for all $g,h\in G$ one has $\phi(gh)=\phi(g) \phi(h)$.
+  s.t. $\forall$ $g,h\in G$ one has $\phi(gh)=\phi(g) \phi(h)$.
   \label{groupHomomorphism}
 \end{definition}
-I.e. a homomorphism preserves the structure of the binary operation.
 
-\begin{example}
-  For any two groups, there's always at least one group, being the trivial homomorphism
-  (sending every element to the identity element).
-\end{example}
+\begin{remark}
+  There is always at least one group homomorphism between any two groups, that is, the trivial homomorphism sending every element to the identity element.
+\end{remark}
 
 \begin{example}
   Write $\RR^{\times}$ as the non-zero reals as a group under multiplication. For every $n\in\NN$
   we have the group homomorphism
-  \[ \phi: \GL_n \RR \to \RR^{\times}:X\mapsto \det X\]
-  Where $\phi(XY)=\phi(X)\phi(Y)$. This works for any field, let it be $\QQ,\CC$.
+  \begin{align*}
+      \phi: \GL_n \RR &\to \RR^{\times}
+      \\ X&\mapsto \det X
+  \end{align*}
+  
+  where $\phi(XY)=\phi(X)\phi(Y)$. 
 \end{example}
 
-\begin{example}
-  For every $n\in\NN$, the function $S_n\to \left\{ \pm 1 \right\}; \sigma\mapsto
-  \sgn\sigma$ is a group homomorphism. I.e. $\sgn (\sigma\tau) = \sgn \sigma \sgn
-  \tau$.
-\end{example}
+% \begin{example}
+%   For every $n\in\NN$, the function $S_n\to \left\{ \pm 1 \right\}; \sigma\mapsto
+%   \sgn\sigma$ is a group homomorphism as we have $\sgn (\sigma\tau) = \sgn \sigma \sgn
+%   \tau$.
+% \end{example}
 
 \begin{example}
-  Let $G$ be a group and $H$ be a normal subgroup. The quotient map $G\to G/H : g\to gH$
-  is a surjective group homomorphism. Note that it's surjective because every element is
-  mapped, and homomorphism follows from the defining group operation of the quotient
+  Let $G$ be a group and $N$ be a normal subgroup. The quotient map $G\to G/N$, sending $g\mapsto gN,$
+  is a surjective group homomorphism. Note that the map is surjective because every coset will be mapped to, and homomorphism follows from the group operation of the quotient
   group. In particular, for every $n\in\NN$ there is a surjective homomorphism $\ZZ\to
-  n\ZZ$, $k\mapsto k+n\ZZ$.
+  \ZZ/n\ZZ$, $k\mapsto k+n\ZZ$.
 \end{example}
+\begin{remark}
+    Note that in the definition of a homomorphism, we have two different multiplications going on: on the left hand side of the equation we use the group operation of $G$ while on the right hand side we use the group operation of the co-domain $G′$. The following is an example of this.
+\end{remark}
 
-Recall that we established multiplicative notation for non-abelian group operations and
-additive notation for abelian group operations. What if a group homomorphism sends from
-one non-abelian to an abelian group? Then the notation in the homomorphism has to be
-changed accordingly.
+% Recall that we established multiplicative notation for non-abelian group operations and
+% additive notation for abelian group operations. What if a group homomorphism sends from
+% one non-abelian to an abelian group? Then the notation in the homomorphism has to be
+% changed accordingly.
 \begin{example}
-  Te set $\RR_{>0}$ is a group under multiplication. The homomorphism $\RR_{>0}\to
-  \RR:x\mapsto \log x$. We have $\log xy = \log x + \log y$. Similarly we have a
-  homomorphism $\RR\to\RR_{>0} : x\mapsto e^{x}$.
+  The set $\RR_{>0}$ is a group under multiplication. The map $$\log :\RR_{>0}\to
+  \RR,\quad x\mapsto \log x$$ is a homomorphism by the familiar property $$\log xy = \log x + \log y.$$ Similarly, we have a
+  homomorphism $$\exp :\RR\to\RR_{>0} ,\quad x\mapsto e^{x},$$ as $$\exp(x+y)=\exp(x)\exp(y).$$ Notice that for each of the two homomorphisms a different operation is used on each side (multiplication and addition).
 \end{example}
 
-The following theorem is foundational. The first two points establlish that groups form a
-category. 
-\begin{theorem} [Groups form a category]
+\begin{theorem}
+  Let $\phi:G\to G'$ be a group homomorphism. Then
+  \begin{enumerate}
+    \item $\phi(1_G)=1_{G'},$ and
+    \item for every $g\in G$, $\phi(g^{-1})= \phi(g)^{-1}.$
+  \end{enumerate}
+  \label{homIdInv}
+\end{theorem}
+\begin{proof}
+    Let $g \in G$. Then
+    $\phi(g) = \phi(1_G\cdot g) = \phi(1_G)\phi(g),$
+    and right multiplying by $\phi(g)^{-1}$ gives $\phi(1_G) = 1_{G'}.$ 
+    \\ Furthermore, we have
+    $\phi(g)\phi(g^{-1}) = \phi(gg^{-1}) = \phi(1_G) = 1_{G'},$
+    and symmetrically $\phi(g^{-1})\phi(g) = 1_{G'}.$ Therefore, we have
+    $\phi(g^{-1}) = \phi(g)^{-1},$ 
+    as required.
+\end{proof}
+The following theorem contains important results.
+\begin{theorem}
   We have the following
   \begin{enumerate}
     \item Let $G,G',G''$ be groups and $\phi:G\to G'$ and $\phi':G'\to G''$ be group
       homomorphisms. Then the composition $\phi'\circ\phi:G\to G''$ form also a group
       homomorphism.
-    \item Let $G$ be a group. The identity map $G\to G,g\mapsto g$ is a group
+    \item Let $G$ be a group. The identity map $\phi:G\to G$, $g \mapsto g$ is a group
       homomorphism.
     \item Let $G,G'$ be groups, and define a bijective group homomorphism $\phi:G\to G'$.
       Then the inverse function $\phi^{-1}:G'\to G$ is also a group homomorphism.
@@ -60,59 +81,39 @@ category.
   \label{groupsCategories}
 \end{theorem}
 \begin{proof}
-  Let $g,h\in G, g',h'\in G'$ throughout.
-  \begin{enumerate}
-    \item Let $\omega = \phi' \circ \phi $ We have $\omega(gh)= \phi'(\phi(gh))=
+  Let $g,h\in G, g',h'\in G'$ throughout. \\
+    (1) Let $\omega = \phi' \circ \phi $ We have $\omega(gh)= \phi'(\phi(gh))=
       \phi'(\phi(g)\phi(h)) =\phi'(\phi(g)) \phi'(\phi(h)) = \omega(g)\omega(h) $. As
-      required.
-    \item We have $\phi(gh) = gh = \phi(g)\phi(h)$ as required.
-    \item Without loss of generality define $\phi(g) = g'$ and $\phi(h) = h'$. We have 
-    $\phi(gh) = \phi(g)\phi(h) \iff gh = \phi^{-1}(\phi(g)\phi(h)) \iff \phi^{-1}(g')\phi^{-1}(h') = \phi^{-1}(g'h')$ As required.
-
-  \end{enumerate}
+      required. \\
+    
+    (2) We have $\phi(gh) = gh = \phi(g)\phi(h)$ as required. \\
+    %mira do we ever define group presentations not explicitly/generators/relations real might be good to do so at some point????????? we should yes
+    %swear I saw something on free gps also, could be a section free groups is alreadt a section where 17.2 Aware would be a bit late to put group pres there put them earlier then
+    
+    (3) Without loss of generality define $\phi(g) = g'$ and $\phi(h) = h'$. We have 
+    $\phi(gh) = \phi(g)\phi(h) \iff gh = \phi^{-1}(\phi(g)\phi(h)) \iff \phi^{-1}(g')\phi^{-1}(h') = \phi^{-1}(g'h')$ as required. \\
 \end{proof}
 
-\begin{theorem}
-  Let $\phi:G\to G'$ be a group homomorphism. Then
-  \begin{enumerate}
-    \item $\phi(1_G)=1_{G'}$
-    \item for every $g\in G$, $\phi(g^{-1})= \phi(g)^{-1}$
-  \end{enumerate}
-  \label{homIdInv}
-\end{theorem}
-\begin{proof}
-Let $g \in G$.
-  \begin{enumerate}
-    \item Then
-    $$\phi(g) = \phi(1_G g) = \phi(1_G)\phi(g)$$
-    and right multiplying by $\phi(g)^{-1}$ gives $\phi(1_G) = 1_{G'}$
-    \item Furthermore, we have
-    $$\phi(g)\phi(g^{-1}) = \phi(gg^{-1}) = \phi(1_G) = 1_{G'},$$
-    and symmetrically $\phi(g^{-1})\phi(g) = 1_{G'}.$ Therefore, we have
-    $$\phi(g^{-1}) = \phi(g)^{-1}$$.
-  \end{enumerate}
-\end{proof}
+\begin{remark}[Non-Examinable]
+   The first two statements are exactly what we need to show that groups form a category.
+\end{remark}
 
 
-\begin{definition}[Morphism Zoo]
+\begin{definition}
+    We define some common types of morphisms:
   \begin{enumerate}
-  
     \item A group \emph{isomorphism} is a group homomorphism $\phi:G\to G'$ that has a
       2-sided inverse. This is, $\phi\circ\phi^{-1}=1_{G'},\phi^{-1}\circ\phi=1_G$. If
       there exists a group isomorphism between groups $G,G'$, we say these groups are
-      isomorphic and write $G\cong G'$. By the previous results (Theorems
-      \ref{groupsCategories} \ref{homIdInv}) we have that being isomorphic is an
-      equivalence relation. Two isomorphic groups are structurally the same.
-
-    \item A group automorphism is a group isomorphism to itself.
-    \item A group endomorphism is a group homomorphism to itself. E.g. the trivial
-      homomorphism to itself is an endomorphism for non-trivial groups.
+      isomorphic and write $G\cong G'$. 
+    \item A group \emph{endomorphism} is a group homomorphism from a group to itself.
+    \item A group \emph{automorphism} is a group isomorphism from a group to itself.
+    % E.g. the trivial
+    %   homomorphism to itself is an endomorphism for non-trivial groups.
   \end{enumerate}
   \label{morphismZoo}
 \end{definition}
 
-The following is what in last year we were taught to be the definition of an isomorphism,
-but it really is a theorem.
 \begin{theorem}
   Let $G,G'$ be groups and $\phi:G\to G'$ be group homomorphism. Then $\phi$ is an
   isomorphism if and only if $\phi$ is bijective.
@@ -123,5 +124,36 @@ but it really is a theorem.
   and it follows that $\phi$ is bijective. 
 
   If $\phi$ is bijective, we claim that $\phi^{-1}$ exists and that it is a group
-  homomorphism. This follows from theorem \ref{groupsCategories}.
+  homomorphism. This follows from Theorem \ref{groupsCategories}.
 \end{proof}
+
+\begin{remark}
+    The significance of the notion of isomorphism is that two groups that are isomorphic are essentially structurally indistinguishable. %Add that isomorphism does not mean the 2 objects interact with the global space they are sitting in the same, give examples.
+\end{remark}
+
+\begin{example}
+    All infinite cyclic groups are isomorphic to $\ZZ$.
+
+    A finite cyclic group of order $n$ is isomorphic to $\ZZ/n\ZZ$.
+\end{example}
+\begin{theorem}[Cayley's theorem]
+    Every finite group $G$ is isomorphic to a subgroup of the symmetric group $\operatorname{Sym}(G)$.
+\end{theorem}
+\begin{proof}
+    Let $G$ be a group. For each $g\in G,$ we associate a function $L_g:G\to G$ defined by $L_g(x)=gx$ for $x\in G.$ This is clearly a permutation of $G;$ it is a bijective function from $G$ to $G.$ 
+    Now let $\hat{G}$ be the set of all permutations $L_g$ for all $g\in G.$ In other words,
+    $\hat{G}=\{L_g\mid g\in G\}.$ We will now show that $\hat{G}$ is actually a subgroup of $\operatorname{Sym}(G).$ First, we have $L_e(x)=ex=x,$ so $L_e$ is the identity in $\hat{G}.$ Let $g_1,g_2\in G.$ It is easy to see that $L_{g^{-1}}$ is the inverse of $L_g.$ We have $(L_{g_1}\circ L_{g_2^{-1}})(x)=L_{g_1}(L_{g_2^{-1}}(x))=g_1(g_2^{-1}x)=(g_1g_2^{-1})x=L_{g_1g_2^{-1}}(x)\in \hat{G}.$ Therefore, $\hat{G}$ is a subgroup of $\operatorname{Sym}(G)$ by the subgroup test.
+
+    We finally show that $G$ is isomorphic to $\hat{G};$ $G$ is isomorphic to a subgroup of $\operatorname{Sym}(G).$
+    Consider the map,
+    \begin{align*}
+        \phi : G&\to \hat{G}
+        \\ g & \mapsto L_g.
+    \end{align*}
+    We have
+    $$\phi(g_1g_2)(x)=L_{g_1g_2}(x)=(g_1g_2)x=g_1(g_2x)=L_{g_1}(L_{g_2}(x))=\phi(g_1)\circ \phi(g_2)(x),$$
+    therefore the map is a homomorphism. 
+    The map is clearly injective and surjective, therefore $G\cong \hat{G}.$
+\end{proof}
+
+% me when this proof is the one I did in disguise

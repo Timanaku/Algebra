@@ -1,79 +1,163 @@
-\section{Lecture 1 - 21 Sep 2021} 
+\section{Lecture 1} 
 \begin{definition}
-  A group is a pair $(G,*)$ where $G$ is a set and $*:G\times G\to G$ is a binary
-  operation with the following axioms:
-  \begin{itemize}
-      \ii (Associativity) For any $g,h,k\in G$
-      \[(g*h)*k = g*(h*k)\]
-      \ii (Existence of identity) There exists $e\in G$ such that for any $g\in G$,
-      \[e*g=g*e = g\]
-      \ii (Existence of inverse) For any $g\in G$ there exists $h\in G$ s.t. 
-      \[g*h=h*g=e\]
-  \end{itemize}
+  A \emph{group} is a pair $(G,*)$, where $G$ is a set and $*:G\times G\to G$ is a binary
+  operation, that satisfies the following axioms:
+  
+       (G1) Associativity: for any $g,h,k\in G$,
+      \[(g*h)*k = g*(h*k);\]
+      
+       (G2)  Existence of identity: there exists $e\in G$ such that for any $g\in G$,
+      \[e*g=g*e = g;\]
+      
+       (G3) Existence of inverses: for any $g\in G$ there exists $h\in G$ s.t. 
+      \[g*h=h*g=e.\]
+  
   \label{group}
 \end{definition}
-Note that the second axiom implies that the identity element is unique, since assuming
-that two different identity elements exist, it automatically leads to a contradiction
-saying that the two identity elements are the same. Moreover, note that closure is implied
-by the definition of binary operation.
+% When notating groups, we omit the binary operation if it is well-understood.
+% Note that the second axiom implies that the identity element is unique, since assuming
+% that two different identity elements exist, it automatically leads to a contradiction
+% saying that the two identity elements are the same. Moreover, note that closure is implied
+% by the definition of binary operation.
+
+We should note that we are assuming $G$ is closed under the binary operation, but 
+%(this is something that must be verified about an operation on element). 
+in general we should verify that the product of two elements of $G$ stays in $G$. Often we will omit the binary operation so that $g*h$ is shortened to just $gh$. 
+
+Also, from the second axiom we can immediately deduce that the identity in a group must be unique. We will typically use $e$ or $1$ to denote the identity element of a group, but when there is the possibility of ambiguity we will use $1_{G}$ to denote the identity element in the group $G$.
+
+% \begin{theorem}
+%   Let $G$ be a group with identity $e\in G$ and an element $g\in G$ with left inverse
+%   $h\in G$ and right inverse $h'\in G$ s.t. $hg = gh'=e$. Then $h=h'$.
+% \end{theorem}
 
 \begin{theorem}
-  Let $G$ be a group with identity $e\in G$ and an element $g\in G$ with left inverse
-  $h\in G$ and right inverse $h'\in G$ s.t. $hg = gh'=e$. Then $h=h'$.
-\end{theorem}
-\begin{proof}
-  We have $hg=gh'$ so $hhg=hgh'$, which implies by associativity $hhg=he=h=eh'=h'$.
-\end{proof}
-Note that the above also implies that the inverse is unique.
-
-
-\begin{theorem}
-  Let $G$ be a group. Then
-  \begin{itemize}
-      \ii $\forall g\in G$ one has $(g^{-1})^{-1} = g$.
-      \ii $\forall g,h,k\in G$ the following are equivalent:
-      \begin{itemize}
-        \ii $gh = gk$
-        \ii $h=k$
-        \ii $hg=kg$
-      \end{itemize}
-      \ii $\forall  g,h\in G$, we have $(gh)^{-1} = h^{-1} g^{-1}$.
-  \end{itemize}
+    Let $G$ be a group and $g \in G$ with left inverse $h$ and right inverse $h'$, i.e. $$h*g = g*h'=e \in G.$$ Then $h=h'$. 
 \end{theorem}
 
 \begin{proof}
-    Let $g,h,k \in G$
-    \begin{itemize}
-        \ii By definition of an inverse $g^{-1} (g^{-1})^{-1}=1_G=(g^{-1})^{-1}g^{-1}$ and left multiplying (or right) by $g$ gives $(g^{-1})^{-1} = g$.
-        \ii $gh=gk \iff h=k \iff hg=kg$ by left cancellation and right multiplication (backwards implication follows by right cancellation and left multiplication)
-        \ii $h^{-1} g^{-1} gh = 1_G = gh h^{-1} g^{-1}$ so by definition $h^{-1} g^{-1}$ is the inverse of $gh$ so $h^{-1} g^{-1} = (gh)^{-1}$
-    \end{itemize}
+  % We have $hg=gh'$ so $hhg=hgh'$, which implies by associativity $hhg=he=h=eh'=h'$.
+
+  We have that
+  $$h = h*e = h*(g*h') = (h*g)*h' = e*h' = h',$$
+  by direct application of the group axioms.
 \end{proof}
+Note that the above also implies that the inverse is unique, and we need not make the distinction between left and right inverses in a group. We denote the inverse of an element $g\in G$ as $g^{-1}.$
+
+
+% \begin{theorem}
+%   Let $G$ be a group. Then
+%   \begin{itemize}
+%       \ii $\forall g\in G$ one has $(g^{-1})^{-1} = g$.
+%       \ii $\forall g,h,k\in G$ the following are equivalent:
+%       \begin{itemize}
+%         \ii $gh = gk$
+%         \ii $h=k$
+%         \ii $hg=kg$
+%       \end{itemize}
+%       \ii $\forall  g,h\in G$, we have $(gh)^{-1} = h^{-1} g^{-1}$.
+%   \end{itemize}
+% \end{theorem}
+\begin{proposition}
+     Let $G$ be a group and $g,h \in G$. Then we have
+     \begin{enumerate}
+        \item $(g^{-1})^{-1} = g$,
+        \item $(gh)^{-1} = h^{-1} g^{-1}.$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    % \begin{enumerate}
+        (1) The inverse of $g^{-1}$ is an element $x \in G$ that satisfies $xg^{-1} = g^{-1}x = e.$ 
+        
+        Taking the second equality, we can left multiply by $g$ to get
+        $$
+        gg^{-1}x = g \implies x = g.
+        $$
+        % and we can notice that $g$ is exactly the element that satisfies this condition.
+        (2) We can verify that
+        \begin{align*}
+            (gh)( h^{-1} g^{-1}) &= g(h h^{-1})g^{-1} \\
+            &= g e g^{-1} \\
+            &= g g^{-1} \\
+            &= e,
+        \end{align*}
+        meaning that the element $h^{-1} g^{-1}$ is the unique inverse of $gh$.
+    % \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    Let $G$ be a group and $g,h,k \in G$. Then the following are equivalent:
+    \begin{enumerate}
+        \item $gh = gk,$
+        \item $h=k,$
+        \item $hg=kg$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    If $gh = gk,$ left multiplying by $g^{-1}$ and applying the inverse axiom we see that $h = k$. Similarly, given that $h=k$, we can left multiply by $g$ so that $gh = gk.$
+
+    Applying a similar argument for right multiplication shows that all three statements are equivalent.
+\end{proof}
+
+% \begin{proof}
+%     Let $g,h,k \in G$
+%     \begin{itemize}
+%         \ii By definition of an inverse $g^{-1} (g^{-1})^{-1}=1_G=(g^{-1})^{-1}g^{-1}$ and left multiplying (or right) by $g$ gives $(g^{-1})^{-1} = g$.
+%         \ii $gh=gk \iff h=k \iff hg=kg$ by left cancellation and right multiplication (backwards implication follows by right cancellation and left multiplication)
+%         \ii $h^{-1} g^{-1} gh = 1_G = gh h^{-1} g^{-1}$ so by definition $h^{-1} g^{-1}$ is the inverse of $gh$ so $h^{-1} g^{-1} = (gh)^{-1}$
+%     \end{itemize}
+% \end{proof}
 
 \begin{definition}
-  A group $G$ is abelian if the group is commutative, i.e. $\forall g,h\in G$ we have
+  A group $G$ is \emph{abelian} if the group operation is commutative, i.e. $\forall g,h\in G$ we have
   $gh=hg$.
   \label{abelianGroup}
 \end{definition}
+When a group is abelian, we often use additive notation to denote the group operation, as opposed to the typical multiplicative notation (e.g. powers).
+
 
 \begin{definition}
-  We say a group is finite or countable if the underlying set is finite or countable,
+  We say a group is \emph{finite} or \emph{countable} if the underlying set is finite or countable,
   respectively.
 \end{definition}
-Note that we usually use multiplication notation (powers, etc) to denote group operation.
-We use additive notation instead if the group is Abelian.
+
 
 \subsection{Symmetric groups}
-Since using examples of symmetric groups is recurrent in this course, I thought convenient
-to include the Baker course notes on this topic. 
+% Since using examples of symmetric groups is recurrent in this course, I thought convenient
+% to include the Baker course notes on this topic. 
 
-The n-th symmetric group $S_n$ consists of all bijections (or permutations) of the set
-${1,2,\cdots , n}$ under function composition. The group has $n!$ elements (permutations).
-Each of these elements can be represented by the disjoint cycle notation. Each $\sigma\in
-S_n$ can be written as a composition of permutations $\rho$, of the form
-\[r_1\to r_2=\rho(r_1) \to \cdots \to r_l=\rho(r_{l-1})\]
-Omitting the $r_k\to r_k=\rho(r_k)$. The usual name of this $l$-cycle $\rho$ is
-$(r_1, r_2, \cdots, r_l)$. It's usual to omit $1$-cycles, since they correspond to the
-identity element. Every element in $S_n$ can be written as a composition of $l$-cycles
-(disjoint) of length $1\leq l \leq n$. This factorisation of $\rho$ is unique.
+% The n-th symmetric group $S_n$ consists of all bijections (or permutations) of the set
+% ${1,2,\cdots , n}$ under function composition. The group has $n!$ elements (permutations).
+% Each of these elements can be represented by the disjoint cycle notation. Each $\sigma\in
+% S_n$ can be written as a composition of permutations $\rho$, of the form
+% \[r_1\to r_2=\rho(r_1) \to \cdots \to r_l=\rho(r_{l-1})\]
+% Omitting the $r_k\to r_k=\rho(r_k)$. The usual name of this $l$-cycle $\rho$ is
+% $(r_1, r_2, \cdots, r_l)$. It's usual to omit $1$-cycles, since they correspond to the
+% identity element. Every element in $S_n$ can be written as a composition of $l$-cycles
+% (disjoint) of length $1\leq l \leq n$. This factorisation of $\rho$ is unique.
 
+One recurring class of groups we will consider are symmetric groups.
+
+\begin{definition} 
+    Let $X$ be a set. The \emph{symmetric group} of $X$, denoted $\operatorname{Sym}(X)$ is the set of all permutations of the elements of $X$. Symbolically, $$\operatorname{Sym}(X) = \{\sigma: X \to X \mid \sigma \text{ is a bijection}\}.$$ 
+
+    If $X = \{1, 2, \ldots, n\}$ for some $n \in \NN$, we say $\operatorname{Sym}(X)$ is the symmetric group on $n$ letters, denoted $S_n$.
+\end{definition}
+
+\begin{remark}
+    Symmetric groups are indeed groups under composition of permutations. It is straightforward to check that the composition of permutations is indeed a permutation, and that the remaining group axioms hold.
+    We will later see that all finite groups can be understood within the context of a symmetric group.
+\end{remark}
+
+%cycle stuff...
+Any permutation can be decomposed into a product of disjoint cycles. For example, the bijection 
+% $$\{1,2,3,4,5\} \longmapsto \{2,3,1,5,4\}$$ 
+$$
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5\\
+2 & 3 & 1 & 5 & 4
+\end{pmatrix}
+$$
+
+is equivalent to the composition of cycles $(123)(45).$ The notation $(123)$ is shorthand for the permutation sending 1 to 2, 2 to 3, and 3 to 1.

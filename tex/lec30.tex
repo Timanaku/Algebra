@@ -1,37 +1,56 @@
-\section{Lecture 30 - 29 Nov 2021}
-\subsection{Field Extensions (Non-examinable from now on)}
+\section{Lecture 30}
+\subsection{Field Extensions}
 \begin{definition}[Field Extension]
   Suppose $K$ is a field, and let $F$ be a field containing $K$. Then $F/K$ is a
   \emph{field extension}.
   \label{def:fieldExt}
 \end{definition}
-We don't talk about ring extensions or group extensions. Why is it
-different with fields? Note that if $F/K$ is a field extension, then $F$ can be viewed as
-a vector space over $K$. As a note of warning, the notation $F/K$ does not make reference
-to the quotient, but rather is just a formal expression to denote the $F$ over $K$, a
-field $F$ that behaves like a vector field of some dimension over a smaller (embedded)
-field $K$.
+
+\begin{remark}
+% In algebra we don't usually refer to ``extensions'' in the context of rings or groups (when we usually look inward to ideals and subgroups) in the same way we do with fields. 
+With groups and rings, typically we find it useful to look inward to substructures (subgroups and ideals), however the interest with fields is to look outward to extensions.
+This is because if $F/K$ is a field extension, we can view $F$ as a vector space over $K.$ The notation $F/K$ does not imply a quotient like it might in other algebraic structures. Instead, it is simply a way to describe the field $F$ as a structure that contains $K$ and has a vector space structure relative to $K$.
+\end{remark}
 
 \begin{example}
+The following is a familar example of a field extension:
   $\CC/\RR$ -- a $2$-dim vector space over $\RR$ (the \emph{complex plane}).
-  
+
+This is a more interesting example to think about:
   $\RR/\QQ$ -- an $\infty$-dim (uncountably) vector space over $\QQ$.
 \end{example}
+
 \begin{example}
-  Let $K$ be a field and consider an irreducible polynomial $f\in K[X]$. Then we can
-  define $F=K[X]/(f)$, and we find that $F/K$ is a field extension. But why is $K$
-  contained in $F$? Consider the quotient map $\phi:K[X]\to K[X]/(f)$, and observe that
-  $K$ is actually a subring of $K[X]$ (constant polynomials), where $\phi$ when restricted
-  to $K$ is injective. In fact, observe that for it to not be injective, we'd need some
-  element of $K$ to map to the $0$ polynomial, but for this to be the case that element
-  would need to be a polynomial of degree at least $1$, which is impossible, hence the map
-  is injective (only the $0$ polynomial is in the kernel).
+ A more useful definition of a field extension comes from considering embeddings into bigger fields and not just actual set containment.
+ 
+  Let $K$ be a field and consider an irreducible polynomial $f\in K[X]$. Then we can define $F=K[X]/(f)$; this is a field. 
+
+  Note that $K$ is not contained in $F$ in the regular notion of set containment, but it can be embedded into $F.$
+  
+  Consider the quotient map $\phi:K[X]\to K[X]/(f)$, $g\mapsto g+(f)$. Observe that
+  $K$ is actually a subring of $K[X]$ (constant polynomials).
+
+  Consider the map $\phi$ restricted to $K$, $\phi |_{K}.$
+  An irreducible polynomial has degree at least 2, therefore, for $\phi(k)=k+(f)=0,$ $k$ must have degree at least 2. So, $\phi |_{K}$ is injective as it consists only of degree 0 polynomials (and zero).
+
+  We can conclude that $F/K$ is a field extension.
 \end{example}
+
+\begin{remark}
+    Notice that in the example above, we do not have that the set $K$ is actually contained in $F,$ but rather that it can be naturally embedded into $F.$ Because of this, we can still view $F/K$ as a field extension.
+\end{remark}
+
 \begin{example}
-  Consider $K=\RR$ and $f(x)=X^2+1\in \RR[X]$ which is irreducible. Define $F=\RR[X]/(f)$
-  which is a $2$-dim extension field of $\RR$ with basis $1, X$. Let $\alpha$ be the image
-  of $X$ under the previous quotient map $K[X]\to K[X]/(X^2+1)$. Notice $\alpha^2+1=0$ in
-  $F$, so $\alpha$ satisfies $g(t)=t^2+1\in K[X]$. This $F$ is isomorphic to $\CC$.
+  Consider $K=\RR$ and $f=X^2+1\in \RR[X]$, which is irreducible. Define $F=\RR[X]/(f)$
+  which is a $2$-dimensional field extension of $\RR$ with basis $1+(X^2+1), X+(X^2+1)$. Let $\alpha$ be the image
+  of $X$ under the previous quotient map
+  \begin{align*}
+      \phi: K[X] &\to K[X]/(X^2+1) \\
+      k &\mapsto k + (X^2+1).
+  \end{align*}
+  % $$K[X]\to K[X]/(X^2+1).$$ 
+  Notice $\alpha^2+1=0 + (X^2+1)$ in
+  $F$, so $\alpha$ satisfies $g(t)=t^2+1\in K[X]$. Thus $F$ is isomorphic to $\CC$.
 \end{example}
 
 \begin{theorem}
@@ -39,14 +58,13 @@ field $K$.
   extension $F/K$ and $\alpha \in F$ s.t. $f(\alpha)=0$.
 \end{theorem}
 \begin{proof}
-  Let $f=gh$ where $g$ is irreducible. Define $F=K[X]/(g)$. Then take $\alpha=X+(g)$, and
-  so $g(\alpha)=g(X)+(g)=0+(g)$, so $f(\alpha)=g(\alpha)h(\alpha)=0$.
+  Let $f=gh$ where $g$ is irreducible. Define $F=K[X]/(g)$. Then take $\alpha=X+(g)$, and so $g(\alpha)=g(X)+(g)=0+(g)$, so $f(\alpha) = g(\alpha)h(\alpha)=0$.
 \end{proof}
 
 \begin{definition}
-  Let $F/K$ be a field extension, and $\alpha\in F$. We say $\alpha$ is algebraic over
-  $K$ if there exists $f\in K[X]\setminus \{0\}$ s.t. $f(\alpha)=0$. If there's not such
-  polynomial, we say that $\alpha$ is trascendental over $K$.
+  Let $F/K$ be a field extension, and $\alpha\in F$. We say $\alpha$ is \emph{algebraic} over
+  $K$ if there exists $f\in K[X]\setminus \{0\}$ s.t. $f(\alpha)=0$. If there is no such
+  polynomial, we say that $\alpha$ is \emph{transcendental} over $K$.
 \end{definition}
 
 \begin{example}
@@ -56,23 +74,18 @@ field $K$.
   For all $n\in\ZZ_{>0}$, $e^{2\pi i/n}\in \CC$ is algebraic over $\QQ$, consider
   $f(x)=x^n-1$.
 
-  Trascendental elements of $\CC$ include $e$ and $\pi$, but proving this is very
-  difficult.
+  Transcendental elements of $\CC$ include $e$ and $\pi$, but proving they are transcendental is very difficult.
 \end{example}
 
 \begin{theorem}
   Let $F/K$ be a field extension, and let $\alpha\in F$ be algebraic over $K$.
   Then there exists an irreducible polynomial $p\in K[X]$ with $p(\alpha)=0$, and for
-  all $f\in K[X]$ with $f(\alpha)=0$, we have $p$ divides $f$ in $K[X]$.
+  all $f\in K[X]$ with $f(\alpha)=0$, we have $p$ divides $f$ in $K[X]$. \label{thm:pdivf}
 \end{theorem}
 \begin{proof}
-  For part 1 $\alpha$ being algebraic over $K$ implies that there exists $f\in K[X]$
-  non-zero with $f(\alpha)=0$. Let $p\in K[X]$ have minimal degree over all such $f$s, and
-  we show that $p$ is irreducible.
+  First, $\alpha$ being algebraic over $K$ implies that there exists $f\in K[X]\setminus \{0\}$ with $f(\alpha)=0$. Let $p\in K[X]$ be such an $f$ with the smallest degree, so $p(\alpha)=0.$ Assume for contradiction that $p$ is reducible, i.e., there exists $g,h\in\K[X]$ with degrees $r,s<n$ respectively, such that $f=gh.$ This means that $f(\alpha)=g(\alpha)h(\alpha)=0,$ so we must have $g(\alpha)=0$ or $h(\alpha)=0.$ This is a contradiction as we have assumed that $p$ is the smallest such polynomial, therefore $p$ must be irreducible over $K[X].$
 
-  For part 2, suppose that $f\in K[X]$ with $f(\alpha)=0$, then write $f=pq+r$ s.t. $r=0$
-  or $\deg r <\deg p$, in which case then show that
-  $r(\alpha)=f(\alpha)-pq(\alpha)=0\implies r=0$ by minimality of $p$.
+  Now suppose that $f \in K[X]$ with $f(\alpha) = 0$, by the division algorithm we can write $f=pq+r$ where $\deg r < \deg p$. We have 2 cases, if $r=0$ then $f = pq$ so $p$ divides $f$. Assume $r \neq 0$ then we have that $r(\alpha) = f(\alpha) - p(\alpha)q(\alpha) = 0$, but as $p$ was minimal degree, it follows that $r = 0$, and so $f=pq$ as required.
 \end{proof}
 
 % We call such a $p \in K[X]$ the minimum polynomial of $\alpha$ over $K$.
@@ -83,7 +96,7 @@ field $K$.
   $\exists\lambda\in K$ s.t. $p=\lambda p'$.
 \end{corollary}
 \begin{proof}
-  We have $p|p'$ and $p'|p$, and the result follows since this implies $\deg p=\deg p'$.
+  We have from theorem \ref{thm:pdivf} that $p \mid p'$ and $p' \mid p$. This implies $\deg p=\deg p'$, and the result follows.
 \end{proof}
 
 \begin{definition}
@@ -95,12 +108,11 @@ field $K$.
 \end{definition}
 
 \begin{example}
-  Recall that if $n\in\ZZ$, then $e^{2\pi i/n}\in\CC$ is algebraic over $\QQ$ since it's a
-  root of $x^n-1$. Suppose $n$ is a prime. Then $\irr (\alpha, K)=
-  X^{n-1}+X^{n-2}+\cdots+1$, by Eisenstein's criterion using translation by $1$.
+  Recall that if $n\in\ZZ$, then $e^{2\pi i/n}\in\CC$ is algebraic over $\QQ$ since it is a
+  root of $x^n-1$.
+  
+  Let $\alpha =e^{2\pi i/n}$ and suppose that $n$ is prime. Then $\irr (\alpha, K)=
+  X^{n-1}+X^{n-2}+\cdots+1$. This polynmial is known to be irreducible over the rationals when $n$ is prime, and it has root $\alpha.$ We can show this by Eisenstein's criterion after using translation by $1$, as in Example \ref{eisensteinex}.
 \end{example}
 
-\begin{exercise}
-  What is the minimum polynomial of $e^{2\pi i /6}$ and $e^{2\pi i /8}$ over $\QQ$?
-\end{exercise}
 

@@ -1,51 +1,107 @@
-\section{Lecture 17 - 29 Oct 2021}
+\section{Lecture 17} - (Non-Examinable)
 \subsection{Semi-direct product}
-On semidirect product. This is a generalisation of the direct product, which is the
-group theory analogous to the cartesian product in set theory. Recall that we could make
-groups like $\ZZ/n\ZZ \times \ZZ/n\ZZ$, this is an example of direct product. 
+We will now introduce the semi-direct product, which is a generalisation of the direct product. Recall from Definition \ref{directProduct} that the direct product is the
+group theory analogue to the cartesian product in set theory. For example, we can make
+groups like $\ZZ/n\ZZ \times \ZZ/n\ZZ$.
+
+Consider a group $G$ with subgroups $H$ and $N,$ and let $H\cap N = \{e\}$
+and $NH=G$. Now consider the map
+\begin{align*}
+    \phi: N\times H &\to G
+    \\ (n,h)&\mapsto nh.
+\end{align*}
+
+Assume we have $h_1,h_2\in H$ and $n_1,n_2\in N$ such that $n_1h_1=n_2h_2.$  We then have $n_2^{-1}n_1=h_2h_1^{-1}=e$ since $H\cap N = \{e\}.$ This shows that $\phi$ is injective.
+
+Now, consider $\Img \phi =\{nh:h\in H, n\in N\}=NH=G,$ so $\phi$ is surjective.
+
+Therefore, when considering $N\times H$ and $G$ as sets, they are in bijection.
+
+What if we would like $\phi$ to be a group isomorphism? In other words, what if we would like to reconstruct $G$ from the subgroups $H$ and $N$?
+We need to find a group law, a way to multiply the elements of $N\times H$ together, that gives
+$$\phi((n_1,h_1)(n_2,h_2))=\phi((n_1,h_1))\phi((n_2,h_2))=n_1h_1n_2h_2.$$
+We can write,
+$$n_1h_1n_2h_2=n_1h_1n_2h_1^{-1}h_1h_2.$$
+We therefore need 
+$$\phi((n_1,h_1)(n_2,h_2))=n_1h_1n_2h_1^{-1}h_1h_2=\phi(n_1h_1n_2h_1^{-1},h_1h_2).$$
+
+We have $h_1h_2 \in H$. If we assume in addition that $N$ is normal in $G,$ then $N$ is closed under conjugation by elements of $G,$ and therefore $n_1h_1n_2h_1^{-1}\in N$. 
+
+As $\phi$ is an injection, we need 
+$$(n_1,h_1)(n_2,h_2)=(n_1h_1n_2h_1^{-1},h_1h_2).$$
+If we define the group multiplication of $N\times H$ as above, we have that $\phi$ is also a group homomorphism.
+
+We can represent this multiplication in another way. For each $h\in H,$ let $\varphi_h$ be a group automorphism of $N$ defined by conjugation by the element $h.$ We can construct a group homomorphism,
+\begin{align*}
+    \varphi : H &\to \Aut(N)
+    \\ h& \mapsto \varphi_h.
+\end{align*}
+We can then rewrite the group multiplication as 
+$$(n_1,h_1)(n_2,h_2)=(n_1\varphi_{h_1}(n_2),h_1h_2).$$
+
+You can check that the set $N\times H$ with the above multiplication does indeed form a group. This group is denoted $N\rtimes_\varphi H.$
+
 \begin{definition}
   Let $G$ be a group and let $H\leq G$, $N\trianglelefteq G$ such that $H\cap N = \{e\}$
-  and $HN=G$. Then $G$ is called an \emph{(internal) semi-direct product} of $H,N$.
+  and $HN=G$. Then $G$ is called an \emph{(internal) semi-direct product} of $H$ and $N$.
   \label{def:intSemidirProd}
 \end{definition}
-Note that for every $h\in H$ we can define an automorphism $\phi_h$ in $N$ given by
-conjugation of by $h$,
-\[\phi_h:n\mapsto hnh^{-1}:N\to N\]
-Where the inverse of $\phi_h$ is $\phi_{h^{-1}}$. Moreover, we have $\phi:H\to \Aut N:h\to
-\phi_h$ is a group homomorphism undercomposition. Note, $\phi_{h_1h_2}:n\to h_1h_2 n
-h_2^{-1}h_{1}^{-1} =\phi_{h_1}(\phi_{h_2}(n))= (\phi_{h_1}\circ\phi_{h_2})(n)$. The entire
-group structure of $G$ is determined by the structures of $N$ and $H$ and the homomorphism
-$\phi$. Indeed, let $g,g'\in G$, and say $g=nh, g'=n'h'$ for $n,n'\in N, h,h'\in H$, then 
-\[gg'=nhn'h'=nhn'h^{-1}hh'=n\phi_h(n')hh'=n''h''\]
-For $n''\in N, h''\in H$, since $\phi_h(n')\in N$. Note that the assumption implies that
-$G$ is in bijection with $N\times H$ via $(n,h)\mapsto nh$. It's injective and well
-defined since $nh=n'h' \iff (n')^{-1}n=h'h^{-1} \iff (n')^{-1}n,h'h^{-1}\in H\cap N =
-\{e\} \iff n=n',h=h'$.
+% Note that for every $h\in H$ we can define an automorphism $\phi_h$ in $N$ given by
+% conjugation of by $h$,
+% \[\phi_h:n\mapsto hnh^{-1}:N\to N\]
+% Where the inverse of $\phi_h$ is $\phi_{h^{-1}}$. Moreover, we have $\phi:H\to \Aut N:h\to
+% \phi_h$ is a group homomorphism undercomposition. Note, $\phi_{h_1h_2}:n\to h_1h_2 n
+% h_2^{-1}h_{1}^{-1} =\phi_{h_1}(\phi_{h_2}(n))= (\phi_{h_1}\circ\phi_{h_2})(n)$. The entire
+% group structure of $G$ is determined by the structures of $N$ and $H$ and the homomorphism
+% $\phi$. Indeed, let $g,g'\in G$, and say $g=nh, g'=n'h'$ for $n,n'\in N, h,h'\in H$, then 
+% \[gg'=nhn'h'=nhn'h^{-1}hh'=n\phi_h(n')hh'=n''h''\]
+% For $n''\in N, h''\in H$, since $\phi_h(n')\in N$. Note that the assumption implies that
+% $G$ is in bijection with $N\times H$ via $(n,h)\mapsto nh$. It's injective and well
+% defined since $nh=n'h' \iff (n')^{-1}n=h'h^{-1} \iff (n')^{-1}n,h'h^{-1}\in H\cap N =
+% \{e\} \iff n=n',h=h'$.
+
+Now consider groups $N$ and $H$ that can now be completely separate groups. What if we would like to create a new group out of them, say $G$, such that $N$ and $H$ satisfy similar conditions to that of an internal semi-direct product. Since $N$ and $H$ can be completely separate, we will define $N_G\cong N$ and $H_G\cong H$ such that these are subgroups of $G$. In other words, we want to find a  group $G$ such that $N_G \trianglelefteq G$, $H_G \leq G,$ $N_G \cap H_G=\{e_G\},$ and $N_GH_G=G.$
+
+Consider $G=N\times H,$ $N_G=N\times \{e_H\},$ and $H_G=\{e_N\} \times H.$ We can check that our original conditions are satisfied: $N_G \cap H_G =\{(e_N,e_H)\}$ and $N_GH_G=G$ using set builder. 
+
+Now let us consider the multiplication of two arbitrary elements of $G.$ Let $(n_1,h_1),$ $(n_2,h_2)\in G.$ We have,
+\begin{align*}
+    (n_1,h_1)(n_2,h_2)&=(n_1,e_H)(e_N,h_1)(n_2,e_H)(e_N,h_2)
+    \\& =(n_1,e_H)\underbrace{(e_N,h_1)(n_2,e_H)(e_N,h_1^{-1})}_{(n,e_H)}(e_N,h_1)(e_N,h_2)
+\end{align*}
+where we require $(e_N,h_1)(n_2,e_H)(e_N,h_1^{-1})=(n,e_H)$ for $n\in N_G$ as we need closure under conjugation for $N_G \trianglelefteq G$.
+
+For this to work, we need a group homomorphism $\phi: H \to \Aut(N)$, defined by $h \mapsto \phi_h \in \Aut(N)$,  so that we can define the group multiplication as
+$$ (n_1,h_1)(n_2,h_2)=(n_1\phi_{h1}(n_2),h_1h_2),$$
+meeting the condition of $N_G \trianglelefteq G.$
+
+
 
 \begin{definition}
   Given groups $N$ and $H$, and a group homomorphism $\phi:H\to \Aut N$ we define the
   \emph{(external) semidirect product} of $N$ and $H$ (wrt $\phi$), written $N\rtimes H$
   or $N\rtimes_{\phi} H$, with the multiplication operation,
-  \[(n,h)(n',h')=(n\phi_h(n'), hh')\]
+  \[(n,h)(n',h')=(n\phi_h(n'), hh').\]
   \label{def:exSemidirProd}
 \end{definition}
-If $G=N\rtimes_{\phi} H$ is as above, we have that $N\times \{1\}$ forms a normal subgroup
-of $G$, $\{1\}\times H$ forms a subgroup of $G$, and $G$ is the internal semidirect
-product of these two groups.
 
-\begin{example}
-  If the definition of the semi direct product we take $\phi:H\to\Aut N$ to be the trivial
-  homomorphism (taking every $h\in H$ to $1\in \Aut N$, where $1:n\to n$ for all $n\in
-  N$, and note that saying is is saying $hn=nh$ for any $n\in N, h\in H$). Then we recover
-  the definition of direct product.
+\begin{remark}
+    Notice that in the definition of the internal semi-direct product, we are starting with a subgroup $H$ and a normal subgroup $N$ in $G,$ and reconstructing $G$ by combining the elements of $H$ and $N$ in a specific way that reflects the internal structure and symmetries of $G$. 
+    
+    Meanwhile, in the external semi-direct product, we take groups $N$ and $H,$ which can be completely unrelated, and form a new group $G$ out of them. 
+
+    Also note that for an external semi-direct product of $N$ and $H$, the groups $N_G$ and $H_G$ as defined earlier form an internal semi-direct product $G.$
+\end{remark}
+\begin{remark}
+     If in the definition of the semi direct product we take $\phi:H\to\Aut N$ to be the trivial homomorphism, then we recover the definition of the direct product.
   \label{ex:trivialHomDirecProd}
-\end{example}
+\end{remark}
 
 \begin{example}
-  For $n\in\ZZ_{\geq 3}$ the dihedral group $D_{2n}$ is a semidirect product of the normal
+  For $n\in\ZZ_{\geq 3}$, the dihedral group $D_{2n}$ is a semidirect product of the normal
   subgroup $\langle \sigma \rangle$ and the subgroup $\langle \tau \rangle$, where $\sigma
-  ^n=\tau^2=e$. Here $\phi:\langle \tau \rangle\to \Aut \langle \sigma \rangle$ sends
-  $\tau$ to the inversion automorphism, $\phi_{\tau}:\sigma^i\mapsto \sigma^{-1}$.
+  ^n=\tau^2=e$. Here, $\phi:\langle \tau \rangle\to \Aut \langle \sigma \rangle$ sends
+  $\tau$ to the inversion automorphism, $\phi_{\tau}:\sigma^i\mapsto \sigma^{-i}$.
 \end{example}
 
 \begin{theorem}
@@ -53,75 +109,70 @@ product of these two groups.
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  Let $G$ be a group of order $15$. By Cauchy's we have $g, h\in G$ where $g$ is an
-  element of order $5$ and $h$ of order $3$. Moreover, $3$ is the smallest prime divisor,
-  and $\langle g \rangle$ has order $5$ so by Lagrange it follows that it has index $3$
-  and by Theorem \ref{thm:cauchyGeneral} it follows that $N=\langle g
+  Let $G$ be a group of order $15$. By Cauchy's Theorem, we have $g, h\in G$ where $g$ is an
+  element of order $5$ and $h$ of order $3$. Moreover, $\langle g \rangle$ has order $5,$ and therefore has index $3$ by Lagrange. Since $3$ is the smallest prime divisor of $|G|$, by Theorem \ref{thm:cauchyGeneral} it follows that $N=\langle g
   \rangle\trianglelefteq G$. 
 
   Let $H=\langle h \rangle$, then $H\cap N$ is a normal subgroup of
-  $H$ by the second isomorphism theorem and by Lagrange it follows that $|H\cap N|$ must
-  divide $3$, i.e. $|H\cap N|$ is either $3$ or $1$. Furthermore, $H\cap N$ lies in $N$
-  and it must be a subgroup of $N$, hence its order must also divide $5$ or $1$. Hence
+  $H$ by the second isomorphism theorem, and by Lagrange, it follows that $|H\cap N|$ must
+  divide $3$, i.e. $|H\cap N|$ is either $3$ or $1$. Furthermore, $H\cap N$ is a subgroup of $N$. Hence, its order must also divide $5$  or $1$, so
   $H\cap N=\{1\}$. Therefore, $NH=G$. 
 
-  Note this implies $G= N\rtimes H$. Hence conjugation by $H$
+  We have therefore shown that $G= N\rtimes H$. Hence, conjugation by $H$
   defines a group homomorphism $\phi:H\to\Aut N$, but $|\Aut N|=4$. Moreover, $\Img\phi
-  \leq \Aut N$, hence $|\Img\phi|$ divides $|\Aut N|=4$ but note that by the First
-  Isomorphism Theorem and Lagrange, $|\Img \phi|$ also divides $|H|=3$, hence
+  \leq \Aut N$, hence $|\Img\phi|$ divides $|\Aut N|=4$, but by FIT and Lagrange, $|\Img \phi|$ also divides $|H|=3$, hence
   $|\Img\phi|=1$, i.e. the image of $\phi$ is trivial. Therefore every element of $H$
   gives rise to the trivial automorphism of $N$, and since conjugating by every element of
-  $h$ leaves $n\in N$ unchanged, it implies that $h$ and $n$ commute.
+  $h$ leaves $n\in N$ unchanged, $h$ and $n$ commute.
 
-  Hence, by Example \ref{ex:trivialHomDirecProd} $G=N\times H$. Since $N$ is cyclic of
-  order $5$ and $H$ is cyclic of order $3$, note they're coprime, from the second Exercise
-  Sheet, $G$ itself is cyclic, $G=\langle n\cdot h \rangle$.
+  Hence, $G=N\times H$. Since $N$ is cyclic of
+  order $5$ and $H$ is cyclic of order $3$, from ex sheet 2 Q10, $G \cong N\times H$. Therefore, $G$ is cyclic and $G=\langle n\cdot h \rangle$.
 \end{proof}
 
-\subsection{An Aside on Free Groups (Non-Examinable)}
+% \subsection{An Aside on Free Groups (Non-Examinable)}
 
-\begin{definition}[Free Group]
-Let $S$ be a set, and let $T$ be a set such that each element of $T$ is designated as the inverse of a unique element of $S$, and vice versa. Consider the set of all 'words' that can be formed by concatenating elements of the combined set $S \cup T$, including an empty word (denoted by $e$) which serves as the identity.
+% \begin{definition}[Free Group]
+% Let $S$ be a set, and let $T$ be a set such that each element of $T$ is designated as the inverse of a unique element of $S$, and vice versa. Consider the set of all ``words'' that can be formed by concatenating elements of the combined set $S \cup T$, including an empty word (denoted by $e$) which serves as the identity.
 
-We impose the relation of 'reduction' which allows the removal of any adjacent pair of elements $s \in S$ and $t \in T$ where $t$ is the inverse of $s$ (or vice versa), aiming to reduce words to their simplest form. 
+% We impose the relation of ``reduction'' which allows the removal of any adjacent pair of elements $s \in S$ and $t \in T$ where $t$ is the inverse of $s$ (or vice versa), aiming to reduce words to their simplest form. 
 
-The \textbf{free group} on $S$, denoted by $F_S$, is then defined as the set of all such reduced words, equipped with the operation of concatenation followed by reduction. This structure satisfies the group axioms: closure, associativity, identity existence (the empty word), and invertibility (each element can be followed by its inverse leading to their reduction).
+% The \textbf{free group} on $S$, denoted by $F_S$, is then defined as the set of all such reduced words, equipped with the operation of concatenation followed by reduction. This structure satisfies the group axioms: closure, associativity, identity existence (the empty word), and invertibility (each element can be followed by its inverse leading to their reduction).
 
-Specifically, the relations satisfied by the elements of $F_S$ are precisely those necessary to meet the definition of a group, no more and no less. The group $F_S$ is characterized by the property that any function from $S$ to a group $G$ extends uniquely to a group homomorphism from $F_S$ to $G$. That is the following diagram commutes:
-\[
-\begin{tikzcd}
-S \arrow[r, hook, "i"] \arrow[rd, "f"'] & F_S \arrow[d, "\varphi"] \\
- & G
-\end{tikzcd}
-\]
-\end{definition}
+% Specifically, the relations satisfied by the elements of $F_S$ are precisely those necessary to meet the definition of a group, no more and no less. The group $F_S$ is characterized by the universal property that any function from $S$ to a group $G$ extends uniquely to a group homomorphism from $F_S$ to $G$. That is the following diagram commutes:
+% \[
+% \begin{tikzcd}
+% S \arrow[r, hook, "i"] \arrow[rd, "f"'] & F_S \arrow[d, "\varphi"] \\
+%  & G
+% \end{tikzcd}
+% \]
+% \end{definition}
 
-\begin{theorem}
-    Every group $G$ is the quotient of a Free group $F_X$ by some normal subgroup $N$.
-\end{theorem}
+% \begin{theorem}
+%     Every group $G$ is the quotient of a free group $F_X$ by some normal subgroup $N$.
+% \end{theorem}
 
-\begin{proof}
-    We know that by the universal property of Free groups, $f$ extends to a unique $\varphi$ where $\varphi$ is a group homomorphism. Take $f: X \to G$ to be the canonical inclusion map with $X$ the underlying set of $G$ and $\varphi(x) = f(x).$ $\varphi$ is clearly surjective onto G so by the FIT, $F_X/\ker \varphi \cong G$. So $N = \ker \phi$.
-\end{proof}
+% \begin{proof}
+%     We know that by the universal property of free groups, $f$ extends to a unique $\varphi$ where $\varphi$ is a group homomorphism. Take $f: X \to G$ to be the canonical inclusion map with $X$ the underlying set of $G$ and $\varphi(x) = f(x),$ $\varphi$ is clearly surjective onto $G$ so by the FIT, $F_X/\ker \varphi \cong G$. So $N = \ker \phi$.
+% \end{proof}
 
-\begin{theorem}[Uniqueness of Free Groups]
-    Let $F$ and $F'$ be free groups on the set $X$. Then $F \cong F'$
-\end{theorem}
+% \begin{theorem}[Uniqueness of Free Groups]
+%     Let $F$ and $F'$ be free groups on the set $X$. Then $F \cong F'$
+% \end{theorem}
 
-\begin{proof}
-    Suppose \( F\) and \( F' \) are both free groups on the set \( X \). We want to show that \( F \) and \( F' \) are isomorphic.
+% \begin{proof}
+%     Suppose \( F\) and \( F' \) are both free groups on the set \( X \). We want to show that \( F \) and \( F' \) are isomorphic.
 
-By the universal property of $F$, for any function $\iota_2: X \to F'$, there exists a unique group homomorphism $\varphi_1: F \to F'$ such that $\varphi_1 \circ \iota_1 = \iota_2$, where $\iota_1: X \to F$ is the inclusion map. Similarly for the universal property of $F'$ we get $\varphi_2 \circ \iota_2 = \iota_1$. This gives the following diagram.
+% By the universal property of $F$, for any function $\iota_2: X \to F'$, there exists a unique group homomorphism $\varphi_1: F \to F'$ such that $\varphi_1 \circ \iota_1 = \iota_2$, where $\iota_1: X \to F$ is the inclusion map. Similarly for the universal property of $F'$ we get $\varphi_2 \circ \iota_2 = \iota_1$. This gives the following diagram.
 
-\begin{center}
-\begin{tikzcd}
-& X \arrow[ld, "\iota_1"'] \arrow[rd, "\iota_2"] & \\
-F \arrow[rr, "\varphi_1", bend left=25] & & F' \arrow[ll, "\varphi_2", bend left=25]
-\end{tikzcd}
-\end{center}
+% \begin{center}
+% \begin{tikzcd}
+% & X \arrow[ld, "\iota_1"'] \arrow[rd, "\iota_2"] & \\
+% F \arrow[rr, "\varphi_1", bend left=25] & & F' \arrow[ll, "\varphi_2", bend left=25]
+% \end{tikzcd}
+% \end{center}
 
-Substituting gives $\iota_1 = (\varphi_2 \circ \varphi_1) \circ \iota_1$ and $\iota_2 = (\varphi_1 \circ \varphi_2) \circ \iota_2$. So by the uniqueness of the universal property, $\varphi_2 \circ \varphi_1 = \id_{F}$ and $\varphi_1 \circ \varphi_2 = \id_{F'}$ so $F \cong F'$ as required. 
-\end{proof}
+% Substituting gives $\iota_1 = (\varphi_2 \circ \varphi_1) \circ \iota_1$ and $\iota_2 = (\varphi_1 \circ \varphi_2) \circ \iota_2$. So by the uniqueness of the universal property, $\varphi_2 \circ \varphi_1 = \id_{F}$ and $\varphi_1 \circ \varphi_2 = \id_{F'}$ so $F \cong F'$ as required. 
+% \end{proof}
 
 
 
