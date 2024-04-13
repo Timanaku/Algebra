@@ -39,7 +39,7 @@
 %}
 \pdfsuppresswarningpagegroup=1
 
-\DeclareTextFontCommand{\emph}{\bfseries\em}
+% \DeclareTextFontCommand{\emph}{\bfseries\em}
 
 %% Maths Useful commands
 \usepackage{epsfig}
@@ -53,6 +53,22 @@
 \newcommand{\e}{\bm{e}}
 \newcommand{\uu}{\bm{u}} 
 \newcommand{\vv}{\bm{v}} 
+\newcommand{\vin}{\rotatebox[origin=c]{90}{$\in$}}
+% Define longlongmapsto and longlonglongmapsto commands
+\newcommand{\longlongmapsto}{
+  \mathrel{
+    \begin{tikzpicture}
+      \draw[|->, line width=0.5pt] (0,0.5ex) -- (3em,0.5ex);
+    \end{tikzpicture}
+  }
+}
+\newcommand{\longlonglongmapsto}{
+  \mathrel{
+    \begin{tikzpicture}
+      \draw[|->, line width=0.5pt] (0,0.5ex) -- (4em,0.5ex);
+    \end{tikzpicture}
+  }
+}
 
 
 %% Theorems
@@ -73,3 +89,4 @@
 
 \theoremstyle{rem}
 \newtheorem*{rem}{Remark}
+

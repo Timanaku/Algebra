@@ -1,50 +1,132 @@
-\section{Lecture 32 - 03 Dec 2021}
+\section{Lecture 32}
 \subsection{Algebraic Closure}
-\begin{example}
-  Consider the field extension $\QQ(2^{1/3})=\{a+b2^{1/3} + c2^{2/3} : a,b,c\in\QQ\}$.
-\end{example}
+% \begin{example}
+%   Consider the field extension $\QQ(2^{1/3})=\{a+b2^{1/3} + c2^{2/3} : a,b,c\in\QQ\}$.
+% \end{example}
 \begin{theorem}
   Let $L/F$ and $F/K$ be field extensions. Then $L/K$ is finite if and only if $L/F$ and
   $F/K$ are both finite. Moreover, if this is the case, we have $[L:K]=[L:F][F:K]$. More
   precisely, if $\alpha_1,\cdots, \alpha_n$ is an $F$-basis for $L$, and $\beta_1,\cdots,
   \beta_m$ is a $K$-basis for $F$, then $\{\alpha_i\beta_j : 1\leq i\leq n, 1\leq j\leq
   m\}$ is a $K$-basis for $L$.
+  \label{meow2}
 \end{theorem}
 \begin{proof}
-  TODO: Doable. Should attempt.
+    We will show that $\{\alpha_i\beta_j : 1\leq i\leq n, 1\leq j\leq m\}$ is linearly independent and spans $L.$ Let $l\in L$. Since $\alpha_1,\cdots, \alpha_n$ is an $F$-basis for $L,$ we can write $l=f_1\alpha_1+f_2\alpha_2+\cdots +f_n \alpha_n,$ where $f_i\in F.$ Now, since $\beta_1,\cdots,\beta_m$ is a $K$-basis for $F,$ we have that each $f_i=k_{i1}\beta_1+k_{i2}\beta_2+\cdots+k_{im}\beta_m,$ where $k_{ij}\in K.$ Therefore, 
+    \begin{align*}
+        l&=(k_{11}\beta_1+\cdots+k_{1m}\beta_m)\alpha_1+\cdots+(k_{n1}\beta_1+\cdots+\k_{nm}\beta_{m})\alpha_n
+        \\ &= (k_{11}\alpha_1\beta_1+\cdots+k_{1m}\alpha_1\beta_m)+\cdots+(k_{n1}\alpha_n\beta_1+\cdots+\k_{nm}\alpha_n\beta_{m}).
+    \end{align*}
+    We have therefore shown that an arbitrary element $l\in L$ can be expressed as a $K$-linear combination of $\alpha_i\beta_j$, therefore $\{\alpha_i\beta_j : 1\leq i\leq n, 1\leq j\leq m\}$ spans L.
+
+    \\To show linear independence, assume we have constants $c_{11}, \cdots, c_{nm}$ in $K$ such that
+    $$c_{11} \alpha_1 \beta_1 + c_{12} \alpha_1 \beta_2 + \cdots + c_{nm} \alpha_n \beta_m = 0.$$
+    
+    Factor out the $\alpha_i$'s,
+    $$\alpha_1 (c_{11} \beta_1 + c_{12} \beta_2 + \cdots+ \cdots + c_{1m} \beta_m) + \cdots + \alpha_n (c_{n1} \beta_1 + \cdots + c_{nm} \beta_m) = 0.$$
+
+    We have that
+    \begin{align*}
+    c_{11} \beta_1 + c_{12} \beta_2 + \ldots + c_{1m} \beta_m &= 0 \\
+    c_{21} \beta_1 + c_{22} \beta_2 + \ldots + c_{2m} \beta_m &= 0 \\
+    &\vdots \\
+    c_{n1} \beta_1 + c_{n2} \beta_2 + \ldots + c_{nm} \beta_m &= 0,
+    \end{align*}
+    and since the $\beta_i$'s form a basis, they are linearly independent, so we can conclude that all the $c_{ij}$'s are 0, and therefore $\{\alpha_i \beta_j\}$ are linearly independent.
+\end{proof}
+
+\begin{definition}
+    We denote \[\overline{K_F} := \left\{ \alpha\in F \mid \alpha\text{ is algebraic over } K\right\}\] and read it as the \emph{algebraic closure} of $K$ in $F$.
+\end{definition}
+
+\begin{lemma}
+    Let $F/K$ be a field extension and let $V$ be a finite dimensional non-trivial $K$-vector space. If $\alpha \in F$ and $\alpha V \subset V$, then $\alpha \in \overline{K_F}$.
+    \label{lem:gigachadlemma}
+\end{lemma}
+
+\begin{proof}
+    Let $\{v_1, v_2, \ldots, v_n\}$ be a $K$-basis for $V$. We have $\alpha V \subset V \implies \alpha v_i = k_{i1}v_1 + k_{i2}v_2 + \cdots + k_{in}v_n$, where $k_{ij} \in K$. We can then construct a matrix representation for $\alpha$, call it $A$. The matrix is as follows:
+    $$
+    A = \begin{bmatrix}
+        k_{11} & k_{12} & \cdots & k_{1n} \\
+        k_{21} & \ddots &        & \vdots \\
+        \vdots &        & \ddots & \vdots \\
+        k_{n1} & \cdots & \cdots & k_{nn} \\
+    \end{bmatrix}.
+    $$
+    This matrix has been constructed in a way such that $A(v) = \alpha v$ for $v \in V$ (as $A(v_i) = k_{i1}v_1 + k_{i2}v_2 + \cdots + k_{in}v_n = \alpha v_i$). So we have that the characteristic polynomial $\chi(X) = \operatorname{det}(\alpha \mathbb{I}_n - A) \in K[X],$ and as $\alpha$ is an eigenvalue for $A,$ it satisfies $\chi(X),$ and so $\alpha$ is algebraic over $K$, or equivalently, $\alpha \in \overline{K_F}$.
 \end{proof}
 
 \begin{theorem}
-  Let $F/K$ be a field extension. Then the set
-  \[\overline{K_F} = \left\{ \alpha\in F : \alpha\text{ is algebraic over } K\right\}\]
-  Is a field.
+  Let $F/K$ be a field extension. Then $\overline{K_F}$ is a field.
   \label{<+label+>}
 \end{theorem}
 \begin{proof}
-  TODO: Constructive approach: Given $\alpha$ being a root of $f$ and $\beta$ being a root
-  of $g$, can we construct a polynomial that has root $\alpha+\beta$ and $\alpha\beta$?
-\end{proof}<++>
-Example, try $\alpha=\sqrt{2}, \beta=\sqrt{3}$. For example $\overline{\QQ_{\CC}}$ is a
-huge extension field of $\QQ$, but still much smaller than $\CC$.
-$\overline{K_F}$ is called the algebraic closure of $K$ in $F$.
+      Take any $\alpha, \beta \in \overline{K_F}$. Consider the $K$-vector space $V$ spanned by the set $S = \{\alpha^i \beta^j \mid i,j \geq 0\}$. $V$ is finite-dimensional because $\alpha$ and $\beta$ satisfy some algebraic relations over $K$.
+
+  We aim to show that $(\alpha - \beta)V \subseteq V$ and $(\alpha\beta^{-1})V \subseteq V$. For any $v \in V$, written as a linear combination of elements in $S$, the expression $(\alpha - \beta)v$ results in terms of the form $\alpha^{i+1}\beta^{j} - \alpha^{i}\beta^{j+1}$, which belong to $V$. Hence, $(\alpha - \beta)V \subseteq V$.
+
+  Similarly, $(\alpha\beta^{-1})v$ will yield terms like $\alpha^{i+1}\beta^{j-1}$, also within $V$. Therefore, by lemma \ref{lem:gigachadlemma}, $\alpha - \beta$ and $\alpha\beta^{-1}$ are in $\overline{K_F}$, confirming that $\overline{K_F}$ is indeed a field.
+\end{proof}
+% Example, try $\alpha=\sqrt{2}, \beta=\sqrt{3}$. For example $\overline{\QQ_{\CC}}$ is a
+% huge extension field of $\QQ$, but still much smaller than $\CC$.
+% $\overline{K_F}$ is called the algebraic closure of $K$ in $F$.
 \begin{definition}
-  A field $F$ is called algebraically closed if every $f\in F[X]$ with $\deg f>0$ has a
+  A field $F$ is called \emph{algebraically closed} if every $f\in F[X]$ with $\deg f>0$ has a
   root in $F$.
   \label{<+label+>}
 \end{definition}
 
 \begin{theorem}[Fundamental Theorem of Algebra]
   The field $\CC$ is algebraically closed.
-  \label{thm:FTAlg}
+  \label{meow}
 \end{theorem}
 % The above theorem implies that a given complex polynomial $f$ can be written as factors
 % with one root in $\CC$ and then a multiply by another smaller degree polynomial $g$, and
 % recursively this implies that any polynomial over $\CC$ splits as a product of linear
 % factors (the roots in $\CC$).
+% There is currently no purely algebraic proof of the Fundamental Theorem of Algebra as all proofs rely on some form of complex analysis. Sketch proof using Gذalois theory: Assume there exists a field $F$ with $\CC \subset F$ that is a normal extension of $\RR$ meaning it's well-behaved and doesn't leave any polynomials partially factored when moving from the real to the complex field. We look at the Galois group $G=\Gal(F/\RR)$ of this setup, which is the set of all permutations of the roots of polynomials that keep the field structure intact. Let $\abs{G} =2^n t$ where $n,t\in \NN$ and $t$ is odd. $K$ is fixed points of $F$ under $G.$
 
-By the above theorem, if $f$ is a complex polynomial of degree $n$, then $f$ has a root $\alpha_1$, i.e. we can write $f$ as $(x-\alpha_1) f_1(x)$. And again, $f_1$ must have a root $\alpha_2$, so $f = (x-\alpha_1) (x-\alpha_2) f_2(x)$. Repeating inductively, we are able to factorise $f$ completely as $(x-\alpha_1)(x-\alpha_2)\cdots (x-\alpha_n)$. In other words, a polynomial of degree $n$ over $\CC$ has exactly $n$ roots in $\CC$.
-\begin{theorem}
-  Every field $K$ is contained in an algebraic extension (in a field extension whose
-  elements are algebraic over $K$) that is algebraically closed.
+% Now, using the Sylow theorems, we find a subgroup $H$ of $G$ whose size is the largest possible power of two. Here, $\abs{H} = 2^n.$
+
+% We have $\deg(F/K)=|G|$, i.e. $\deg(F/\RR)=|G|=2^n t$, $\deg(F/F^H)=|H|=2^n,$ therefore $\deg(F^H/\RR)=t$ by theorem \ref{meow2}. This is not possible because every odd polynomial has a root bla bla. 
+
+\begin{proof}[Sketch Proof]
+    We go by way of contradiction. Assume there exists a field $F$ with $\CC \subset F$ that is a proper normal extension of $\RR$. That is every polynomial with coefficients in $\RR$ splits into linear factors over $F$. 
+    If such an $F$ exists, then $\CC$ would not be algebraically closed, since there would exist $\alpha \in F\setminus \CC$ a root of a polynomial over $\RR \subset \CC.$
+    %
+    
+    We focus on the Galois group $G = \Gal(F/\RR),$ which is the group of automorphisms of $F$ that fix $\RR$. Let $|G| = 2^n t$ where $n,t \in \ZZ_{\geq 0}$ and $t$ is odd. Using the first Sylow Theorem there exists a Sylow-2-Subgroup, call it $H$ with $|H| = 2^n$, and if $n=0,$ let $H$ be the trivial group. Let $F^H$ be the field of all elements in $F$ fixed by every automorphism in $H$. That is $F^H = \{x \in F \mid \forall h \in H, h(x) = x\}$. From the Fundamental Theorem of Galois theory we know that the degrees of the extensions are related to the order of the associated Galois groups. So we have 
+    $$|H| = \deg(F/F^H) = [F : F^H] = 2^n$$ and from Theorem \ref{meow2} we have
+    $$
+    \deg(F/\RR) = \deg(F/F^H)\deg(F^H/\RR) = [F : F^H][F^H : \RR] = 2^n t,
+    $$
+    which implies $\deg(F^H/\RR)=[F^H : \RR]=t$. 
+    
+    By the Primitive Element Theorem, which states that every finite separable extension can be generated by a single element, we have $F^H = \mathbb{R}(\beta)$ for some $\beta \in F$. This implies that $\operatorname{deg}(\beta, \mathbb{R})$ is odd and has no root in $\RR$ as $\irr(\beta, \RR)$ is irreducible. However, every odd polynomial over $\RR$ has a root in $\RR$ as a consequence of the Intermediate Value Theorem, so we reach a contradiction. Hence, there cannot exist a proper normal extension $F/\RR$ which implies that $\CC$ is algebraically closed, as required.
+\end{proof}
+
+\begin{remark}[Jordan Baillie Waffle]
+    Would you consider the completion of a field analytic or algebraic? Most would say analytic, however this is if you view it in the conventional sense (Cauchy Sequences, Dedekind Cuts, etc). One can view the completion of a field as a closed set (with respect to profinite topology under inverse limit) of the underlying Galois group, which is definitely in the algebraic corner. With this, you can argue that there are proofs of the Fundamental Theorem of Algebra using only algebraic methods.
+\end{remark} 
+
+
+
+\begin{corollary}
+     Every polynomial $f\in \CC[X]$ of degree $n$ has exactly $n$ roots in $\CC$, when counting individually any repeated roots.
+\end{corollary}
+\begin{proof}
+    By Theorem \ref{meow}, if $f$ is a complex polynomial of degree $n$, then $f$ has a root $\alpha_1$, i.e. we can write $f$ as $(x-\alpha_1) f_1(x)$, where $\deg(f_1) = n-1$. Again, $f_1$ must have a root $\alpha_2$, so $f = (x-\alpha_1) (x-\alpha_2) f_2(x)$, where $\deg(f_2) = n-2$. Repeating this process inductively, we are able to factorise $f$ completely as $(x-\alpha_1)(x-\alpha_2)\cdots (x-\alpha_n)$. In other words, a polynomial of degree $n$ over $\CC$ has exactly $n$ roots in $\CC$.
+\end{proof}
+
+\begin{theorem}[Existence of Algebraic Closure]
+  % Every field $K$ is contained in an algebraic extension (in a field extension whose
+  % elements are algebraic over $K$) that is algebraically closed.
+  Every field $K$ has an algebraic extension that is algebraically closed.
   \label{<+label+>}
-\end{theorem}<++>
+\end{theorem}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+

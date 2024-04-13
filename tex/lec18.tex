@@ -1,91 +1,82 @@
-\section{Lecture 18 - 1 Nov 2021}
+\section{Lecture 18}
 \subsection{Intro to rings}
 \begin{definition}
-  A ring is a collection $(R,+,\cdot)$ where $R$ is a set, and $+,\cdot$ are two binary
-  operations on $R$ such that 
-  \begin{enumerate}
-    \item $(R,+)$ is an abelian group (labeled as the additive identity $0$)
-    \item The operation $\cdot$ is associative, i.e. for any $a,b,c\in R$ one has
-      $(a\cdot b)\cdot c = a\cdot (b\cdot c)$
-    \item $\cdot$ distributes over $+$, i.e. for all $a,b,c\in R$ one has 
-      \[(a+b)\cdot c = a\cdot c+b\cdot c \text{ and } c\cdot (a+b)=c\cdot a + c\cdot b\]
-  \end{enumerate}
-  A \emph{unital ring} or a \emph{ring with unity} is a ring as above such that there
-  exists $1\in R\setminus \{0\}$ satisfying $1\cdot a = a\cdot 1 = a$ for all $a\in R$.
-  A ring is called \emph{commutative} if the operation $\cdot$ is commutative. Note that
-  $+$ is always commutative.
+    A ring is a collection $(R,+,\cdot)$ where $R$ is a set, and $+$ and $\cdot$ are two binary operations on $R$ such that 
+  
+    (R1): $(R,+)$ is an abelian group (call the additive identity $0$);
+   
+    (R2): The operation $\cdot$ is associative, i.e. for any $a,b,c\in R$ one has $$(a\cdot b)\cdot c = a\cdot (b\cdot c);$$
+    
+    (R3): $\cdot$ distributes over $+$, i.e. for all $a,b,c\in R$ one has 
+      $$(a+b)\cdot c = a\cdot c+b\cdot c \text{ and } c\cdot (a+b)=c\cdot a + c\cdot b.$$
+  
+  A \emph{unital ring} or a \emph{ring with unity} is a ring as above such that there exists $1\in R\setminus \{0\}$ satisfying $1\cdot a = a\cdot 1 = a$ for all $a\in R$.
+  A ring is called \emph{commutative} if the operation $\cdot$ is commutative. 
   \label{def:ring}
 \end{definition}
 \begin{remark}
-  Note that many authors will refer to a unital ring simply as a ring, and they would
-  state otherwise if the ring in question is not unital.
+  Note that many authors will refer to a unital ring simply as a ring, and will call a ring without a unit a \emph{rng}.
 \end{remark}
 
+
+
 \begin{example}
-  We have already seen examples of rings such as $\ZZ,\QQ,\RR,\CC$. Other more interesting
-  ones are,
-  \begin{enumerate}
+We have already seen examples of rings such as $\ZZ,\QQ,\RR,\CC$. The following are some more interesting examples.
+  \begin{itemize}
     \item For every $n\in\ZZ_{>1}$, the set of cosets $\ZZ/n\ZZ$ forms a ring under
-      addition and multiplication $\mod n$.
-    \item If $R$ is commutative ring, then one can form the ring $R[X]$ of polynomials
-      over $R$ in one variable. The underlying set is just a set of symbols, not
-      necessarily any definite operation. The polynomial hence is just a formal finite
-      linear combination of symbols of the form $X^i$ for $i\in\NN$. Multiplication would
-      be defined as $X^iX^j=X^{i+j}$. The ring consists of elements of the form
-      $\sum_{i=o}^d a_iX^i$, $d\in\ZZ_{\geq 0}$ and $a_i\in R$ for all $i$, with the usual
-      addition and multiplication rules.
-    \item if $R$ is a ring, then one can form the ring $M_n(R)$ of $n\times n$ matrices
-      over $R$ under matrix addition and multiplication.
-    \item If $R$ is a ring and $S$ is some set, the set $R^S$ of functions $f:S\to R$ is
-      a ring under pointwise addition and multiplication: $(f+g)(s)=f(s)+g(s), (f\cdot
-      g)(s)=f(s)\cdot g(s)$. If $S=\NN$ then the function $f$ assigns every natural number
-      some element of $R$, i.e. some finite sequence, and we can add and multiply
-      pointwise elements of the sequence.
-  \end{enumerate}
+      addition and multiplication modulo $n.$
+
+    \item If $R$ is a commutative ring, then one can form the ring $R[X]$ of polynomials over $R$ in one variable. These polynomials are expressed as formal sums of the form $\sum_{i=0}^{d} a_i X^i,$ where $ d \in \mathbb{Z}_{\geq 0} $, $a_i \in R $ for all $i$, and the addition and multiplication are defined as the usual addition and multiplication for polynomials..
+    
+    \item if $R$ is a ring, then one can form the ring $M_n(R)$ of $n\times n$ matrices over $R$ under matrix addition and multiplication.
+    
+    \item If $R$ is a ring and $S$ is an arbitrary set, the set $R^S$ of functions $f:S\to R$ is a ring under pointwise addition and multiplication: $(f+g)(s)=f(s)+g(s), (f\cdot
+      g)(s)=f(s)\cdot g(s)$. 
+      
+      If $S=\NN$ then the function $f$ assigns every natural number some element of $R$, i.e. elements of $R^S$ are sequences of elements of $R$, and we can add and multiply pointwise elements of the sequence.
+
+      \item The most boring ring is the trivial ring, containing a single element. This is indeed commutative and unital, and the only ring in which 0 and 1 coincide.
+  \end{itemize}
 \end{example}
 
 \begin{remark}
-  Let $R$ be a ring, and $a,b\in R$, $n\in\ZZ\setminus \{0\}$.
+  Let $R$ be a ring, and $a,b\in R,$ $n\in \ZZ\setminus \{0\}$. We use the following conventions and notation.
   \begin{enumerate}
-    \item Like in the case of additive groups, we write $-a$ for the additive inverse of
-      $a$, $na=a+a+\cdots+a$ if $n>0$ and $na=-a-a-\cdots-a$ if $n<0$.
+    \item The notation $n \cdot a$ is shorthand for $$\underbrace{a+a+\cdots+ a}_{n \text{ times}}$$ in the ring. Similarly, premultiplication by a negative integer denotes repeated addition of the additive inverse of $a$. In other words, if $n\in \ZZ_{<0},$ then $n \cdot a$ represents $$\underbrace{-a-a-\cdots- a}_{\lvert n \rvert \text{ times}}.$$
     \item Write $a-b=a+(-b)$.
-    \item If $R$ is unital, we set $a^0=1$ for any $a\in R\setminus\{0\}$. Note however
-      that $a^{-1}$ won't exist in general.
+    \item If $R$ is unital, we set $a^0=1$ for any $a\in R\setminus\{0\}$. Note however that $a^{-1}$ won't exist in general.
     \item We usually drop $\cdot$ and instead write $ab$ rather than $a\cdot b$.
   \end{enumerate}
 \end{remark}
 
-\begin{remark}
-  Note that in rings, $ab$ do not need to commute, the multiplicative identity need does
-  not exist, and the cancellation rule does not need to hold. Be careful with these
-  intuitive ideas. Try to derive everything from first principles. Go to the axioms and
-  prove it.
-\end{remark}
-
-
 \begin{theorem}
   Let $R$ be a ring, let $a,b\in R$, and let $m,n\in\ZZ$. Then we have 
   \begin{enumerate}
-    \item $0a = a0 =0$
-    \item $a(-b)=(-a)b=-(ab)$
-    \item $(-a)(-b)=ab$
-    \item $(m+n)a = ma+na$ (not in the axioms, mind that these are integers, not ring
-      elements)
-    \item $(mn)a=m(na)$
-    \item $m(a+b)=ma+mb$
-    \item $m(ab)=(ma)b = a(mb)$
-    \item $(ma)(nb)=(mn)(ab)$
+    \item $0a = a0 =0$;
+    \item $a(-b)=(-a)b=-(ab)$;
+    \item $(-a)(-b)=ab$;
+    \item $(m+n)\cdot a = m\cdot a+n\cdot a$; 
+    \item $(mn)\cdot a=m\cdot(n\cdot a)$;
+    \item $m\cdot(a+b)=m\cdot a+m\cdot b$;
+    \item $m\cdot(ab)=(m\cdot a)b = a(m\cdot b)$;
+    \item $(m\cdot a)(n\cdot b)=(mn)\cdot(ab)$.
   \end{enumerate}
   \label{<+label+>}
 \end{theorem}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{remark}
+  Note that in rings, $ab$ do not need to commute, the multiplicative identity may not exist, and the cancellation rule does not need to hold. Be careful with these intuitive ideas; try to derive everything directly from the axioms.
+  
+  Also, note that item 4 above is not the distributivity rule from the axioms as $m$ and $n$ are integers and not ring elements.
+\end{remark}
 
 \begin{definition}
   Let $R$ be a unital ring. An element $u$ of $R$ is called a \emph{unit} if there exists
-  $u^{-1}\in R$ such that $uu^{-1}u^{-1}u=1$. The set of units of $R$ is denoted by
-  $R^{\times}$. The set of units of $R$ forms a group under multiplication.
-  \todo{Note that we defined $R$ to be closed under multiplication but it's not obvious
-  that $R^{\times}$ is closed}
+  $u^{-1}\in R$ such that $uu^{-1}=u^{-1}u=1$. The set of units of $R$ is denoted by $R^{\times}$ and forms a group under the multiplication operation in $R$.
+ 
   \label{<+label+>}
 \end{definition}
 
@@ -96,10 +87,12 @@
 \end{definition}
 
 \begin{example}
-  The Hamilton quaternions $\HH$ are real vector space with basis $1, \vi, \vj, \vk$, with
+  The Hamilton quaternions $\HH$ are a real vector space with basis $1, \vi, \vj, \vk$, with
   multiplication defined by 
-  \[\vi^2=\vj^2=\vk^2=1 \quad \vi\vj=-\vj\vi=\vk, \vj\vk=-\vk\vj=\vi, \vk\vi=-\vi\vk=\vj\]
-  And extended to $\RR$-linear combinations by distributivity. The inverse of an element
-  $a+b\vi+c\vj+d\vk \neq 0$ has inverse $\frac{a-b\vi-c\vj-d\vk}{a^2+b^2+c^2+d^2}$.
+  \[\vi^2=\vj^2=\vk^2=1, \quad \vi\vj=-\vj\vi=\vk, \vj\vk=-\vk\vj=\vi, \vk\vi=-\vi\vk=\vj\]
+  and extended to $\RR$-linear combinations by distributivity. The inverse of an arbitrary element
+  $a+b\vi+c\vj+d\vk \neq 0$ is $$\frac{a-b\vi-c\vj-d\vk}{a^2+b^2+c^2+d^2}.$$
+
+  This is a division ring but not a field. The non-commutativity of the multiplication is the only property that keeps the quaternions from being a field.
 \end{example}
 

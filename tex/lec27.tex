@@ -1,48 +1,83 @@
-\section{Lecture 27 - 22 Nov 2021}
+\section{Lecture 27}
 \subsection{Intermission: Classifying groups of order 21}
 \begin{example}
   Let $G$ be a group of order 21. How many possibilities are there for $G$?
+  %We claim that there are only two possibilities for $G$ up to isomorphism.
 \end{example}
+% \begin{proof}
+%   Note that $21=7\cdot 3$, and by Cauchy, there are elements of $G$, say $g,h\in G$, with
+%   order $7$ and $3$, say $g^7=e=h^3$. Let $K=\langle g\rangle$ and $H=\langle h\rangle$.
+%   Note that $K\cap H=\{1\}$, since by Lagrange we have that $|K\cap H|$ divides $|K|$ and
+%   $|H|$, and $\gcd(|H|,|K|)=1$, and the intersection is required to be a group itself.
+%   Moreover, note that $K\trianglelefteq G$ since $[G:K]$ being the smallest prime divisor
+%   of $G$ implies $K\trianglelefteq G$.
+
+%   Next, let $h\in H$ and consider the automorphism $\phi_h:K\to K,$ $g^i\mapsto hg^ih^{-1}$
+%   (it's rather easy to see that the map is well defined and surjective, by normality, it's
+%   a homomorphism by the general argument of conjugation as a homomorphism, and it is an
+%   isomorphism because the inverse is $\phi_{h^{-1}}$). Suppose that $hgh^{-1}=g^r$, and note
+%   that the choice for $r$ will completely determine the automorphism (since $g$ generates
+%   $K$). Note that $\phi_h^{j}(g)=h^jgh^{-j}=g^{r^j}$ and we require $j=3\implies h^3=e$
+%   hence we require $g^{r^j}=g^1$. Hence we require $r^3 \equiv 1 \mod 7$, which has solutions
+%   % which are obiously meoww
+%   $r=1$, $r=2$, $r=4$. 
+
+%   An alternate point of view is that, the function $H\to \Aut K:x\mapsto \phi_x$, where
+%   $\Aut K$ is a group under composition and the identity is the identity automorphism, and
+%   note that there are $|K|-1=6$ possible such automorphisms.  Moreover, we have $K$ is
+%   cyclic of order $7$, i.e. $\Aut K \cong (\ZZ/7\ZZ)^{\times}$, its automorphism group is
+%   group under composition. More generally we have that $\Aut(\ZZ/n\ZZ)\cong
+%   (\ZZ/n\ZZ)^{\times}$.  In fact, note that when $n$ is prime, the unit groups before is
+%   cyclic of order $n-1$. Note also that for a cyclic group of order $n$, every element of an
+%   order dividing $n$ generates exactly one subgroup of that order. So $\Aut K$ being
+%   a cyclic of order $6$ we have that there is exactly one subgroup of order $3$.
+
+%   Hence we have the following possibilities. 
+  
+%   \emph{Case 1: $\phi_h(g)=g$} -- Then $gh=hg$. Note that the semi-direct product using
+%   this conjugation rule gives $HK=G$ since they intersect trivially and the product of
+%   their order is the order of the group, and the fact that the elements commute gives
+%   raise to the fact that the group is cyclic with generator $gh$.
+  
+%   \emph{Case 2: $\phi_h(g)=g^2$} -- Non-commuting where the semi-direct product of $H$ and
+%   $K$ using this conjugation rule gives $K\rtimes H\cong C_7\rtimes C_3$.
+  
+%   \emph{Case 3: $\phi_h(g)=g^4$} -- Note that this is the case for the previous
+%   $\phi_h(g)=g^2$, but $\phi_h^2(g)=\phi_{h^{-1}}=g^4$ (since $K$ has order 7, $(\phi_h \circ \phi_{h^{-1}})(g) = g^8 = g$). These automorphisms define a faithful map $\varphi : C_3 \rightarrow \Aut(C_7)$ by 
+%   \begin{align*}
+%       & e \mapsto \phi_{e}(g) = g, \\
+%       & a \mapsto \phi_{a}(g) = g^2, \\
+%       & a^2 \mapsto \phi_{a^2}(g) = g^4.
+%   \end{align*}
+%   where $e,a \in C_3$ and $g \in C_7$. Which gives rise to the semi-direct product $C_7\rtimes_{\varphi} C_3$
+% \end{proof}
+
 \begin{proof}
-  Note that $21=7\cdot 3$, and by Cauchy, there are elements of $G$, say $g,h\in G$, with
-  order $7$ and $3$, say $g^7=e=h^3$. Let $K=\langle g\rangle$ and $H=\langle h\rangle$.
-  Note that $K\cap H=\{1\}$, since by Lagrange we have that $|K\cap H|$ divides $|K|$ and
-  $|H|$, and $\gcd(|H|,|K|)=1$, and the intersection is required to be a group itself.
-  Moreover, note that $K\trianglelefteq G$ since $[G:K]$ being the smallest prime divisor
-  of $G$ implies $K\trianglelefteq G$.
+We begin by noting that $21 = 7 \cdot 3$. According to Cauchy's theorem, there must exist elements in $G$, say $g, h \in G$, of orders 7 and 3 respectively, such that $g^7 = e = h^3$. Define two subgroups: $K = \langle g \rangle$ and $H = \langle h \rangle$.
 
-  Next, let $h\in H$ and consider the automorphism $\phi_h:K\to K:g^i\mapsto hg^ih^{-1}$
-  (it's rather easy to see that the map is well defined and surjective, by normality, it's
-  a homomorphism by the general argument of conjugation as a homomorphism, and it is an
-  isomorphism because the inverse is $\phi_{h^{-1}}$). Suppose that $hgh^{-1}=g^r$, and note
-  that the choice for $r$ will completely determine the automorphism (since $g$ generates
-  $K$). Note that $\phi_h^{j}(g)=h^jgh^{-j}=g^{r^j}$ and we require $j=3\implies h^3=e$
-  hence we require $g^{r^j}=g^1$. Hence we require $r^3\cong 1 \mod 7$, which are obiously
-  $r=1$, $r=2$, $r=4$. 
+Observe that $K \cap H = \{1\}$, as by Lagrange's theorem, we have the size of $|K \cap H|$ divides both $|K|$ and $|H|$. Since $\gcd(|H|, |K|) = 1$, the intersection must be trivial. Furthermore, $K$ is normal in $G$, as $[G:K]$ is the smallest prime divisor of $|G|$.
 
-  An alternate point of view is that, the function $H\to \Aut K:x\mapsto \phi_x$, where
-  $\Aut K$ is a group under composition and the identity is the identity automorphism, and
-  note that there are $|K|-1=6$ possible such automorphisms.  Moreover, we have $K$ is
-  cyclic of order $7$, i.e. $\Aut K \cong (\ZZ/7\ZZ)^{\times}$, its automorphism group is
-  group under composition. More generally we have that $\Aut(\ZZ/n\ZZ)\cong
-  (\ZZ/n\ZZ)^{\times}$.  In fact, note that when $n$ is prime, the unit groups before is
-  cyclic of order $n-1$. Note also that for a cyclic group of order $n$, every element of an
-  order dividing $n$ generates exactly one subgroup of that order. So $\Aut K$ being
-  a cyclic of order $6$ we have that there is exactly one subgroup of order $3$.
+Consider a mapping from $H$ to $\Aut(K)$ given by $h \mapsto \phi_h$. We aim to classify how many mappings we have between $H$ and $\Aut(K)$ (equivalently how many options we have for $\phi_h$) as this will tell us how many distinct groups we can construct via a semi-direct product of $K$ and $H$. Since $K$ is cyclic of order 7, $\Aut(K) \cong (\mathbb{Z}/7\mathbb{Z})^{\times}$, which is cyclic of order 6. One can verify there is exactly 2 mappings from $H \cong \ZZ/3\ZZ$ to $\Aut(K) \cong \ZZ/6\ZZ$, which define our semi-direct products. So we conclude there are 2 groups of order 21. 
 
-  Hence we have the following possibilities. 
-  \emph{Case 1: $\phi_h(g)=g$} -- Then $gh=hg$. Note that the semi-direct product using
-  this conjugation rule gives $HK=G$ since they intersect trivially and the product of
-  their order is the order of the group, and the fact that the elements commute gives
-  raise to the fact that the group is cyclic with generator $gh$.
-  \emph{Case 2: $\phi_h(g)=g^2$} -- Non-commuting where the semi-direct product of $H$ and
-  $K$ using this conjugation rule gives $K\rtimes H\cong C_7\rtimes C_3$.
-  \emph{Case 3: $\phi_h(g)=g^4$} -- Note that this is the case for the previous
-  $\phi_h(g)=g^2$, but $\phi_h^2(g)=\phi_{h^{-1}}=g^4$ (since $K$ has order 7, $(\phi_h \circ \phi_{h^{-1}})(g) = g^8 = g$). These automorphism's define a faithful map $\varphi : C_3 \rightarrow \Aut(C_7)$ by 
-  \begin{align*}
-      & e \mapsto \phi_{e}(g) = g, \\
-      & a \mapsto \phi_{a}(g) = g^2, \\
-      & a^2 \mapsto \phi_{a^2}(g) = g^4.
-  \end{align*}
-  where $e,a \in C_3$ and $g \in C_7$. Which gives rise to the semi-direct product $C_7\rtimes_{\varphi} C_3$
+Now we aim to find explicitly what these 2 mappings are. Consider an automorphism $\phi_h$ of $K$ defined by $\phi_h(g^i) = hg^ih^{-1}$. This map is an automorphism because it is well-defined, surjective, and its inverse is $\phi_{h^{-1}}$. We must have $hgh^{-1} = g^r$ for some $r \in \ZZ$ as $K$ is cyclic, meaning $r$ uniquely determines $\phi_h$. 
+
+Consider $\phi_h^{j}(g) = h^jgh^{-j} = g^{r^j}$; our goal is to try and find a congruence equation that will allow us to solve for $r$ and find all compatible automorphisms. Looking at $j = 3$, we require $g{r^j} = g$, leading to the congruence $r^3 \equiv 1 \mod 7$ which has solutions $r = 1, 2, 4$. 
+
+We know there are only 2 possible mappings, and what we have found above is the elements of $\Aut(K)$ which are compatible with our mapping. 
+
+First define a mapping $\varphi_1 : C_3 \rightarrow \Aut(C_7)$ as:
+$$
+a \mapsto \phi_a, \text{ where } \phi_a(g) = g, \hspace{5pt} \forall g \in C_7,
+$$
+that is $\varphi_1$ is the trivial map. We saw in the semi-direct product section that if our mapping is trivial then the definition reduces to the familiar direct product. So we have $C_7 \times C_3 \cong C_{21}$ as 7 and 3 are coprime.
+
+Now, define a mapping $\varphi_2 : C_3 \rightarrow \Aut(C_7)$ as:
+\begin{align*}
+    & e \mapsto \phi_{e}(g) = g, \\
+    & a \mapsto \phi_{a}(g)
+= g^2, \\
+& a^2 \mapsto \phi_{a^2}(g) = g^4, \hspace{5pt} \forall g \in C_7
+\end{align*}
+
+where $e, a \in C_3$, and $g \in C_7$. This mapping leads to the semidirect product $C_7 \rtimes_{\varphi_2} C_3$. So the only groups of order 21 are $C_{21}$ and $C_7 \rtimes_{\varphi_2} C_3$.
 \end{proof}

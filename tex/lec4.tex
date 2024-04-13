@@ -1,69 +1,77 @@
-\section{Lecture 4 - 27 Sep 2021}
+\section{Lecture 4}
 \subsection{Cosets}
 \begin{definition}
-  Let $G$ be a group and $H$ a subgroup of $G$. Let $g\in G$. The left coset of $H$
-  containing $g$ is the set $gH=\left\{ gh | h\in H \right\}$. The right coset of $H$
-  containing $g$ is the set $Hg=\left\{ hg | h\in H \right\}$.
+  Let $G$ be a group and $H$ a subgroup of $G$. Let $g\in G$. The \emph{left coset} of $H$
+  containing $g$ is the set $gH=\left\{ gh \mid h\in H \right\}$. Similarly, the \emph{right coset} of $H$
+  containing $g$ is the set $Hg=\left\{ hg \mid h\in H \right\}$.
   \label{coset}
 \end{definition}
 
-\begin{ex}
-  Let $G$ be the symmetric group on $4$ letters $S_4$ and let $H=\langle(1,2,3)\rangle=\left\{
-e,(1,2,3), (1,3,2) \right\}$ and let $g=(1,4))$. Then we have 
-\[gH = \left\{ (1,4), (1,2,3,4), (1,3,2,4) \right\} \subset G\]
-Note that this is not a group itself since it doesn't have the identity. It's simply a
+\begin{example}
+  Let $G$ be the symmetric group $S_4$ and let $H=\langle(1,2,3)\rangle=\left\{
+e,(1,2,3), (1,3,2) \right\}$ and let $g=(1,4)$. Then we have 
+\[gH = \left\{ (1,4), (1,2,3,4), (1,3,2,4) \right\} \subset G.\]
+Note that this is not a group itself since it doesn't have the identity; it is simply a
 subset of $G$. Moreover, the right coset
 \[Hg = \left\{ (1,4), (1,4,2,3), (1,4,3,2) \right\}\]
-Is a different coset that only has in common $g$. So $gH\neq Hg$.
-\end{ex}
+is a different coset that only has in common $g$. So $gH\neq Hg$.
+\end{example}
 
 \begin{theorem}
-  Let $G$ be a group, $H<G$, and $g,g'\in G$. Then one has $gH=g'H \iff g'^{-1}g\in H$.
+  Let $G$ be a group, $H\leq G$, and $g,g'\in G$. Then one has $gH=g'H \iff g'^{-1}g\in H$.
 \end{theorem}
 \begin{proof}
-  ($\Rightarrow$) since we have $gH=g'H$, we must have that there must
+  ($\implies$) Suppose $gH=g'H$. Then there
   exists $h\in H$ s.t. $g=g'h$, and so $g'^{-1}g=h \implies g'^{-1}g\in H$, as required.
 
-  ($\Leftarrow$) Since we have $g'^{-1}g\in H \implies \exists h\in H ; g'^{-1}g =h$, so
-  we must have $g=g' h$, hence $gH=g'H$. This is because we can now get arbitrary $h'\in
-  H$ and get \[gh'=g'hh'\] 
+  ($\impliedby$) Let $gh\in gH$. We have that $g'^{-1}g = h'$, for some $h'\in H,$ so $g = g'h',$ meaning $gh = g'h'h \in g'H,$ so $gH \subseteq g'H$. We can use a symmetric argument to conclude that $g'H \subseteq gH,$ so $gH = g'H$.
+  % Suppose we have $g'^{-1}g\in H$.  Then $ \exists h\in H \text{ s.t. } g'^{-1}g =h$, so $g=g' h$. Similarly, $\exists h' \in H$ s.t. $g'=gh'.$ Therefore $gH=g'H.$ 
 \end{proof}
 
 \begin{example}
-  We see that for $G=(\RR,+)$ and $H=\ZZ$, we have $g+H=g'+H$ if and only if
-  $g'^{-1}g\in H$, i.e.  $g',g$ differ by an integer.
+  Let $G=(\RR,+)$ and $H=\ZZ$. We see that for $x,y \in \RR$, we have $x+\ZZ=y+\ZZ$ if and only if
+  $y-x\in \ZZ$, i.e.  $x$ and $y$ differ by an integer.
 \end{example}
-\begin{example}
-  A very illustrating example is the group $G=(\RR^3, +)$ and $H=<(1,0,0),(0,1,0)>$ (note
-  $H$ is just the xy-plane). Let $g,g'\in G$ be some vectors. Following the above theorem,
-  we have $g+H=g'+H \iff g-g'\in H$, so we must have $g_3=g'_3$ (so that $g$ and $g'$
-    cancel out in the z-axis and land on the xy-plane).
-\end{example}
+% \begin{example}
+%   A very illustrating example is the group $G=(\RR^3, +)$ and $H=\langle(1,0,0),(0,1,0)\rangle$ (note
+%   $H$ is just the $xy$-plane). Let $g,g'\in G$ be vectors. Following the above theorem,
+%   we have $g+H=g'+H \iff g-g'\in H$, so we must have $g_3=g'_3$ (so that $g$ and $g'$
+%     cancel out in the z-axis and land on the xy-plane).
+% \end{example}
 
-\begin{corollary}
-  Let $G$ be a group and $H< G$, and $g\in G$. Then $gH=H$ iff $g\in H$.
+\begin{corollary}[Absorption rule]
+  Let $G$ be a group and $H\leq G$, and $g\in G$. Then $gH=H \iff g\in H$.
 \end{corollary}
 
 \begin{corollary}
-  The relation $\sim$ on $G$ defined by $g\sim g'$ iff $gH=g'H$ is an equivalence
-  relation, and so this partitions the whole group $G$ into equivalence classes, which
-  are all the cosets of $H$.
+  The relation $\sim$ on $G$ defined by $g\sim g'$ iff $gH=g'H$ is an equivalence relation.
+  % and so this partitions the whole group $G$ into equivalence classes, which
+  % are all the cosets of $H$.
+  In particular, the equivalence classes are all the left cosets of $H$ in $G$.
   \label{leftCosetsEqRel}
 \end{corollary}
 
+\begin{proof}
+     The relation is trivially reflexive, symmetric and transitive by properties of equality.
+\end{proof}
+
 \begin{remark}
-  Note that this gives the natural conception that cosets partition the group -- in a sense, it
-  looks at the group at a larger \emph{scale}. However, this partition is only another
-  set. It does not necessarily conserve group structure.
+  Note that this gives the natural conception that cosets partition the group --- in a sense it allows us to look at the group on a larger scale. However, this partition is only another set; it need not necessarily conserve group structure.
 \end{remark}
 
 
 \begin{theorem}
-  All cosets of $H$ have the same cardinality. We have $\forall g\in G$, $|gH|=|H|$.
+  All cosets of $H$ have the same cardinality. That is $\forall g\in G$, $|gH|=|H|$.
   \label{cosetsCardinality}
 \end{theorem}
 \begin{proof}
-  We claim there exists a bijection $H\to gH$. This bijection can be $h\mapsto gh$.
-  This is surjective almost by definition, since $gH=\left\{ gh | h\in H \right\}$.
-  Injectivity rises from $gh=gh'\implies h=h'$.
+  % We claim there exists a bijection $H\to gH$. This bijection can be $h\mapsto gh$.
+  % This is surjective almost by definition, since $gH=\left\{ gh \mid h\in H \right\}$.
+  % Injectivity rises from $gh=gh'\implies h=h'$.
+
+  Fix $g \in G$ and let $\varphi:H \longrightarrow gH$ be the mapping $h \longmapsto gh$. We claim that $\varphi$ is a bijection.
+
+  This is surjective since every element of $gH$ can be recovered as $gh$ for some $h \in H$.
+
+  If we suppose $gh = gh',$ then clearly $h = h'$ after we left multiply by $g^{-1}$, so $\varphi$ is injective.
 \end{proof}

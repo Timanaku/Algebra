@@ -1,48 +1,56 @@
-\section{Lecture 19 - 3 Nov 2021}
+\section{Lecture 19}
 \subsection{Subrings, ideals, and quotients}
 \begin{definition}
-  Let $R$ be a ring. A subring is an additive subgroup $S\subset R$ s.t. for every
-  $a,b\in S$, $ab\in S$. We usually write $S\leq R$. If $R$ is unital, a subring $S\leq R$
-  is called a unital subring if $1\in S$. 
-  When we refer to subrings of a unital ring $R$, the assumption will be that the subring is also unital, unless otherwise stated.
+  Let $R$ be a ring. A \emph{subring} of $R$ is an additive subgroup $S\subset R$ s.t. for every
+  $a,\text{ } b\in S$, one has $ab\in S$. We usually write $S\leq R$ to say that $S$ is a subring of $R$. If $R$ is unital, a subring $S\leq R$ is called a unital subring if $1\in S$. 
   %If $R$ is unital, then we assume every subring
   %to be unital, unless otherwise stated.
   \label{<+label+>}
 \end{definition}
 %There's a counter example to the claim that every subring of a unital ring is unital. 
-Not every subring of a unital ring is unital, for example $2\ZZ \leq \ZZ$.
+\begin{remark}
+    Note that although we mainly consider unital subrings, a subring of a unital ring need not be unital. For example, 
+    $2\ZZ \leq \ZZ$ does not contain $1$.
+\end{remark}
+
 
 \begin{example}
-  We have $\ZZ \leq \QQ \leq \RR \leq \CC \leq \HH$.
+    We have the chain of subrings $\ZZ \leq \QQ \leq \RR \leq \CC \leq \HH$. Here are some more interesting examples.
+    \begin{itemize}
+        \item If $R$ is a commutative ring, then $R$ itself is a
+  subring of the ring of polynomials $R[X].$
+        \item Let $S$ be a subring of the (unital) ring $R$. Then for every $n\in\ZZ_{>0}$ we have $M_{n}(S)$ is a subring of the (unital) ring $M_{n}(R)$.
+        \item Consider the set of all functions $f:\NN\to\RR$, i.e. all sequences of real numbers. %meow
+        Define addition and multiplication pointwise with elements of the sequence. The sequence of zeroes is the additive identity, and the subset of all sequences that converge to $0$ is a subring. This subring is not unital, since the multiplicative identity would have to be the sequence of ones, which does not converge to $0$.
+    \end{itemize} 
 
-  Another interesting example is if $R$ is a commutative ring, then $R$ itself is a
-  subring of the ring of polynomials $R[X]$.
-
-  Let $S$ be a subring of the unital ring $R$. Then for every $n\in\ZZ_{>0}$ we have
-  $M_{n\times n}(S)$ is a subring of the unital ring $M_{n\times n}(R)$.
-
-  Consider the set of all functions $f:\NN\to\RR$, i.e. all sequences of real numbers.
-  Define the pointwise addition and multiplication of elements of the sequence. The subset
-  of all sequence that converge to $0$ is a subring itself. The sequence of zeroes is the
-  additive identity. This subring is not unital. Hence a counter example to the claim
-  under the defintion above, even though the ring is unital, namaing the multiplicative
-  identity to be the sequence with all ones. 
+  % Hence a counterexample to the claim
+  % under the definition above, even though the ring is unital, naming the multiplicative
+  % identity to be the sequence with all ones. 
 \end{example}
 
 
-Question: What substructures do we need to consider to form quotients?
+We will now move our attention to forming quotient rings. Recall that normal subgroups form quotient groups. What substructures do we need to consider to form quotient rings?
 That depends on the kind of quotient structure we aim for: additive $(r+S)$ or
-multiplicative cosets $(rS)$? We can look at existing cosets, namely $\ZZ/n\ZZ$. We will
+multiplicative cosets $(rS)$?
+
+We can look at existing cosets, namely $\ZZ/n\ZZ$. We will
 try to build cosets whose elements consist of additive cosets. 
-% From the special case of additive groups, we know that for the operation of cosets to be well defined we need the substructure to be abelian. 
-We know that the operation for additive cosets is well defined as all subgroups of an abelian group are normal. Note that as a group, rings are abelian, so every subring will
-also be an abelian subgroup. Let $I\subset R$ be an additive subgroup, and let $a,b\in R$.
-We want to define $(r+I)(s+I)=(rs)+I$. So when can we define this?
-Let $r + I = r' + I$ and $s + I = s'+ I$, this gives that there exists some $i,j \in I$ such that $r' = r + i$ and $s' = s + j$ respectively. We need $r's' + I = rs + I$ for it to be well defined, so consider
+
+Note that as a group, rings are abelian, so every subring will
+also be an abelian subgroup. We know then that the operation for additive cosets of rings is well defined as all subgroups of an abelian group are normal. We now need a condition to ensure the well definedness of multiplication of cosets for rings.
+
+Let $I\subset R$ be an additive subgroup, and let $a,\text{ }b\in R$.
+We want to define multiplication of cosets as $(r+I)(s+I)=(rs)+I$. So when is this well defined?
+
+Let $r + I = r' + I$ and $s + I = s'+ I$. This gives that there exists some $i,j \in I$ such that $r' = r + i$ and $s' = s + j$. We need $r's' + I = rs + I$ for the operation to be well defined.
+Consider
 $$
 r's' - rs = (r+i)(s+j) - rs = rj + is + ij.
 $$
-So in order to have $r's' + I = rs + I$ we would need $rj + is + ij$ to be in $I$ (This follows from $r's'-rs \in I \implies r's' + I = rs + I$). So now we have motivated our definition for an ideal, we want that for every $i \in I$ and $r \in R$ we have $ri, ir \in I$. We can split this into 3 types of ideals, left, right and two-sided.
+As $r's'-rs \in I \implies r's' + I = rs + I$, we need to ensure $rj + is + ij\in I.$
+
+We have now motivated our definition for an ideal; we want that for every $i \in I$ and $r \in R$ one has $ri, ir \in I$. We can split this into 3 types of ideals: left, right and two-sided.
 
 \begin{remark}
     Spoiler alert: The two-sided ideals are exactly the conditions we need to create well-defined multiplication of cosets. 
@@ -64,39 +72,39 @@ So in order to have $r's' + I = rs + I$ we would need $rj + is + ij$ to be in $I
   A \emph{right ideal} of $R$ is an additive subgroup $I$ of $R$ s.t. for every $a\in I$
   and $r\in R$, $ar\in I$. That is, for every $r\in R$, we have $rI\subseteq I$.
 
-  A \emph{two-sided ideal} is an additive subgroup $I$ of $R$ s.t. it's a left ideal and a
-  right ideal. We write $I\trianglelefteq R$.
+  A \emph{two-sided ideal} is an additive subgroup $I$ of $R$ that is a left ideal and a
+  right ideal. We write $I\trianglelefteq R$ and say $I$ is an ideal of $R$.
 
-  An ideal of $R$ is called \emph{proper} if it's not equal to $R$. Note that for an ideal to be an proper, it's necessary for it to not contain the
-multiplicative identity, since if it did, then for some $r\in R$ not in the ideal will
-produce $r1=r$, which we said is not in the ideal. Hence it can't be an ideal. 
+  An ideal of $R$ is called \emph{proper} if it is not equal to $R$. 
   \label{<+label+>}
 \end{definition}
+% \begin{remark}
+% Note that for an ideal to be an proper, it is necessary for it to not contain the multiplicative identity. If it did, consider some $r\in R$ that is not in the ideal. We have that $r1=r$ must be in the ideal as 1 is in the ideal; a contradiction. 
+% \end{remark}
 
+\begin{remark}
+If a two-sided ideal $I$ of $R$ contains $1$, then $I = R$, since by properties of ideals, $1r = r \in I,$  $\forall r \in R.$
+This means that no proper ideal can be a unital subring.
+\end{remark}
+
+\begin{remark}
+    In any ring $R$, the trivial and maximal subrings $\{0_R\}$ and $R$ are ideals. In a field $F$, if a non-zero element $x \in F$ is present in an ideal, then so is $xx^{-1} = 1.$ This means that these are the only ideals in a field. 
+\end{remark}
 
 \begin{definition}
   Let $R$ be a unital ring, and $I$ be a proper two-sided ideal in $R$. The
-  \emph{quotient ring} $R/I$ has, as its underlying set, the set of cosets $\left\{ r+I : r\in R
+  \emph{quotient ring} $R/I$ has, as its underlying set, the set of cosets $\left\{ r+I \mid r\in R
   \right\}$. We define the addition of cosets as $(r+I)+(s+I)=(r+s)+I$ and multiplication
   as $(r+I)(s+I)=(rs)+I$. 
   \label{<+label+>}
 \end{definition}
 
-Note that the quotient ring, which was guided and motivated by $\ZZ/n\ZZ$ is a bit easier
-to think about than group quotients, since quotient rings will look like $\ZZ/n\ZZ$, which
-is rather easy to visualize, in contrast with quotient groups.
-
-We have an equivalent condition as with group cosets for two elements of $R/I$ being the same (just a different representative), as $r + I = s + I \iff r - s \in I$.
+Note that we have an equivalent condition as with group cosets for two elements of $R/I$ having different representatives but being the same coset. We have $r + I = s + I \iff r - s \in I$.
 
 \begin{example}
-  Consider the polynomial ring $R=\RR[X]$. The subset $I=X^2 R$, the set of real
-  polynomials of degree $2$ or greater, is ideal. Think that for every element $r$ of $R$, the
-  product $rh$ for some $h\in I$ will still be in $I$, since the degree of $rh$ will be at
-  least $2$ (by $h$). Two polynomials $f=a_0+a_1x+\cdots$, $g=b_0+b_1x+\cdots$ are in the
-  same quotient $R/I$ if and only if $a_0=b_0$, $a_1=b_1$ so that $f-g\in I$. I.e. for
-  some $a,b\in \RR$, the coset $a+bx+I$ is unique. For any $c\in\RR$, the coset
-  $a+bx+cx^2+I$ will be equal for every $c$. Thus $R/I$ can be seen as a $2$-dimensional
-  vector space while $R$ is an infinite dimensional vector space, over $\RR$. Here $R/I$
-  is spanned by $\hat{1}=1+I$, $\hat{X}=X+I$, with property $\hat{X}^2=0$, since
+  Let $R=\RR[X]$, and consider the subset $I=X^2 R=\{a_2X^2+a_3X^3+\cdots a_dX^d\in \RR[X]: d\in \ZZ_{\geq 2},\text{ } a_i\in \RR\}$. We can check that this is an additive subgroup of $R.$ Now let $r\in R$ and $i\in I$. As $i$ has degree at least 2, the product $ri$ will also have degree at least 2, so $ri=ir \in I.$ Therefore $X^2R$ is an ideal of $R.$ 
+
+  Let us now consider the quotient ring $R/I$. Two polynomials $f=a_0+a_1x+\cdots$, $g=b_0+b_1x+\cdots \in R$ represent the same coset in $R/I$ if and only if $a_0=b_0$, $a_1=b_1$, so that $f-g\in I$. In other words, for each $a,b\in \RR$, the coset $a+bx+I$ is unique. Thus, $R/I$ can be thought of as a plane where each point, or coset, is uniquely determined by a linear polynomial $a+bX+I.$  Therefore, $R/I$ can be can be seen as a $2$-dimensional
+  vector space spanned by $\hat{1}=1+I$, $\hat{X}=X+I$, with the property that $\hat{X}^2=0$, since
   $X^2+I=0+I=I$.
 \end{example}
